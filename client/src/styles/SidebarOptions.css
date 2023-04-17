@@ -1,0 +1,19 @@
+.sidebarOptions {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+   gap: 1rem;
+}
+.sidebarOptions>.MuiSvgIcon-root {
+    padding: 10px 0px;
+}
+
+.sidebarOptions:hover {
+    background-color: #e8f5fe;
+    color: var(--Decentra-color);
+    transition: all 0.2s ease;
+}
+
+.sidebarOptions>h3 {
+    margin-right: 20px;
+}
