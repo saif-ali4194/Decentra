@@ -10,8 +10,8 @@ import PushPinIcon from '@mui/icons-material/PushPin';
 function Sidebar() {
   return (
     <div className='sidebar'>
-      <h1>Decentra</h1>
-      <SidebarOptions text = "Home"  Icon={HomeIcon}/>
+      <div className="decentra"><h1>Decentra</h1></div>
+      <SidebarOptions active text = "Home"  Icon={HomeIcon}/>
       <SidebarOptions text = "Profile" Icon={PersonIcon}/>
       <SidebarOptions text = "Explore" Icon={SearchIcon}/>
       <SidebarOptions text = "Notifications" Icon={NotificationsIcon}/>

@@ -2,11 +2,14 @@
     margin: 0%;
     padding: 0%;
 } */
-
+.decentra {
+    margin-bottom: 100px;
+}
 .sidebar {
-    border-right: 1px solid var(--border-color);
-    flex: 0.3;
-    margin-top: 20px;
+    border-right: 1px solid var(--D-border-color);
+    color: var(--D-font-color);
+    flex: 0.2;
+    margin-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
     /* min-width: 200px; */

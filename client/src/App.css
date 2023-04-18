@@ -1,10 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 :root {
-  --border-color: #ebebeb;
-  --Decentra-color:#50b7f5;
-  --DarkMode: rgb(48, 48, 48);
+  /* Border colors */
+  --L-border-color: #ebebeb;
+  --D-border-color:#4e4d4d;
+  /* Brand Color */
+  --Brand-color:#50b7f5;
+  --B-L-hover-color: #e8f5fe;
+  --B-D-hover-color:
+  /* Background color */
+  --LightMode:rgb(255, 255, 255);
+  --DarkMode: rgb(57, 57, 57);
+  /* Font colors */
+  --L-font-color: rgb(0, 0, 0);
+  --D-font-color:rgb(255, 255, 255);
+  /* Highlighted Background */
+  --H-background-color:rgb(32, 32, 32);
 }
 
+body {
+  background-color: var(--DarkMode);
+}
 .App {
+  font-family: 'Inter', sans-serif;
   display: flex;
   height: 100vh;
   max-width: 1300px;

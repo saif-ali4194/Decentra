@@ -2,18 +2,25 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-   gap: 1rem;
+   /* gap: 1rem; */
+   color: var(--D-font-color);
+   padding: 0px 10px;
 }
 .sidebarOptions>.MuiSvgIcon-root {
-    padding: 10px 0px;
+    padding: 10px 30px 10px 0px;
 }
 
 .sidebarOptions:hover {
-    background-color: #e8f5fe;
-    color: var(--Decentra-color);
-    transition: all 0.2s ease;
+    background-color:  #272727;;
+    color: var(--Brand-color);
+    transition: color 0.2s ease;
 }
 
 .sidebarOptions>h3 {
     margin-right: 20px;
+}
+
+.sidebarOption--active {
+    background-color:  #272727;
+    color: var(--Brand-color);
 }

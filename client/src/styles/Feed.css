@@ -5,14 +5,15 @@
 
 .feed {
     flex: 0.5;
-    border-right: 1px solid var(--border-color);
+    border-right: 1px solid var(--D-border-color);
     min-width: fit-content;
     overflow-y: scroll;
 }
 .feed__header {
     position: sticky;
     top: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--H-background-color);
+    color: var(--D-font-color);
     z-index: 100;
     border: 1px solid var(--border-color);
     padding: 15px 20px;
