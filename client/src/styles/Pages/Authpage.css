@@ -1,0 +1,61 @@
+.authpage {
+    font-family: "Inter";
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh;
+}
+
+.connect-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    width: 20%;
+    height: 15rem;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.connect-wrapper> .heading >h1 {
+    color: white;
+}
+.auth-btn {
+    width: 50%;
+    height: 3rem;
+    border-radius: 10px;
+    border-style: none;
+    background-color: rgba(32, 99, 186, 0.743);
+    color: white;
+    border: 1px solid #111;
+    font-size: 1.2em;
+    font-family: "Inter";
+    cursor: pointer;
+}
+.auth-btn:hover {
+    background-color: rgba(20, 61, 114, 0.743);
+}
+
+#lock {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100px;
+    margin-top: -6.7rem;
+}
+.heading {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
