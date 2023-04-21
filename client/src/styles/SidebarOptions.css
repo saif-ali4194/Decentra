@@ -5,6 +5,7 @@
    /* gap: 1rem; */
    color: var(--D-font-color);
    padding: 0px 10px;
+   text-decoration: none;
 }
 .sidebarOptions>.MuiSvgIcon-root {
     padding: 10px 30px 10px 0px;
