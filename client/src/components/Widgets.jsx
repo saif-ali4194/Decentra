@@ -4,7 +4,7 @@ import Trending from './Trending'
 function Widgets() {
   return (
     <div className='widgets'>
-      <h3 >Widgets</h3>
+      {/* <h3 >Widgets</h3> */}
       <Trending/>
     </div>
   )

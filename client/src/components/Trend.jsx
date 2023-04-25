@@ -19,7 +19,7 @@ const Trend = ({name, location, type,retweets,catagoryName}) => {
                     color:"var(--D-font-color)",
                     opacity:"100%"
                 }
-            }>{type===1 && "#"}{name}</span>
+            }>{type===1 && "# "}{name}</span>
             <span>{retweets} Tweets</span>
         </div>
      );
