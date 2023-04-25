@@ -1,0 +1,27 @@
+.trend{
+    display: flex;
+    flex-direction: column;
+    gap: 0.175em;
+    padding:10px 10px 10px 15px;
+    cursor: pointer;
+    background-color: var(--H-background-color);
+}
+.trend:hover{
+    filter: brightness(150%);
+}
+.trend-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.trend .button{
+    border-radius: 100%;
+    filter:grayscale();
+}
+.trend .button:hover{
+    filter:none;
+}
+span{
+    opacity: 60% ;
+    font-size:smaller;
+}

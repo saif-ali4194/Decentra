@@ -1,0 +1,26 @@
+.trending{
+    width:100%;
+    margin: 0 auto;
+    padding: 5px 0px 5px 0px;
+    background-color: var(--H-background-color);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.trendingPageLink{
+    padding:10px 10px 10px 15px;
+   /* background-color: var(--H-background-color); */
+   cursor: pointer;
+   color:var(--Brand-color);
+   font-size: medium;
+   text-decoration: none;
+}
+.trendingPageLink:hover{
+    /* filter: brightness(150%); */
+   
+}
+.trending>:hover{
+    
+    filter: brightness(150%);
+}
