@@ -10,6 +10,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import UserProfile from "./UserProfile"
+import SettingsIcon from '@mui/icons-material/Settings';
 
 function Sidebar() {
   const location = useLocation();
@@ -22,6 +24,7 @@ function Sidebar() {
   return (
     <div className='sidebar'>
       <div className="decentra"><h1>Decentra</h1></div>
+      <UserProfile />
       <SidebarOptions 
         text = "Home"  
         Icon={HomeIcon} 
@@ -55,6 +58,13 @@ function Sidebar() {
       Icon={PeopleIcon} 
       to="/community"
       active={activeLink === '/community'}
+        handleLinkClick={handleLinkClick}
+      />
+      <SidebarOptions 
+      text = "Settings" 
+      Icon={SettingsIcon} 
+      to="/settings"
+      active={activeLink === '/settings'}
         handleLinkClick={handleLinkClick}
       />
       <SidebarOptions 

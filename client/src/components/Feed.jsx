@@ -7,7 +7,7 @@ import NotificationPage from "../Pages/NotificationPage"
 import CommunityPage from "../Pages/CommunityPage"
 import ProfilePage from "../Pages/ProfilePage"
 import TrendingPage from "../Pages/TrendingPage"
-
+import SettingsPage from '../Pages/SettingsPage';
 function Feed() {
   return (
     <div className="feed">
@@ -18,7 +18,7 @@ function Feed() {
       <Route path="/community" element={<CommunityPage />} />
       <Route path="/notifications" element={<NotificationPage />} />
       <Route path="/trendingPage" element={<TrendingPage />} />
-      
+      <Route path="/settings" element={< SettingsPage/>} />
       </Routes>
     </div>
   )
