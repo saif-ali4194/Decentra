@@ -21,7 +21,7 @@ const Trending = () => {
             <Trend name={"JusticeForSaif"} location={"Pakistan"} type={1} retweets={"25k"}/>
             <Trend name={"WhyDidThisHappen"} location={"Pakistan"} type={1} retweets={"15k"}/>
             <Trend name={"Assault"} location={"Pakistan"} type={0} retweets={"10k"} catagoryName={"Social Issues"}/>
-            <Trend name={"IIUI"} location={"Pakistan"} type={1} retweets={"5k"}/>
+            {/* <Trend name={"IIUI"} location={"Pakistan"} type={1} retweets={"5k"}/> */}
             <Link to={"/trendingPage"} className='trendingPageLink' onClick={()=>{handleLinkClick("/trendingPage")}}>Show More</Link>
         </div>
      );

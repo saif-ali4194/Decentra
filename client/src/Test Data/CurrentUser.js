@@ -12,6 +12,6 @@ export const User = {
     city: "Islamabad",
     occupation: "Software engineer",
     date_joined: "April 26th",
-    followers: 102,
-    following: 69
+    followers: "102",
+    following: "69"
 }

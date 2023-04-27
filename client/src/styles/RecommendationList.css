@@ -1,0 +1,29 @@
+.reco-wrapper {
+    margin-top: 20px;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: var(--H-background-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#heading {
+    /* font-size: 1.1em; */
+    font-weight: 800;
+    padding: 0px 15px;
+}
+.communityPageLink{
+    padding:0px 10px 10px 15px;
+   /* background-color: var(--H-background-color); */
+   cursor: pointer;
+   color:var(--Brand-color);
+   font-size: medium;
+   text-decoration: none;
+   margin-top: 10px;
+}
+.reco-list {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0px 0px;
+}

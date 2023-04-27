@@ -1,0 +1,42 @@
+.reco-unit {
+    display: flex;
+    padding: 10px 15px;
+    gap: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+.reco-unit:hover {
+    background-color: #111;
+}
+
+#r-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
+
+#r-user-name {
+    font-size: 1.2em;
+    white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+#follow {   
+    background-color: var(--Brand-color);
+    margin-left: auto;
+    width: 25%;
+    padding: 8px 0px;
+    border-style: none;
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+#follow:hover {
+    background-color: #3982b0;
+}

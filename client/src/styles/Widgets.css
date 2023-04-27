@@ -4,4 +4,18 @@
     flex: 0.3;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
+
+/* Thin grey scrollbar */
+::-webkit-scrollbar {
+    width: 5px; /* width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #6a6a6a; /* color of the track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #272727; /* color of the scrollbar */
+  }
