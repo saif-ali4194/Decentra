@@ -68,7 +68,7 @@ export const user_list = [
         id: 5,
         name: "William Taylor",
         avatar: null,
-        banner: img01,
+        banner: null,
         age: 27,
         gender: "Male",
         status: "in-relationship",

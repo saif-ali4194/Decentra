@@ -2,6 +2,7 @@ import React from 'react'
 import "../styles/Pages/ProfilePage.css"
 import {user_list} from "../Test Data/UserList"
 import { useParams } from 'react-router-dom';
+import DefaultAvatar from "../Data/Images/avatar.jpg"
 
 
 function ProfilePage({user}) {
@@ -25,7 +26,7 @@ function ProfilePage({user}) {
 
           <div className="user-wrapper">
             <div id="avatar" 
-              style={{backgroundImage: `url(${user_profile.avatar})`}}
+              style={{backgroundImage: `url(${user_profile.avatar || DefaultAvatar})`}}
             ></div>
             <h1>{user_profile.name}</h1>
            {!user && <button id='p-follow'>Follow</button>}
