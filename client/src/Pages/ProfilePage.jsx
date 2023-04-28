@@ -28,6 +28,7 @@ function ProfilePage({user}) {
               style={{backgroundImage: `url(${user_profile.avatar})`}}
             ></div>
             <h1>{user_profile.name}</h1>
+           {!user && <button id='p-follow'>Follow</button>}
           </div>
 
           <div className="info">
