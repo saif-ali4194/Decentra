@@ -19,7 +19,7 @@ function RecommendationList() {
       <h3 id='heading'>Recommendations</h3>
       <div className="reco-list">
         { user_list.map(user => (
-          <RecommendationUnit  key={user.id} img= {user.avatar} name={user.name} />
+          <RecommendationUnit  key={user.id} id= {user.id} img= {user.avatar} name={user.name} />
           ))
         }
       </div>

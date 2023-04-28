@@ -65,3 +65,13 @@
     font-size: 1.5em;
     font-weight: bold;
 }
+
+#error {
+    margin-top: 40px ;
+    color: var(--D-font-color);
+    font-size: 1.4em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+
+}

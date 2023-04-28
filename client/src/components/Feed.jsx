@@ -8,12 +8,15 @@ import CommunityPage from "../Pages/CommunityPage"
 import ProfilePage from "../Pages/ProfilePage"
 import TrendingPage from "../Pages/TrendingPage"
 import SettingsPage from '../Pages/SettingsPage';
+import {User} from "../Test Data/CurrentUser"
+
 function Feed() {
   return (
     <div className="feed">
       <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile" element={<ProfilePage user={User}/>} />
+      <Route path="/profile/:userId" element={<ProfilePage />} /> 
       <Route path="/explore" element={<ExplorePage />} />
       <Route path="/community" element={<CommunityPage />} />
       <Route path="/notifications" element={<NotificationPage />} />

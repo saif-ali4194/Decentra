@@ -1,41 +1,51 @@
 import React from 'react'
 import "../styles/Pages/ProfilePage.css"
-import BannerImg from "../Data/Images/banner.png"
-import Avatar from "../Data/Images/avatarProfile.png"
-import {User} from "../Test Data/CurrentUser"
+import {user_list} from "../Test Data/UserList"
+import { useParams } from 'react-router-dom';
 
-function ProfilePage() {
+
+function ProfilePage({user}) {
+  let {userId} =  useParams(); // get id form url
+  let user_profile;
+  if (userId) // if url has id then
+    user_profile = user_list.find(user => user.id == userId);
+   else // use current user
+    user_profile = user;
+
+  if (!user_profile) // if no users are found
+    return <div id="error">Can't find the user you're looking for!</div>; 
+
   return (
     <div className='profile-page'>
-        {/* userInfo */}
         <div className="top">
           <div 
           id="banner"
-          style={{backgroundImage: `url(${User.banner})`}}
+          style={{backgroundImage: `url(${user_profile.banner})`}}
           ></div>
 
           <div className="user-wrapper">
             <div id="avatar" 
-              style={{backgroundImage: `url(${User.avatar})`}}
+              style={{backgroundImage: `url(${user_profile.avatar})`}}
             ></div>
-            <h1>{User.name}</h1>
+            <h1>{user_profile.name}</h1>
           </div>
 
           <div className="info">
-            <h6>Im a {User.occupation}</h6>
-            <h6>{User.age}yrs, {User.gender}, {User.status}</h6>
-            <h6>Live in {User.city}, {User.country}</h6>
-            <span id='join'>Decentrian since {User.date_joined}</span>
+            <h6>Im a {user_profile.occupation}</h6>
+            <h6>{user_profile.age}yrs, {user_profile.gender}, {user_profile.status}</h6>
+            <h6>Live in {user_profile.city}, {user_profile.country}</h6>
+            <span id='join'>Decentrian since {user_profile.date_joined}</span>
           </div>
 
           <div className="following">
-            <div id="left">Followers: {User.followers}</div>
-            <div id="right">Following: {User.following}</div>
+            <div id="left">Followers: {user_profile.followers}</div>
+            <div id="right">Following: {user_profile.following}</div>
           </div>
         </div>
       {/* User Feed */}
       <div className="bottom"></div>
     </div>
+   
   )
 }
 

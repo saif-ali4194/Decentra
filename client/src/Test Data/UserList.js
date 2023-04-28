@@ -1,13 +1,29 @@
+import img01 from "../Data/Test Data/CurrentUser/banner.jpg"
 import img1 from "../Data/Test Data/UserLists/1.jpg"
 import img2 from "../Data/Test Data/UserLists/2.png"
 import img3 from "../Data/Test Data/UserLists/3.png"
 import img4 from "../Data/Test Data/UserLists/4.png"
 export const user_list = [
+    // {
+    //     id: 1,
+    //     name: "Hamza Azhar",
+    //     avatar: img0,
+    //     banner: img01,
+    //     age: 23,
+    //     gender: "Male",
+    //     status: "Single",
+    //     country: "Pakistan",
+    //     city: "Islamabad",
+    //     occupation: "Software engineer",
+    //     date_joined: "April 26th",
+    //     followers: "102",
+    //     following: "69"
+    // },
     {
-        id: 1,
+        id: 2,
         name: "Saif Aly",
         avatar: img1,
-        // banner: img2,
+        banner: img01,
         age: 24,
         gender: "Male",
         status: "Single",
@@ -19,25 +35,25 @@ export const user_list = [
         following: "3"  
     },
     {
-        id: 2,
-    name: "Elon Musk",
-    avatar: img2,
-    // banner: img2,
-    age: 47,
-    gender: "Male",
-    status: "Married",
-    country: "USA",
-    city: "San Francisco, California",
-    occupation: "CEO SpaceX, Tesla & Twitter",
-    date_joined: "April 27th",
-    followers: "70M",
-    following: "3"
+        id: 3,
+        name: "Elon Musk",
+        avatar: img2,
+        banner: img01,
+        age: 47,
+        gender: "Male",
+        status: "Married",
+        country: "USA",
+        city: "San Francisco, California",
+        occupation: "CEO SpaceX, Tesla & Twitter",
+        date_joined: "April 27th",
+        followers: "70M",
+        following: "3"
     },
     {
-        id: 3,
+        id: 4,
         name: "Emily Wilson",
         avatar: img3,
-        // banner: img2,
+        banner: img01,
         age: 19,
         gender: "Female",
         status: "Single",
@@ -49,10 +65,10 @@ export const user_list = [
         following: "2k"
     },
     {
-        id: 4,
+        id: 5,
         name: "William Taylor",
         avatar: null,
-        // banner: img2,
+        banner: img01,
         age: 27,
         gender: "Male",
         status: "in-relationship",
@@ -64,10 +80,10 @@ export const user_list = [
         following: "102"
     },
     {
-        id: 5,
+        id: 6,
         name: "Muqaddus Ali",
         avatar: img4,
-        // banner: img2,
+        banner: img01,
         age: 23,
         gender: "Male",
         status: "Heavily-Single",

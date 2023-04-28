@@ -3,7 +3,7 @@
     padding: 10px 15px;
     gap: 20px;
     align-items: center;
-    cursor: pointer;
+  
 }
 .reco-unit:hover {
     background-color: #111;
@@ -39,4 +39,17 @@
 }
 #follow:hover {
     background-color: #3982b0;
+}
+
+#unit-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    text-decoration: none;
+    font-size: 1em;
+    white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  color: var(--D-font-color);
 }

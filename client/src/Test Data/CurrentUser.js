@@ -2,6 +2,7 @@ import img1 from "../Data/Test Data/CurrentUser/Ted.png"
 import img2 from "../Data/Test Data/CurrentUser/banner.jpg"
 
 export const User = {
+    id: 1,
     name: "Hamza Azhar",
     avatar: img1,
     banner: img2,
