@@ -15,7 +15,7 @@ function Feed() {
     <div className="feed">
       <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/profile" element={<ProfilePage user={User}/>} />
+      <Route path="/profile" element={<ProfilePage current_user={User}/>} />
       <Route path="/profile/:userId" element={<ProfilePage />} /> 
       <Route path="/explore" element={<ExplorePage />} />
       <Route path="/community" element={<CommunityPage />} />

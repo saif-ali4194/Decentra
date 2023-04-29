@@ -3,15 +3,19 @@ import "../styles/Pages/ProfilePage.css"
 import {user_list} from "../Test Data/UserList"
 import { useParams } from 'react-router-dom';
 import DefaultAvatar from "../Data/Images/avatar.jpg"
+import { useLocation } from 'react-router-dom';
 
 
-function ProfilePage({user}) {
+function ProfilePage({current_user}) {
+  const location = useLocation();
   let {userId} =  useParams(); // get id form url
-  let user_profile;
-  if (userId) // if url has id then
-    user_profile = user_list.find(user => user.id == userId);
-   else // use current user
-    user_profile = user;
+  let user_profile = undefined;
+  if (userId) {// if url has id then
+    user_profile = user_list.find(user => user.id == userId); //Mylist
+    if(!user_profile) { user_profile = location.state.user;}
+
+  }else // use current user
+    user_profile = current_user;
 
   if (!user_profile) // if no users are found
     return <div id="error">Can't find the user you're looking for!</div>; 
@@ -29,7 +33,7 @@ function ProfilePage({user}) {
               style={{backgroundImage: `url(${user_profile.avatar || DefaultAvatar})`}}
             ></div>
             <h1>{user_profile.name}</h1>
-           {!user && <button id='p-follow'>Follow</button>}
+           {!current_user && <button id='p-follow'>Follow</button>}
           </div>
 
           <div className="info">

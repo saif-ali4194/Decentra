@@ -1,0 +1,42 @@
+.user-unit {
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-unit:hover {
+    background-color: #111;
+}
+
+.u_avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100px;
+}
+
+
+
+.u-name {
+    font-size: 1.5em;
+}
+
+.u-follow {
+    margin-left: auto;
+    width: 15%;
+    height: 2rem;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--Brand-color);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.u-follow:hover {
+    background-color:  #2362a1;
+}
+
+
