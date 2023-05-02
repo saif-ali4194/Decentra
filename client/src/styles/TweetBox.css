@@ -1,0 +1,76 @@
+.tweetbox{
+    
+    padding: 1rem;
+    background-color: var(--H-background-color);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.avatar{
+   align-self: start;
+}
+.datafield{
+    
+    width:100%;
+}
+.textfield{
+    border-bottom: 1px solid var(--D-border-color);
+    width: 100%; 
+}
+#tweet_text{
+    background-color: transparent;
+    border: none;
+    width:100%;
+    max-width: 100%;
+    font-size:200%;
+    color: var(--D-font-color);
+    resize: none;
+    padding: 10px;
+      
+}
+#tweet_text:focus{
+    outline-width:0 ;
+}
+textarea{
+    font-family: inherit;
+}
+textarea::-webkit-scrollbar{
+    width: 0;
+}
+
+.bottomfield{
+    margin-top:5px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+.media_icons{
+    color:var(--Brand-color);
+    
+}
+._options:hover{
+    filter:brightness(250%);
+    cursor: pointer;
+    
+}
+.previewImage{
+    position: relative;
+
+}
+.previewImage>svg{
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+    background-color: var(--L-font-color);
+    filter: opacity(80%);
+   
+    
+}
+
+.previewImage>img{
+    width: 100%;
+    max-height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
