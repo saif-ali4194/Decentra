@@ -19,6 +19,7 @@
 }
 
 .sidebarOptions>h3 {
+    display: block;
     margin-right: 20px;
     font-weight: 600;
 }
@@ -27,3 +28,19 @@
     background-color:  #272727;
     color: var(--Brand-color);
 }
+
+@media (max-width: 760px) {
+    .sidebarOptions {
+        padding: 0px 0px 0px 0px;
+        justify-content: center;
+    }
+
+    .sidebarOptions>.MuiSvgIcon-root {
+        padding: 10px 0px 10px 0px;
+    }
+
+    .sidebarOptions>h3 {
+      display: none;
+      margin-right: 0%;
+    }
+  }
