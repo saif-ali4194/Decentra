@@ -22,6 +22,7 @@ export const user_list = [
     {
         id: 2,
         name: "Saif Aly",
+        at:"@Python",
         avatar: img1,
         banner: img01,
         age: 24,
@@ -39,6 +40,7 @@ export const user_list = [
     {
         id: 3,
         name: "Elon Musk",
+        at:"@CEO_twitter",
         avatar: img2,
         banner: img01,
         age: 47,
@@ -54,6 +56,7 @@ export const user_list = [
     {
         id: 4,
         name: "Emily Wilson",
+        at:"@PrettyGirl",
         avatar: img3,
         banner: img01,
         age: 19,
@@ -69,6 +72,7 @@ export const user_list = [
     {
         id: 5,
         name: "William Taylor",
+        at:"@NotAverage",
         avatar: null,
         banner: null,
         age: 27,
@@ -84,6 +88,7 @@ export const user_list = [
     {
         id: 6,
         name: "Muqaddus Ali",
+        at:"@HeavilySingle",
         avatar: img4,
         banner: img01,
         age: 23,

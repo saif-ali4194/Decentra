@@ -21,7 +21,7 @@
 .trend .button:hover{
     filter:none;
 }
-span{
+.trend span{
     opacity: 60% ;
     font-size:smaller;
 }
