@@ -1,9 +1,12 @@
 import React from 'react';
 import '../styles/Pages/TrendingPage.css'
+import Trending from '../components/Trending';
+
 const TrendingPage = () => {
     return ( 
         <div className="trending-page">
-            <h1>Trending Page</h1>
+            
+            <Trending trendAmount={10}/>
         </div>
      );
 }
