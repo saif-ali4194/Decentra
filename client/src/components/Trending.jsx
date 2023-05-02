@@ -4,8 +4,7 @@ import Trend from './Trend';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {trends} from '../Test Data/TrendData';
-const Trending = ({trendAmount}) => {
+const Trending = () => {
     const Location = useLocation();
     const [activeLink, setActiveLink] = useState(Location.pathname);
     
@@ -22,7 +21,7 @@ const Trending = ({trendAmount}) => {
             <Trend name={"JusticeForSaif"} location={"Pakistan"} type={1} retweets={"25k"}/>
             <Trend name={"WhyDidThisHappen"} location={"Pakistan"} type={1} retweets={"15k"}/>
             <Trend name={"Assault"} location={"Pakistan"} type={0} retweets={"10k"} catagoryName={"Social Issues"}/>
-            <Trend name={"IIUI"} location={"Pakistan"} type={1} retweets={"5k"}/>
+            {/* <Trend name={"IIUI"} location={"Pakistan"} type={1} retweets={"5k"}/> */}
             <Link to={"/trendingPage"} className='trendingPageLink' onClick={()=>{handleLinkClick("/trendingPage")}}>Show More</Link>
         </div>
      );

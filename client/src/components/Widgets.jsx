@@ -8,6 +8,7 @@ function Widgets() {
     <div className='widgets'>
       {/* <h3 >Widgets</h3> */}
       <Trending/>
+      <RecommendationList/>
     </div>
   )
 }

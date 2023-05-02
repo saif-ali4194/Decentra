@@ -1,18 +1,15 @@
 import React from 'react';
 import "../styles/Trend.css";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import {IconButton } from '@mui/material';
-const Trend = ({id,name, location, type,retweets,catagoryName}) => {
+import { Button } from '@mui/material';
+const Trend = ({name, location, type,retweets,catagoryName}) => {
     return ( 
-        <div className="trend" id={id}>
+        <div className="trend">
             <div className='trend-top'>
             {type===0?<span>Trending in {catagoryName}</span>:<span>Trending in {location}</span>}
-            
-                <div>
-                    <IconButton className='button'>
-                        <MoreHorizIcon/>
-                    </IconButton>
-                </div>
+            <Button className='button'>
+                <MoreHorizIcon/>
+            </Button>
             
             </div>
             <span style={

@@ -7,28 +7,19 @@
     background-color: var(--H-background-color);
 }
 .trend:hover{
-    
-    filter:contrast(90%);
+    filter: brightness(150%);
 }
-
 .trend-top{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-
 .trend .button{
-    
-    /* border-radius: 50% !important; */
-    color: var(--Brand-color);
+    border-radius: 100%;
     filter:grayscale();
-    padding: 3px 6px;
-   
 }
 .trend .button:hover{
     filter:none;
-    
 }
 span{
     opacity: 60% ;
