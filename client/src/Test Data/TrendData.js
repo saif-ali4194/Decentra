@@ -34,5 +34,23 @@ export const trends=[
         type:1,
         retweets:"5k"
 
+    },
+    {
+        id:5,
+        name:"Secret",
+        location:"Pakistan",
+        catagoryName:"News",
+        type:1,
+        retweets:"2.5k"
+
+    },
+    {
+        id:6,
+        name:"Coder",
+        location:"Pakistan",
+        catagoryName:null,
+        type:1,
+        retweets:"1k"
+
     }
 ];  

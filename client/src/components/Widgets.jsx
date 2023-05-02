@@ -5,7 +5,7 @@ function Widgets() {
   return (
     <div className='widgets'>
       {/* <h3 >Widgets</h3> */}
-      <Trending/>
+      <Trending trendAmount={4}/>
     </div>
   )
 }
