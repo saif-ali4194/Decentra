@@ -1,6 +1,5 @@
 .tweetbox{
-    
-    padding: 1rem;
+    padding: 1.2rem;
     background-color: var(--H-background-color);
     display: flex;
     gap: 1rem;
@@ -21,8 +20,9 @@
     background-color: transparent;
     border: none;
     width:100%;
+    min-height: 7rem;
     max-width: 100%;
-    font-size:200%;
+    font-size:1.7em;
     color: var(--D-font-color);
     resize: none;
     padding: 10px;
@@ -39,12 +39,14 @@ textarea::-webkit-scrollbar{
 }
 
 .bottomfield{
-    margin-top:5px ;
+    margin-top:10px ;
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
 }
 .media_icons{
+    display: flex;
+    gap: 20px;
     color:var(--Brand-color);
     
 }

@@ -6,7 +6,7 @@ export const tweets=[
         id:1,
         user:user_list[0],
         date:"Apr 28",
-        text:"lorem ipsum",
+        text:"Hi Lorum ipsum or whatever!",
         content:user_list[0].avatar
     },
     {

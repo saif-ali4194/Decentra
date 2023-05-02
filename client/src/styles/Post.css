@@ -67,6 +67,13 @@
     object-fit: cover;
         
 }
+
+.post_options {
+    display: flex;
+    margin-top: 10px;
+    gap:2rem;
+}
+
 ._postoptions{
     margin-top: 0.5rem;
     color: var(--Brand-color);
