@@ -1,0 +1,34 @@
+
+#follow-btn {  
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background-color: var(--Brand-color);
+    margin-left: auto;
+    width: 25%;
+    padding: 0px 0px;
+    height: 2rem;
+    border-style: none;
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.15s ease-in-out;
+}
+#follow-btn:hover {
+    background-color:#1a4977;
+}
+
+#follow-btn.following {
+    color: #FFFFFF;
+    width: 30%;
+    background-color: #8b8b8b;
+}
+
+#follow-btn.following:hover {
+    background-color: rgb(61, 61, 61);
+}

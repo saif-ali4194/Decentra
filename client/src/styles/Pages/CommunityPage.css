@@ -1,7 +1,7 @@
 .community-page {
     position: relative;
     color: var(--D-font-color);
-    font-size: 0.7em;
+    /* font-size: 0.7em; */
 }
 .background_filler {
     background-color: #111111cb;
@@ -11,6 +11,7 @@
     justify-content: space-around;
 }
 .community-page .com_header {
+    font-size: 0.7em;
     display: flex;
     justify-content: space-around;
     align-items:flex-end;

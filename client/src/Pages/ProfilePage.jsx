@@ -4,7 +4,8 @@ import {user_list} from "../Test Data/UserList"
 import { useParams } from 'react-router-dom';
 import DefaultAvatar from "../Data/Images/avatar.jpg"
 import { useLocation } from 'react-router-dom';
-
+import FollowBtn from '../components/FollowBtn';
+import {User} from "../Test Data/CurrentUser"
 
 function ProfilePage({current_user}) {
   const location = useLocation();
@@ -33,7 +34,8 @@ function ProfilePage({current_user}) {
               style={{backgroundImage: `url(${user_profile.avatar || DefaultAvatar})`}}
             ></div>
             <h1>{user_profile.name}</h1>
-           {!current_user && <button id='p-follow'>Follow</button>}
+           {/* {!current_user && <button id='p-follow'>Follow</button>} */}
+           {!current_user && <FollowBtn />} 
           </div>
 
           <div className="info">
@@ -48,10 +50,9 @@ function ProfilePage({current_user}) {
             <div id="right">Following: {user_profile.following}</div>
           </div>
         </div>
-      {/* User Feed */}
-      <div className="bottom"></div>
-    </div>
-   
+        {/* User Feed */}
+        <div className="bottom"></div>
+    </div>  
   )
 }
 

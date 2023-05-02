@@ -1,6 +1,7 @@
 import React from 'react'
 import "../styles/UserUnit.css"
 import { Link } from 'react-router-dom';
+import FollowBtn from './FollowBtn';
 
 function UserUnit({u_id, u_avatar, u_name, user}) {
   return (
@@ -9,7 +10,8 @@ function UserUnit({u_id, u_avatar, u_name, user}) {
       <img src={u_avatar} className="u_avatar" />
       <h4 className='u-name'>{u_name}</h4>
       </Link>
-    <button className='u-follow'>Follow</button>
+    {/* <button className='u-follow'>Follow</button> */}
+    <FollowBtn />
     </div>
   )
 }

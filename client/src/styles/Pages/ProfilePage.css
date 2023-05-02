@@ -1,13 +1,14 @@
 .profile-page {
     color: var(--D-font-color);
-    font-size: 0.7em;
+    /* font-size: 0.7em; */
 }
 
 .top {
     background-color: var(--H-background-color);
     width: 100%;
-    padding: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
 }
+
 #banner {
     background-color: rgb(167, 167, 167);
     width: 100%;
@@ -26,11 +27,14 @@
 }
 
 .user-wrapper {
-     padding: 15px 20px;
+     padding: 5px 20px;
      display: flex;
      gap: 20px;
+     align-items: center;
 }
-
+.user-wrapper>h1 {
+    font-size: 1.3em;
+}
 
 .info {
     display: flex;
@@ -38,19 +42,23 @@
     gap: 5px;
     width: 100%;
     padding: 0px 20px 20px 20px;
+    font-size: 0.7em;
+    margin-top: 1rem;
 }
 .info > h6 {
     font-size: 1.3em;
     font-weight: lighter;
 }
+
 #join {
     font-size: 1.2em;
 }
 
 .following {
     width: 100%;
-    padding: 10px 0px;
+    padding: 0px 0px;
     display: flex;
+    font-size: 0.7em;
 }
 
 #left, #right {
@@ -73,9 +81,8 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
-
 }
-
+/* 
 #p-follow {
     margin-left: auto;
     width: 20%;
@@ -91,4 +98,4 @@
 
 #p-follow:hover {
     background-color:  #2362a1;
-}
+} */

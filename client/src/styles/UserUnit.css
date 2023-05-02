@@ -4,10 +4,13 @@
     padding: 10px 20px;
     align-items: center;
     cursor: pointer;
+    background-color: var(--H-L-background-color);
+    border: 1px solid var(--D-border-color);
+    transition: background-color 0.15s ease;
 }
 
 .user-unit:hover {
-    background-color: #111;
+    background-color: var(--H-hover-background-color);
 }
 
 .u_avatar {
@@ -16,13 +19,12 @@
     border-radius: 100px;
 }
 
-
-
 .u-name {
-    font-size: 1.5em;
+    font-size: 1.1em;
+    font-weight: lighter;
 }
 
-.u-follow {
+/* .u-follow {
     margin-left: auto;
     width: 15%;
     height: 2rem;
@@ -37,6 +39,6 @@
 
 .u-follow:hover {
     background-color:  #2362a1;
-}
+} */
 
 
