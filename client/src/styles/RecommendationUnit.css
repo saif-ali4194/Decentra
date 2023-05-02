@@ -3,6 +3,7 @@
     padding: 10px 15px;
     gap: 20px;
     align-items: center;
+    transition: background-color 0.15s ease;
   
 }
 .reco-unit:hover {
@@ -21,7 +22,7 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
-
+/* 
 #follow {   
     background-color: var(--Brand-color);
     margin-left: auto;
@@ -39,7 +40,7 @@
 }
 #follow:hover {
     background-color:#2362a1;
-}
+} */
 
 #unit-link {
     display: flex;

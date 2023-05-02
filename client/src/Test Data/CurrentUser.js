@@ -14,5 +14,7 @@ export const User = {
     occupation: "Software engineer",
     date_joined: "April 26th",
     followers: "102",
-    following: "69"
+    following: "69",
+    user_following: [2, 3, 4],
+    user_followed: [2, 6],
 }

@@ -32,7 +32,9 @@ export const user_list = [
         occupation: "Software engineer",
         date_joined: "April 27th",
         followers: "202",
-        following: "3"  
+        following: "3",
+        user_following: [3, 6],
+        user_followed: [4, 6],
     },
     {
         id: 3,
@@ -68,7 +70,7 @@ export const user_list = [
         id: 5,
         name: "William Taylor",
         avatar: null,
-        banner: img01,
+        banner: null,
         age: 27,
         gender: "Male",
         status: "in-relationship",
