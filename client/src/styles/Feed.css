@@ -21,3 +21,10 @@
 .feed::-webkit-scrollbar {
     display:none
 }
+
+@media (max-width: 760px) {
+    .feed {
+      flex: 8;
+    
+    }
+  }

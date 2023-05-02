@@ -31,3 +31,10 @@ body {
   margin-right: auto;
   padding: 0 10px;
 }
+
+@media (max-width: 760px) {
+  .App {
+    margin-left: 0;
+    padding: 0px 0px 0px 10px;
+  }
+}

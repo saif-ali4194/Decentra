@@ -19,3 +19,10 @@
   ::-webkit-scrollbar-thumb {
     background-color: #272727; /* color of the scrollbar */
   }
+
+  @media (max-width: 760px) {
+    .widgets {
+      display: none;
+      flex:0;
+    }
+  }

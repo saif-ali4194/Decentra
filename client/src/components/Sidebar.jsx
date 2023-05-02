@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import UserProfile from "./UserProfile"
 import SettingsIcon from '@mui/icons-material/Settings';
+import Logo from "../Data/Images/logo.png"
 
 function Sidebar() {
   const location = useLocation();
@@ -23,7 +24,10 @@ function Sidebar() {
 
   return (
     <div className='sidebar'>
-      <div className="decentra"><h1>Decentra</h1></div>
+      <div className="decentra">
+        <img src={Logo} alt="" />
+        <h1>Decentra</h1>
+      </div>
       <UserProfile />
       <SidebarOptions 
         text = "Home"  

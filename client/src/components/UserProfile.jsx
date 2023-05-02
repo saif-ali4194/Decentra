@@ -10,9 +10,9 @@ function UserProfile() {
       {/* <Avatar /> */}
       <img src={User.avatar || DefaultAvatar} id="user-avatar" />
       <div id="user-info">
-      <h3 id="user-name">{User.name}</h3>
-      <h6 id="user-occupation">{User.occupation}</h6>
-      <span id="user-location">{User.city}, {User.country}</span>
+        <h3 id="user-name">{User.name}</h3>
+        <h6 id="user-occupation">{User.occupation}</h6>
+        <span id="user-location">{User.city}, {User.country}</span>
       </div>
     </div>
   )
