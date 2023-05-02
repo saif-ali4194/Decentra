@@ -7,7 +7,7 @@ import GifIcon from '@mui/icons-material/Gif';
 import PollIcon from '@mui/icons-material/Poll';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import CloseIcon from '@mui/icons-material/Close';
-const TweetBox = (profile) => {
+const TweetBox = ({profile}) => {
 
     const [image, setImage]=useState(null);
     const imageRef =useRef();
@@ -30,7 +30,10 @@ const TweetBox = (profile) => {
     return ( 
         <div className="tweetbox">
             <div className="avatar">
-                <Avatar/>
+                <Avatar src={profile.avatar} style={{
+                    width:"2.5em",
+                    height:"2.5em"
+                }}/>
             </div>
             <div className="datafield">
                 <div>

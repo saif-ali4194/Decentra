@@ -31,7 +31,9 @@
 #tweet_text:focus{
     outline-width:0 ;
 }
-
+textarea{
+    font-family: inherit;
+}
 textarea::-webkit-scrollbar{
     width: 0;
 }
@@ -40,9 +42,11 @@ textarea::-webkit-scrollbar{
     margin-top:5px ;
     display: flex;
     justify-content: space-between;
+    align-items: center
 }
 .media_icons{
     color:var(--Brand-color);
+    
 }
 ._options:hover{
     filter:brightness(250%);
