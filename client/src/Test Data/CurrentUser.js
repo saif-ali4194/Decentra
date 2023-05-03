@@ -3,6 +3,7 @@ import img2 from "../Data/Test Data/CurrentUser/banner.jpg"
 
 export const User = {
     id: 1,
+    account_id: "0x84Df31D17b4737DeB6F1B6e31E6D43B7C1f2CaaA",
     name: "Hamza Azhar",
     avatar: img1,
     banner: img2,

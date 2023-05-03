@@ -8,6 +8,7 @@
     border-right: 1px solid var(--D-border-color);
     min-width: fit-content;
     overflow-y: scroll;
+    z-index: 1;
 }
 .feed__header {
     position: sticky;

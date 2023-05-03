@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import DefaultAvatar from "../Data/Images/avatar.jpg"
 import { useLocation } from 'react-router-dom';
 import FollowBtn from '../components/FollowBtn';
-import {User} from "../Test Data/CurrentUser"
+// import {User} from "../Test Data/CurrentUser"
 
 function ProfilePage({current_user}) {
   const location = useLocation();
