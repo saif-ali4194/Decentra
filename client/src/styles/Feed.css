@@ -6,7 +6,7 @@
 .feed {
     flex: 0.45;
     border-right: 1px solid var(--D-border-color);
-    min-width: fit-content;
+    /* min-width: fit-content; */
     overflow-y: scroll;
     z-index: 1;
 }

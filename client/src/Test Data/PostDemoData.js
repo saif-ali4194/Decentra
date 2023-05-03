@@ -6,7 +6,7 @@ export const tweets=[
         id:1,
         user:user_list[0],
         date:"Apr 28",
-        text:"Hi Lorum ipsum or whatever!",
+        text:"Exciting news! As a co-founder, I'm thrilled to announce that we've just made our first post on our web3 Twitter! Decentralized, immutable, and unstoppable - the future of social media is here. Join us and let's explore the endless possibilities of the decentralized world together! #Web3Twitter #Decentralized #Blockchain #Crypto",
         content:user_list[0].avatar
     },
     {

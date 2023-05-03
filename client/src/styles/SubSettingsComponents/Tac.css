@@ -1,0 +1,47 @@
+.tac {
+    color: var(--D-font-color);
+    width: 100%;
+}
+
+.tac_header {
+    padding: 0px 20px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    width: 93%;
+    height: 4rem;
+    position: sticky;
+    top: 0;
+    background-color: rgba(27, 27, 27, 0.61);
+    backdrop-filter: blur(6px);
+}
+
+.tac-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    margin-top: 40px;
+}
+.tac-info>h5 {
+    font-size:1.6em;
+}
+.tac_headings {
+    color: var(--Brand-color);
+    font-size: 1.1em;
+    font-weight: bolder;
+    /* margin-top: 40px; */
+}
+.tac-body {
+    margin-top: 20px;
+    padding: 0px 20px;
+    font-size: 1.2em;
+    font-weight: lighter;
+}
+
+.tac-body.tac_headings {
+    margin-top: 40px;
+}
+
+.tac-body> p {
+    white-space: pre-wrap;
+}
