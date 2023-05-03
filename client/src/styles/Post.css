@@ -17,6 +17,8 @@
 
 .post_body{
     flex-grow: 1;
+    
+    
 }
 .post_top{
     display: flex;
@@ -53,10 +55,19 @@
     font-size: medium;
 }
 .post_content{
+    
     display: flex;
     flex-direction: column;
     width: 95%;
     gap: 0.5rem;
+    
+}
+
+.post_content span{
+    
+    white-space: normal;
+    word-break: break-word;
+    
 }
 
 .post_content img{

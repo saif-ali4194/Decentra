@@ -1,0 +1,22 @@
+.searchResult{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    
+}
+.searchResult:hover{
+    background-color: var(--H-L-background-color);
+}
+.searchResultUserInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.searchUsername{
+    font-weight: bolder;
+}
+.searchAt{
+    color: gray;
+}
