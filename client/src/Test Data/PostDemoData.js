@@ -13,21 +13,21 @@ export const tweets=[
         id:2,
         user:user_list[1],
         date:"Apr 28",
-        text:"lorem ipsum ultra pro max",
+        text:"Dogecoin to the moon! 🚀🌕 #Dogecoin #ToTheMoon #Cryptocurrency\n The Dogefather approves!\nThis post would likely generate a lot of buzz and excitement among Dogecoin enthusiasts and could potentially lead to a surge in the cryptocurrency's value.\n #dogecoin #elonmusk #tothemoon #cryptocurrency #hodl #dogefather" ,
         content:user_list[1].avatar
     },
     {
         id:3,
         user:user_list[2],
         date:"May 02",
-        text:"lorem ipsum ultra pro max dsds \n dsdsddssd",
+        text:"Embracing my natural beauty today 🌸💕 #NoMakeup #NaturalBeauty #SelfLove",
         content:user_list[2].avatar
     },
     {
         id:4,
         user:user_list[4],
         date:"May 02",
-        text:"Hey Ladies, What Do You Think Of This Pic?",
+        text:"I heard girls like guys with glasses... so I got four! 😎🤓👓👓👓 #NerdLife #FourEyes #TryingToImpress, Trying to channel my inner Clark Kent... but I forgot my glasses 😂 #NerdLife #NoGlasses #TryingToImpress",
         content:user_list[4].avatar
     }
 ];
