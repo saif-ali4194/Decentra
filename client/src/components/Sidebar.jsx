@@ -54,7 +54,7 @@ function Sidebar() {
       text = "Notifications" 
       Icon={NotificationsIcon} 
       to="/notifications"
-      active={activeLink === '/notification'}
+      active={activeLink === '/notifications'}
         handleLinkClick={handleLinkClick}
       />
       <SidebarOptions 

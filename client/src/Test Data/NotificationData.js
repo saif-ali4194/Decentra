@@ -20,7 +20,7 @@ export const NotificationsList = [
     },
     {
         id: 3, 
-        text: "Muqqadus Ali @Lady Killer, started foloowing you!",
+        text: "Muqqadus Ali @Lady Killer, started following you!",
         image: img2,
     },
     {
