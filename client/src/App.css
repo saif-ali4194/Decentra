@@ -5,6 +5,7 @@
   --D-border-color:#4e4d4d;
   /* Brand Color */
   --Brand-color:#3383d2;
+  --Brand-hover-color: #2869a9;
   --B-L-hover-color: #e8f5fe;
   /* --B-D-hover-color: */
   /* Background color */
@@ -17,6 +18,8 @@
   --H-background-color:rgb(27, 27, 27);
   --H-L-background-color:  rgb(49, 49, 49); /*Light in color for lists*/
   --H-hover-background-color: #1f1f1f; /*Hover effect color*/
+  /* Inputs */
+  --input-background-color: #cfcfcf;
 }
 
 body {

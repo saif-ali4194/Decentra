@@ -8,6 +8,8 @@ import CommunityPage from "../Pages/CommunityPage"
 import ProfilePage from "../Pages/ProfilePage"
 import TrendingPage from "../Pages/TrendingPage"
 import SettingsPage from '../Pages/SettingsPage';
+import Account from '../components/SubSettingsComponents/Account';
+import Tac from '../components/SubSettingsComponents/Tac';
 import {User} from "../Test Data/CurrentUser"
 
 function Feed() {
@@ -22,6 +24,8 @@ function Feed() {
       <Route path="/notifications" element={<NotificationPage />} />
       <Route path="/trendingPage" element={<TrendingPage />} />
       <Route path="/settings" element={< SettingsPage/>} />
+      <Route path="/settings/account" element={<Account />} />
+      <Route path="/settings/tac" element={<Tac />} />
       </Routes>
     </div>
   )
