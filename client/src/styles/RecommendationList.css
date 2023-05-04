@@ -2,7 +2,7 @@
     margin-top: 20px;
     width: 100%;
     padding: 20px 0px;
-    background-color: var(--H-background-color);
+    background-color: var(--card-color);
     border-radius: 10px;
     display: flex;
     flex-direction: column;

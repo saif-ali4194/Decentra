@@ -4,11 +4,11 @@
     gap: 0.175em;
     padding:10px 10px 10px 15px;
     cursor: pointer;
-    background-color: var(--H-background-color);
+    background-color: var(--card-color);
 }
-.trend:hover{
+/* .trend:hover{
     filter: brightness(150%);
-}
+} */
 .trend-top{
     display: flex;
     justify-content: space-between;

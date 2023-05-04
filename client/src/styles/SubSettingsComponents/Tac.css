@@ -1,5 +1,5 @@
 .tac {
-    color: var(--D-font-color);
+    color: var(--font-color);
     width: 100%;
 }
 
@@ -12,7 +12,7 @@
     height: 4rem;
     position: sticky;
     top: 0;
-    background-color: rgba(27, 27, 27, 0.61);
+    background-color: var(--glassEffect);
     backdrop-filter: blur(6px);
 }
 

@@ -7,7 +7,7 @@
   
 }
 .reco-unit:hover {
-    background-color: #111;
+    background-color: var(--active);
 }
 
 #r-user-avatar {
@@ -52,5 +52,5 @@
     white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
-  color: var(--D-font-color);
+  color: var(--font-color);
 }

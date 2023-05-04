@@ -2,13 +2,13 @@
     max-width: 93%;
     display: flex;
     align-items: center;
-    background-color: var(--H-L-background-color);
+    background-color: var(--card-child-color);
     gap: 20px;
     /* height: fit-content; */
     min-height: 2.5rem;
     padding: 10px 20px;
     flex-grow: 1;
-    border: 1px solid var(--D-border-color);
+    border: 1px solid var(--border-color);
     cursor: pointer;
     transition: background-color 0.15s ease;
     font-size: 1em;
@@ -16,7 +16,7 @@
 }
 
 .noti-unit:hover {
-    background-color: var(--H-hover-background-color);
+    background-color: var(--card-hover-color);
 }
 .noti-img {
     width: 2.5rem;

@@ -1,10 +1,10 @@
 .profile-page {
-    color: var(--D-font-color);
+    color: var(--font-color);
     /* font-size: 0.7em; */
 }
 
 .top {
-    background-color: var(--H-background-color);
+    background-color: var(--card-color);
     width: 100%;
     padding: 0px 0px 0px 0px;
 }
@@ -65,8 +65,8 @@
     /* background-color: aquamarine; */
     width: 50%;
     height: 3rem;
-    border: 1px solid var(--D-border-color);
-    background-color: #111;
+    border: 1px solid var(--border-color);
+    background-color: var(--Dark-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +76,7 @@
 
 #error {
     margin-top: 40px ;
-    color: var(--D-font-color);
+    color: var(--font-color);
     font-size: 1.4em;
     font-weight: bold;
     display: flex;

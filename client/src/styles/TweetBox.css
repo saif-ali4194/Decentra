@@ -1,6 +1,6 @@
 .tweetbox{
     padding: 1.2rem;
-    background-color: var(--H-background-color);
+    background-color: var(--card-color);
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -13,7 +13,7 @@
     width:100%;
 }
 .textfield{
-    border-bottom: 1px solid var(--D-border-color);
+    border-bottom: 1px solid var(--border-color);
     width: 100%; 
 }
 #tweet_text{
@@ -23,7 +23,7 @@
     min-height: 7rem;
     max-width: 100%;
     font-size:1.7em;
-    color: var(--D-font-color);
+    color: var(--font-color);
     resize: none;
     padding: 10px;
       
@@ -64,7 +64,7 @@ textarea::-webkit-scrollbar{
     left: 1rem;
     top: 0.5rem;
     cursor: pointer;
-    background-color: var(--L-font-color);
+    background-color: var(--font-color);
     filter: opacity(80%);
    
     

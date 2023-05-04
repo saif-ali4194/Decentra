@@ -17,9 +17,9 @@
   --D-font-color:rgb(255, 255, 255);
   /* Highlighted Background */
       /* Ligh themed */
-  --H-Light-background-color: rgb(194, 194, 194);
-  --H-Light-L-background-color: rgb(229, 229, 229);
-  --H-Light-hover-background-color: grey;
+  --H-Light-background-color: rgb(216, 216, 216);
+  --H-Light-L-background-color: rgb(240, 240, 240);
+  --H-Light-hover-background-color: rgb(185, 185, 185);
       /* Dark themed */
   --H-background-color:rgb(27, 27, 27);
   --H-L-background-color:  rgb(49, 49, 49); /*Light in color for lists*/
@@ -30,6 +30,14 @@
   /* Activness */
   --D-active: #272727;
   --L-active: rgb(173, 173, 173);
+
+  /* Glass effect */
+  --L-ge:  rgba(167, 167, 167, 0.61);
+  --D-ge:  rgba(27, 27, 27, 0.61);
+
+  /* Dark colors */
+  --L-color: rgb(158, 158, 158);
+  --D-color: #111;
 /* ------------------------------------------------------- */
 
   /* ---------- Plz use the following vars ---------------*/
@@ -40,6 +48,8 @@
   --card-hover-color: var(--H-hover-background-color);
   --border-color: var(--D-border-color);
   --active: var(--D-active);
+  --glassEffect: var(--D-ge);
+  --Dark-color: var(--D-color);
 }
 
 body {

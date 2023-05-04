@@ -2,7 +2,7 @@
     width:100%;
     margin: 0 auto;
     padding: 5px 0px 5px 0px;
-    background-color: var(--H-background-color);
+    background-color: var(--card-color);
     border-radius: 1em;
     display: flex;
     flex-direction: column;
@@ -21,6 +21,6 @@
    
 }
 .trending>:hover{
-    
-    filter: brightness(150%);
+    background-color: var(--active);
+    /* filter: brightness(150%); */
 }

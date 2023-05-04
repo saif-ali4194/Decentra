@@ -3,13 +3,13 @@
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
     box-sizing: border-box; 
-    background-origin: var(--H-background-color);
+    background-origin: var(--card-color);
     display: flex;
     margin-top: 1rem;
     cursor: pointer;
     width: 100%;
     gap: 1rem;
-    border-bottom:1px solid var(--D-border-color);
+    border-bottom:1px solid var(--border-color);
     padding: 1em;
 
     

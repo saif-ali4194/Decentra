@@ -1,5 +1,5 @@
 .settings {
-    color: var(--D-font-color);
+    color: var(--font-color);
     position: relative;
     width: 100%;
 }
@@ -13,7 +13,7 @@
     height: 4rem;
     position: sticky;
     top: 0;
-    background-color: var(--H-background-color);
+    background-color: var(--card-color);
 }
 .setting_options {
     margin-top: 20px;
@@ -22,8 +22,8 @@
     padding: 0px 20px;
     width: 92.5%;
     height: 5rem;
-    background-color: var(--H-L-background-color);
-    border: 1px solid var(--D-border-color);
+    background-color: var(--card-child-color);
+    border: 1px solid var(--border-color);
     display: flex;  
     align-items: center;
     justify-content: space-between;
@@ -32,5 +32,5 @@
 }
 
 .setting-btns:hover {
-    background-color: var(--H-hover-background-color);
+    background-color: var(--card-hover-color);
 }

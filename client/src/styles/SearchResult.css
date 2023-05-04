@@ -6,7 +6,7 @@
     
 }
 .searchResult:hover{
-    background-color: var(--H-L-background-color);
+    background-color: var(--card-child-color);
 }
 .searchResultUserInfo{
     display: flex;
