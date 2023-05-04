@@ -5,20 +5,32 @@ import { useNavigate } from 'react-router-dom';
 import { Switch } from '@mui/material';
 
 function SettingsPage() {
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  const [darkModeEnabled, setDarkModeEnabled] = useState(true);
   const navigate = useNavigate();
 
   const handleOptionClick = (url) => {
     navigate(url);
   };
   const handleDarkModeToggle = () => {
+    const newDarkModeEnabled = darkModeEnabled;
     setDarkModeEnabled(!darkModeEnabled);
-  if (darkModeEnabled) {
-    console.log("Here")
+
+  if (newDarkModeEnabled) {
     document.documentElement.style.setProperty('--background-color', 'var(--LightMode)');
+    document.documentElement.style.setProperty('--font-color', 'var(--L-font-color)');
+    document.documentElement.style.setProperty('--card-color', 'var(--H-Light-background-color)');
+    document.documentElement.style.setProperty('--card-child-color', 'var(--H-Light-L-background-color)');
+    document.documentElement.style.setProperty('--card-hover-color', 'var(--H-Light-hover-background-color)');
+    document.documentElement.style.setProperty('--border-color', 'var(--L-border-color)');
+    document.documentElement.style.setProperty('--active', 'var(--L-active)');
   } else {
-    console.log("Tere")
     document.documentElement.style.setProperty('--background-color', 'var(--DarkMode)');
+    document.documentElement.style.setProperty('--font-color', 'var(--D-font-color)');
+    document.documentElement.style.setProperty('--card-color', 'var(--H-background-color)');
+    document.documentElement.style.setProperty('--card-child-color', 'var(--H-L-background-color)');
+    document.documentElement.style.setProperty('--card-hover-color', 'var(--H-hover-background-color)');
+    document.documentElement.style.setProperty('--border-color', 'var(--D-border-color)');
+    document.documentElement.style.setProperty('--active', 'var( --D-active)');
   }
   };
 

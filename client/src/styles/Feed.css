@@ -5,7 +5,7 @@
 
 .feed {
     flex: 0.45;
-    border-right: 1px solid var(--D-border-color);
+    border-right: 1px solid var(--border-color);
     /* min-width: fit-content; */
     overflow-y: scroll;
     z-index: 1;
@@ -13,8 +13,8 @@
 .feed__header {
     position: sticky;
     top: 0;
-    background-color: var(--H-background-color);
-    color: var(--D-font-color);
+    background-color: var(--card-color);
+    color: var(--font-color);
     z-index: 100;
     border: 1px solid var(--border-color);
     padding: 15px 20px;
@@ -26,6 +26,5 @@
 @media (max-width: 760px) {
     .feed {
       flex: 8;
-    
     }
   }

@@ -1,6 +1,6 @@
 .community-page {
     position: relative;
-    color: var(--D-font-color);
+    color: var(--font-color);
     /* font-size: 0.7em; */
 }
 .background_filler {
@@ -46,15 +46,19 @@
     font-weight: bold;
     height: 100%;
     align-items: center;
-    border-bottom: 1px solid var(--L-border-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.15s ease;
+}
+.com-followers:hover, .com-following:hover, .com-follow:hover {
+    background-color: var(--card-child-color);
 }
 
 .com-followers {
-    border-right: 1px solid var(--L-border-color);
+    border-right: 1px solid var(--border-color);
 }
 
 .com-following {
-    border-right: 1px solid var(--L-border-color);
+    border-right: 1px solid var(--border-color);
 
 }
 
