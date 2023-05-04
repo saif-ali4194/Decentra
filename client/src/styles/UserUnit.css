@@ -4,13 +4,13 @@
     padding: 10px 20px;
     align-items: center;
     cursor: pointer;
-    background-color: var(--H-L-background-color);
-    border: 1px solid var(--D-border-color);
+    background-color: var(--card-child-color);
+    border: 1px solid var(--border-color);
     transition: background-color 0.15s ease;
 }
 
 .user-unit:hover {
-    background-color: var(--H-hover-background-color);
+    background-color: var(--card-hover-color);
 }
 
 .u_avatar {
@@ -22,6 +22,7 @@
 .u-name {
     font-size: 1.1em;
     font-weight: lighter;
+    color: var(--font-color);
 }
 
 /* .u-follow {

@@ -3,7 +3,7 @@
     align-items: center;
     cursor: pointer;
    /* gap: 1rem; */
-   color: var(--D-font-color);
+   color: var(--font-color);
    padding: 0px 10px;
    text-decoration: none;
    transition: background-color 0.12s ease;
@@ -13,7 +13,7 @@
 }
 
 .sidebarOptions:hover {
-    background-color:  #272727;;
+    background-color:  var(--active);
     color: var(--Brand-color);
     /* transition: color 0.1s ease; */
 }
@@ -25,7 +25,7 @@
 }
 
 .sidebarOption--active {
-    background-color:  #272727;
+    background-color:  var(--active);
     color: var(--Brand-color);
 }
 

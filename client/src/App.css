@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 :root {
+/* ----------------- Do not touch ----------------*/
   /* Border colors */
-  --L-border-color: #ebebeb;
+  --L-border-color: #b4b4b4;
   --D-border-color:#4e4d4d;
   /* Brand Color */
   --Brand-color:#3383d2;
@@ -15,15 +16,34 @@
   --L-font-color: rgb(0, 0, 0);
   --D-font-color:rgb(255, 255, 255);
   /* Highlighted Background */
+      /* Ligh themed */
+  --H-Light-background-color: rgb(194, 194, 194);
+  --H-Light-L-background-color: rgb(229, 229, 229);
+  --H-Light-hover-background-color: grey;
+      /* Dark themed */
   --H-background-color:rgb(27, 27, 27);
   --H-L-background-color:  rgb(49, 49, 49); /*Light in color for lists*/
   --H-hover-background-color: #1f1f1f; /*Hover effect color*/
   /* Inputs */
   --input-background-color: #cfcfcf;
+
+  /* Activness */
+  --D-active: #272727;
+  --L-active: rgb(173, 173, 173);
+/* ------------------------------------------------------- */
+
+  /* ---------- Plz use the following vars ---------------*/
+  --background-color: var(--DarkMode);
+  --font-color: var(--D-font-color);
+  --card-color: var(--H-background-color);
+  --card-child-color: var(--H-L-background-color);
+  --card-hover-color: var(--H-hover-background-color);
+  --border-color: var(--D-border-color);
+  --active: var(--D-active);
 }
 
 body {
-  background-color: var(--DarkMode);
+  background-color: var(--background-color);
 }
 .App {
   font-family: 'Inter', sans-serif;

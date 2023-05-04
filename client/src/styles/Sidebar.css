@@ -18,8 +18,8 @@
     display: block;
 }
 .sidebar {
-    border-right: 1px solid var(--D-border-color);
-    color: var(--D-font-color);
+    border-right: 1px solid var(--border-color);
+    color: var(--font-color);
     flex: 0.25;
     margin-top: 10px;
     padding-left: 10px;
