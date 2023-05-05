@@ -64,7 +64,7 @@
 
 .active-section {
     border-bottom: 3px solid var(--Brand-color);
-    background-color: var(--active);
+    background-color: var(--sidebar-active);
   }
 
 

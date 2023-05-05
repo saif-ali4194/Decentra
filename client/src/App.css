@@ -33,15 +33,15 @@
 
   /* Glass effect */
   --L-ge:  rgba(167, 167, 167, 0.61);
-  --D-ge:  rgba(27, 27, 27, 0.61);
+  --D-ge:  rgba(0, 0, 0, 0.61);
 
   /* Dark colors */
-  --L-color: rgb(158, 158, 158);
+  --L-color: rgb(228, 228, 228);
   --D-color: #000000;
 
   /* Dark active colors*/
   --side-light: #c3c3c3;
-  --side-dark: rgb(12, 12, 12);
+  --side-dark: rgb(19, 19, 19);
 /* ------------------------------------------------------- */
 
   /* ---------- Plz use the following vars ---------------*/

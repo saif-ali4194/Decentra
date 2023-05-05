@@ -1,6 +1,7 @@
 import rock1 from "../Data/Test Data/posts/rock1.jpg"
 import paint1 from "../Data/Test Data/posts/paint.jpg"
-
+import ceo from "../Data/Test Data/posts/ceo.jpg"
+import iiu from "../Data/Test Data/posts/iiu.jpg"
 import { user_list } from "./UserList";
 
 export const tweets=[
@@ -16,7 +17,7 @@ export const tweets=[
         user:user_list[0],
         date:"Apr 28th, 2023",
         text:"Exciting news! As a co-founder, I'm thrilled to announce that we've just made our first post on our web3 Twitter! Decentralized, immutable, and unstoppable - the future of social media is here. Join us and let's explore the endless possibilities of the decentralized world together! #Web3Twitter #Decentralized #Blockchain #Crypto",
-        content:user_list[0].avatar
+        content:ceo
     },
 
     {
@@ -37,7 +38,7 @@ export const tweets=[
         id:4,
         user:user_list[4],
         date:"May 3rd, 2023",
-        text:"I heard girls like guys with glasses... so I got four! 😎🤓👓👓👓 #NerdLife #FourEyes #TryingToImpress, Trying to channel my inner Clark Kent... but I forgot my glasses 😂 #NerdLife #NoGlasses #TryingToImpress",
-        content:user_list[4].avatar
+        text:"Hello Ladies! Looking for a date in iiu, Im currently single but ready to mingle, so if anyone is intrested DM me, They don't call me a Lady Killer for no reason. #sad #desperate #heavilySingle #pleaseDM-ImBegging #LadyKiller #khariyan Londa #sakht Londa",
+        content:iiu
     },
 ];
