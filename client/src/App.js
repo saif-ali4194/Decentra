@@ -5,6 +5,7 @@ import Widgets from './components/Widgets';
 import { useEffect, useState } from 'react';
 import { darktheme } from './styles/Darktheme';
 
+
 function App() {
   const [darkModeEnabled, setDarkModeEnabled] = useState(true);
 
