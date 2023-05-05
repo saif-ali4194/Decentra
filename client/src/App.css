@@ -2,7 +2,7 @@
 :root {
 /* ----------------- Do not touch ----------------*/
   /* Border colors */
-  --L-border-color: #b4b4b4;
+  --L-border-color: #cacaca;
   --D-border-color:#4e4d4d;
   /* Brand Color */
   --Brand-color:#3383d2;
@@ -11,24 +11,24 @@
   /* --B-D-hover-color: */
   /* Background color */
   --LightMode:rgb(255, 255, 255);
-  --DarkMode: rgb(57, 57, 57);
+  --DarkMode: rgb(0, 0, 0);
   /* Font colors */
   --L-font-color: rgb(0, 0, 0);
   --D-font-color:rgb(255, 255, 255);
   /* Highlighted Background */
       /* Ligh themed */
-  --H-Light-background-color: rgb(216, 216, 216);
+  --H-Light-background-color: rgb(228, 228, 228);
   --H-Light-L-background-color: rgb(240, 240, 240);
   --H-Light-hover-background-color: rgb(185, 185, 185);
       /* Dark themed */
-  --H-background-color:rgb(27, 27, 27);
-  --H-L-background-color:  rgb(49, 49, 49); /*Light in color for lists*/
-  --H-hover-background-color: #1f1f1f; /*Hover effect color*/
+  --H-background-color:rgb(20, 20, 20);
+  --H-L-background-color:  rgb(16, 16, 16); /*Light in color for lists*/
+  --H-hover-background-color: #1e1e1e; /*Hover effect color*/
   /* Inputs */
   --input-background-color: #cfcfcf;
 
   /* Activness */
-  --D-active: #272727;
+  --D-active: #646464;
   --L-active: rgb(173, 173, 173);
 
   /* Glass effect */
@@ -37,7 +37,11 @@
 
   /* Dark colors */
   --L-color: rgb(158, 158, 158);
-  --D-color: #111;
+  --D-color: #000000;
+
+  /* Dark active colors*/
+  --side-light: #c3c3c3;
+  --side-dark: rgb(12, 12, 12);
 /* ------------------------------------------------------- */
 
   /* ---------- Plz use the following vars ---------------*/
@@ -47,9 +51,10 @@
   --card-child-color: var(--H-L-background-color);
   --card-hover-color: var(--H-hover-background-color);
   --border-color: var(--D-border-color);
-  --active: var(--D-active);
+  /* --active: var(--D-active); Do not use! problem in active */
   --glassEffect: var(--D-ge);
   --Dark-color: var(--D-color);
+  --sidebar-active: var(--side-dark);
 }
 
 body {

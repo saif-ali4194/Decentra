@@ -17,6 +17,7 @@
     width: 7rem;
     height: 7rem;
     border-radius: 100px;
+    border: 1px solid #111;
 }
 
 #user-info {

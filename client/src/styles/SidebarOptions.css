@@ -15,7 +15,7 @@
     padding: 10px 30px 10px 0px;
 }
 .sidebarOptions:hover {
-    background-color:  var(--active);
+    background-color:  var(--sidebar-active);
     color: var(--Brand-color);
     /* transition: color 0.1s ease; */
 }
@@ -27,7 +27,7 @@
 }
 
 .sidebarOption--active {
-    background-color:  var(--active);
+    background-color:  var(--sidebar-active);
     color: var(--Brand-color);
 }
 

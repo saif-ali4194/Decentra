@@ -7,7 +7,7 @@
   
 }
 .reco-unit:hover {
-    background-color: var(--active);
+    background-color: var(--card-hover-color);
 }
 
 #r-user-avatar {

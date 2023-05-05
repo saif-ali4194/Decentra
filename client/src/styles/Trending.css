@@ -16,11 +16,11 @@
    font-size: medium;
    text-decoration: none;
 }
-.trendingPageLink:hover{
-    /* filter: brightness(150%); */
+/* .trendingPageLink:hover{
+    /* filter: brightness(150%); 
    
-}
+} */
 .trending>:hover{
-    background-color: var(--active);
+    background-color: var(--card-hover-color);
     /* filter: brightness(150%); */
 }
