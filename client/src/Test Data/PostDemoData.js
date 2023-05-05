@@ -1,6 +1,6 @@
-import img1 from "../Data/Test Data/CurrentUser/Ted.png"
-import img2 from "../Data/Test Data/CurrentUser/banner.jpg"
-import pup1 from "../Data/Test Data/posts/pup1.jpg"
+import rock1 from "../Data/Test Data/posts/rock1.jpg"
+import paint1 from "../Data/Test Data/posts/paint.jpg"
+
 import { user_list } from "./UserList";
 
 export const tweets=[
@@ -14,7 +14,7 @@ export const tweets=[
     {
         id:1,
         user:user_list[0],
-        date:"Apr 28",
+        date:"Apr 28th, 2023",
         text:"Exciting news! As a co-founder, I'm thrilled to announce that we've just made our first post on our web3 Twitter! Decentralized, immutable, and unstoppable - the future of social media is here. Join us and let's explore the endless possibilities of the decentralized world together! #Web3Twitter #Decentralized #Blockchain #Crypto",
         content:user_list[0].avatar
     },
@@ -22,21 +22,21 @@ export const tweets=[
     {
         id:2,
         user:user_list[1],
-        date:"Apr 28",
-        text:"Dogecoin to the moon! 🚀🌕 #Dogecoin #ToTheMoon #Cryptocurrency\n The Dogefather approves!\nThis post would likely generate a lot of buzz and excitement among Dogecoin enthusiasts and could potentially lead to a surge in the cryptocurrency's value.\n #dogecoin #elonmusk #tothemoon #cryptocurrency #hodl #dogefather" ,
-        content:user_list[1].avatar
+        date:"Apr 1st, 2023",
+        text:"Exciting news, i have plans to colonize Mars with a SpaceX Falcon Heavy rocket. The mission aims to create a backup of humanity on the red planet in case of a global catastrophe on Earth. With SpaceX already sending multiple missions to space, we may be closer than ever to becoming a multi-planetary species." ,
+        content:rock1
     },
     {
         id:3,
         user:user_list[2],
-        date:"May 02",
-        text:"Embracing my natural beauty today 🌸💕 #NoMakeup #NaturalBeauty #SelfLove",
-        content:user_list[2].avatar
+        date:"May 2nd, 2023",
+        text:"This stunning wolf painting captures the essence of the artistic life - a constant struggle to bring your vision to life. As artists, we pour our hearts and souls into our work, facing countless obstacles and setbacks along the way. But despite the challenges, we keep pushing forward, driven by a passion that never fades. And when we finally create something that truly speaks to us, it makes it all worth it.",
+        content:paint1
     },
     {
         id:4,
         user:user_list[4],
-        date:"May 02",
+        date:"May 3rd, 2023",
         text:"I heard girls like guys with glasses... so I got four! 😎🤓👓👓👓 #NerdLife #FourEyes #TryingToImpress, Trying to channel my inner Clark Kent... but I forgot my glasses 😂 #NerdLife #NoGlasses #TryingToImpress",
         content:user_list[4].avatar
     },
