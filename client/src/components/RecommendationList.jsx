@@ -18,7 +18,7 @@ function RecommendationList() {
     <div className='reco-wrapper'>
       <h3 id='heading'>Recommendations</h3>
       <div className="reco-list">
-        { user_list.map(user => (
+        { user_list.sort((a, b) => b.rating - a.rating).slice(0, 5).map(user => (
           <RecommendationUnit  key={user.id} id= {user.id} img= {user.avatar} name={user.name} />
           ))
         }

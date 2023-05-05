@@ -37,6 +37,7 @@ export const user_list = [
         date_joined: "April 27th",
         followers: "202",
         following: "3",
+        rating: 2,
         user_following: [3, 6],
         user_followed: [4, 6],
     },
@@ -53,6 +54,7 @@ export const user_list = [
         city: "San Francisco, California",
         occupation: "CEO SpaceX, Tesla & Twitter",
         date_joined: "April 27th",
+        rating: 5,
         followers: "70M",
         following: "3"
     },
@@ -69,6 +71,7 @@ export const user_list = [
         city: "Los Angeles, California",
         occupation: "Artist",
         date_joined: "April 27th",
+        rating: 1,
         followers: "3M",
         following: "2k"
     },
@@ -85,6 +88,7 @@ export const user_list = [
         city: "winchester",
         occupation: "Civil Engineer",
         date_joined: "April 27th",
+        rating: 1,
         followers: "10",
         following: "102"
     },
@@ -101,6 +105,7 @@ export const user_list = [
         city: "Khariyan",
         occupation: "Software engineer",
         date_joined: "April 27th",
+        rating: 5,
         followers: "1",
         following: "6"
     },
@@ -118,6 +123,7 @@ export const user_list = [
         city: "Los Angeles, California",
         occupation: "wild life Photographer",
         date_joined: "April 27th",
+        rating: 6,
         followers: "1.2M",
         following: "9k"
     },

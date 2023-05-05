@@ -8,7 +8,12 @@ import { user_list } from '../Test Data/UserList';
 
 function CommunityPage() {
   const [activeSection, setActiveSection] = useState('com-followers');
-  const users = fakeUsers(10);
+  const [numUsers, setNumUsers] = useState(10);
+    
+  const handleShowMore = () => {
+      setNumUsers(numUsers + 10);
+  }
+  const users = fakeUsers(numUsers);
 
   const handleClick = (section) => {
     setActiveSection(section);
@@ -34,9 +39,14 @@ function CommunityPage() {
           .map(user => (
               <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
           ))
-      ) : users.map((user) => (
-        <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
-        ))
+      ) : <div>
+            {
+              users.map((user) => (
+                <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
+                ))
+            }
+          <p id='com-show-more' onClick={handleShowMore}>Show More</p>
+        </div> 
       }
     </div>
   )

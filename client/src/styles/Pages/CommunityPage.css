@@ -66,3 +66,15 @@
     border-bottom: 3px solid var(--Brand-color);
     background-color: rgba(0, 0, 0, 0.58);
   }
+
+
+#com-show-more {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--Brand-color);
+    padding: 0px 20px;
+    width: fit-content;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+}
