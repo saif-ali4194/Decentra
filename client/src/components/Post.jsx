@@ -21,7 +21,8 @@ const Post = ({tweet}) => {
                         <IconButton className="post_top_options_iconbutton" style={{
                             alignSelf:"top"
 
-                        }}><MoreHorizIcon className="more"/></IconButton>
+                        }}>
+                            <MoreHorizIcon className="more"/></IconButton>
                     </div>
                     
                 </div>

@@ -3,6 +3,9 @@ import img1 from "../Data/Test Data/UserLists/1.jpg"
 import img2 from "../Data/Test Data/UserLists/2.png"
 import img3 from "../Data/Test Data/UserLists/3.png"
 import img4 from "../Data/Test Data/UserLists/4.png"
+import img5 from "../Data/Test Data/UserLists/pup2.jpg"
+import img6 from "../Data/Test Data/UserLists/pup3.jpg"
+
 export const user_list = [
     // {
     //     id: 1,
@@ -100,5 +103,22 @@ export const user_list = [
         date_joined: "April 27th",
         followers: "1",
         following: "6"
+    },
+
+    {
+        id: 7,
+        name: "I Love Puppies",
+        at:"@ILovePupsDaily",
+        avatar: img5,
+        banner: img6,
+        age: 23,
+        gender: "Female",
+        status: "Single",
+        country: "USA",
+        city: "Los Angeles, California",
+        occupation: "wild life Photographer",
+        date_joined: "April 27th",
+        followers: "1.2M",
+        following: "9k"
     },
 ]
