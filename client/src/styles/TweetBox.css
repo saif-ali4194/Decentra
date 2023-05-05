@@ -64,10 +64,11 @@ textarea::-webkit-scrollbar{
     left: 1rem;
     top: 0.5rem;
     cursor: pointer;
-    background-color: var(--font-color);
+    /* background-color: var(--font-color); */
+    background-color: var(--Dark-color);
     filter: opacity(80%);
-   
-    
+    padding: 5px;
+    border-radius: 100px;
 }
 
 .previewImage>img{
