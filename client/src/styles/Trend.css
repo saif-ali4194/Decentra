@@ -6,6 +6,9 @@
     cursor: pointer;
     background-color: var(--card-color);
 }
+.trend:hover{
+    background-color: var(--card-hover-color);
+}
 /* .trend:hover{
     filter: brightness(150%);
 } */
@@ -15,11 +18,12 @@
     align-items: center;
 }
 .trend .button{
-    border-radius: 100%;
-    filter:grayscale();
+    padding: 0.2rem 0.2rem;
+    color: gray;
 }
 .trend .button:hover{
-    filter:none;
+    filter: none;
+    color: var(--Brand-color);
 }
 .trend span{
     opacity: 60% ;

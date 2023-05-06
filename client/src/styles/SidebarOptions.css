@@ -12,7 +12,7 @@
     padding: 10px 30px 10px 0px;
 }
 .MuiSvgIcon-root {
-    padding: 10px 30px 10px 0px;
+    /* padding: 10px 30px 10px 0px; */
 }
 .sidebarOptions:hover {
     background-color:  var(--sidebar-active);

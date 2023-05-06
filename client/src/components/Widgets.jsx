@@ -8,7 +8,7 @@ function Widgets() {
     <div className='widgets'>
       {/* <h3 >Widgets</h3> */}
       <Search/>
-      <Trending/>
+      <Trending trendAmount={4}/>
       <RecommendationList/>
     </div>
   )
