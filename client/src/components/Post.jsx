@@ -18,10 +18,7 @@ const Post = ({tweet}) => {
                         <span className='post_info'>{tweet.user.at}·{tweet.date}</span>
                     </div>
                     <div>
-                        <IconButton className="post_top_options_iconbutton" style={{
-                            alignSelf:"top"
-
-                        }}>
+                        <IconButton className="post_top_options_iconbutton">
                             <MoreHorizIcon className="more"/></IconButton>
                     </div>
                     

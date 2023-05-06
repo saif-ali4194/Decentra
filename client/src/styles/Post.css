@@ -5,7 +5,7 @@
     box-sizing: border-box; 
     background-origin: var(--card-color);
     display: flex;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     cursor: pointer;
     width: 100%;
     gap: 1rem;
@@ -15,7 +15,9 @@
 
     
 }
-
+.post:hover{
+    background-color: var(--card-hover-color);
+}
 .post_body{
     flex-grow: 1;
     
@@ -44,12 +46,22 @@
     filter: opacity(60%);
     
 }
+.post .post_top_options_iconbutton{
+    color:gray;
+}
+.post .post_top_options_iconbutton:hover{
+    color:var(--Brand-color);
+    background-color:var(--glassEffect);
+    
+    
+}
 .more{
-    color: var(--Brand-color);
-    filter: grayscale();
+    /* color: var(--Brand-color);
+    filter: grayscale(); */
 }
 .more:hover{
     filter:none;
+    
 }
 
 .post span{
@@ -83,11 +95,13 @@
 .post_options {
     display: flex;
     margin-top: 10px;
+    
 }
 
 ._postoptions{
     margin-top: 0.5rem;
     color: var(--Brand-color);
+    padding: 10px 30px 10px 0px;
 }
 ._postoptions:hover{
     filter: brightness(250%);

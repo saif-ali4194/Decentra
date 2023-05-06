@@ -23,6 +23,7 @@
 }
 .trend .button:hover{
     filter: none;
+    background-color: var(--glassEffect);
     color: var(--Brand-color);
 }
 .trend span{
