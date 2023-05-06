@@ -5,6 +5,8 @@ import { tweets } from '../Test Data/PostDemoData';
 import {useParams} from 'react-router-dom';
 import TweetBox from '../components/TweetBox';
 import {User} from '../Test Data/CurrentUser';
+// import Comment from '../components/Comment';
+import Comments from '../components/Comments';
 
 const Thread = () => {
     let id = useParams();
@@ -21,7 +23,7 @@ const Thread = () => {
                     
             })}
             <TweetBox profile={User}/>
-            
+            <Comments/>
         </div>
      );
 }

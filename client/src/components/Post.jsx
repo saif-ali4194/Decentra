@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Post.css';
 import {Avatar, IconButton} from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -11,18 +11,23 @@ import { User } from '../Test Data/CurrentUser';
 import TweetBox from './TweetBox';
 import {Link} from 'react-router-dom';
 const Post = ({tweet,tweetId}) => {
+    const [modalOpen,setModalOpen]=useState(false);
     const postThread = useRef();
     const cModal=useRef();
-    const postComment=()=>{
+    const postComment=(event)=>{
+        event.stopPropagation();
+        setModalOpen(true);
         cModal.current.showModal();
     }
 
     const closePostComment=()=>{
         cModal.current.close();
+        setModalOpen(false);
     }
 
     const openThread = () => {
-        postThread.current.click();
+        if(!modalOpen)
+            postThread.current.click();
     }
     return (  
         <div className="post" onClick={openThread}>

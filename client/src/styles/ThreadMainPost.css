@@ -24,6 +24,7 @@
 }
 .threadMainPostUsername:hover{
     text-decoration: underline;
+    cursor: pointer;
 }
 .threadMainPostAt{
     filter: opacity(60%);

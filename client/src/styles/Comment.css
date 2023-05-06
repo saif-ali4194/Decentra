@@ -1,0 +1,64 @@
+.comment{
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+
+}
+.below-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.below-avatar .straightLine{
+    margin-top: 4px;
+    height: 90%;
+    width:2px;
+    background-color: var(--border-color);
+}
+.cmt-right{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.cmt-right-top{
+    display: flex;
+    justify-content: space-between;
+}
+.cmt-userInfo{
+    display: flex;
+    
+}
+.cmt-username{
+    font-weight: bold;
+}
+.cmt-username:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.cmt-userat{
+    opacity: 60%;
+}
+.comment .cmt-more{
+    color: gray;
+}
+.comment .cmt-more:hover{
+    color: var(--Brand-color);
+    background-color: var(--glassEffect);
+}
+.cmt-Options{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    /* padding: 1em 0rem; */
+}
+._cmt-Options{
+    margin-top: 0.5rem;
+    color: var(--Brand-color);
+    
+    /* padding: 10px 30px 10px 0px; */
+}
+._cmt-Options:hover{
+    filter: brightness(250%);
+    cursor: pointer;
+}
