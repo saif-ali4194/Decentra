@@ -19,7 +19,7 @@ const Trend = ({id,name, location, type,retweets,catagoryName}) => {
                 {   
                     fontSize:"medium",
                     fontWeight:750,
-                    color:"var(--D-font-color)",
+                    color:"var(--font-color)",
                     opacity:"100%"
                 }
             }>{type===1 && "# "}{name}</span>

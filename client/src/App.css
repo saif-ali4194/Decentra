@@ -42,6 +42,10 @@
   /* Dark active colors*/
   --side-light: #c3c3c3;
   --side-dark: rgb(19, 19, 19);
+
+  /* Inverted Colors */
+  --Not-lightMode:#6a6a6a;
+  --Not-darkMode: rgb(90, 90, 90);
 /* ------------------------------------------------------- */
 
   /* ---------- Plz use the following vars ---------------*/
@@ -55,6 +59,7 @@
   --glassEffect: var(--D-ge);
   --Dark-color: var(--D-color);
   --sidebar-active: var(--side-dark);
+  --Inverted-color: var(--Not-darkMode);
 }
 
 body {

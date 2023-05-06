@@ -11,6 +11,7 @@ export function darktheme(darkModeEnabled) {
         document.documentElement.style.setProperty('--glassEffect', 'var(--L-ge)');
         document.documentElement.style.setProperty('--Dark-color', 'var(--L-color)');
         document.documentElement.style.setProperty('--sidebar-active', 'var(--side-light)');
+        document.documentElement.style.setProperty('--Inverted-color', 'var(--Not-lightMode)');
       } else {
         document.documentElement.style.setProperty('--background-color', 'var(--DarkMode)');
         document.documentElement.style.setProperty('--font-color', 'var(--D-font-color)');
@@ -22,5 +23,6 @@ export function darktheme(darkModeEnabled) {
         document.documentElement.style.setProperty('--glassEffect', 'var(--D-ge)');
         document.documentElement.style.setProperty('--Dark-color', 'var(--D-color)');
         document.documentElement.style.setProperty('--sidebar-active', 'var(--side-dark)');
+        document.documentElement.style.setProperty('--Inverted-color', 'var(--Not-darkMode)');
       }
 }

@@ -60,7 +60,8 @@
     filter: contrast(90%);
     border: 0;
     padding: 1em 0;
-    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+    /* box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px; */
+    box-shadow: var(--Inverted-color) 0px 0px 15px, var(--Inverted-color) 0px 0px 3px 1px;
     border-radius: 0.5em;
     z-index: 99;
 }
