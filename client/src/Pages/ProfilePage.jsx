@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import DefaultAvatar from "../Data/Images/avatar.jpg"
 import { useLocation } from 'react-router-dom';
 import FollowBtn from '../components/FollowBtn';
+import Posts from '../components/Posts';
 // import {User} from "../Test Data/CurrentUser"
 
 function ProfilePage({current_user}) {
@@ -51,7 +52,9 @@ function ProfilePage({current_user}) {
           </div>
         </div>
         {/* User Feed */}
-        <div className="bottom"></div>
+        <div className="bottom">
+          <Posts user_posts={true}/>
+        </div>
     </div>  
   )
 }

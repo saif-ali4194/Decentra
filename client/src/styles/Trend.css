@@ -13,12 +13,13 @@
     filter: brightness(150%);
 } */
 .trend-top{
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .trend .button{
-    padding: 0.2rem 0.2rem;
+    padding: 0.3rem 0.3rem;
     color: gray;
 }
 .trend .button:hover{

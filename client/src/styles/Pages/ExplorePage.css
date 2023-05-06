@@ -1,5 +1,10 @@
 .explore-page {
     color: var(--D-font-color);
-    font-size: 0.7em;
-    padding: 1rem 1rem;
+    font-size: 1em;
+    padding: 1rem 0rem;
+    
+}
+.gap-border{
+    margin-top: 1em;
+    border-bottom: 1px solid var(--border-color);
 }

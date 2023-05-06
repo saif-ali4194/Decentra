@@ -1,9 +1,17 @@
 import React from 'react'
 import "../styles/Pages/ExplorePage.css"
+import Search from '../components/Search';
+import Trending from '../components/Trending';
+import Posts from '../components/Posts';
+
 function ExplorePage() {
   return (
     <div className='explore-page'>
-      <h1>Explore Page</h1>
+      <Search/>
+      <Trending/>
+      <div className='gap-border'></div>
+      <Posts/>
+      
     </div>
   )
 }
