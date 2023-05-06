@@ -160,3 +160,6 @@
 /* .replyingTo{
     display: flex;
 } */
+.threadLink{
+    display: none;
+}   

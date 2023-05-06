@@ -11,6 +11,7 @@ import SettingsPage from '../Pages/SettingsPage';
 import Account from '../components/SubSettingsComponents/Account';
 import Tac from '../components/SubSettingsComponents/Tac';
 import {User} from "../Test Data/CurrentUser"
+import Thread from '../Pages/Thread';
 
 function Feed() {
   return (
@@ -26,6 +27,7 @@ function Feed() {
       <Route path="/settings" element={< SettingsPage/>} />
       <Route path="/settings/account" element={<Account />} />
       <Route path="/settings/tac" element={<Tac />} />
+      <Route path="/thread/:post" element={<Thread />} />
       </Routes>
     </div>
   )

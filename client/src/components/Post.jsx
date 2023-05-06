@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Post.css';
-import {Avatar, Button, IconButton} from '@mui/material';
+import {Avatar, IconButton} from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -9,7 +9,9 @@ import { useRef } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { User } from '../Test Data/CurrentUser';
 import TweetBox from './TweetBox';
-const Post = ({tweet}) => {
+import {Link} from 'react-router-dom';
+const Post = ({tweet,tweetId}) => {
+    const postThread = useRef();
     const cModal=useRef();
     const postComment=()=>{
         cModal.current.showModal();
@@ -18,8 +20,12 @@ const Post = ({tweet}) => {
     const closePostComment=()=>{
         cModal.current.close();
     }
+
+    const openThread = () => {
+        postThread.current.click();
+    }
     return (  
-        <div className="post">
+        <div className="post" onClick={openThread}>
             <div className="post_avatar">
                 <Avatar src={tweet.user.avatar}/>
             </div>
@@ -49,6 +55,8 @@ const Post = ({tweet}) => {
                     <ReplyIcon className='_postoptions'/>
                 </div>
             </div>
+            
+            
             <dialog ref={cModal} className='post_comment_input'>
                 <div className='post_comment_input_display'>
 
@@ -89,6 +97,9 @@ const Post = ({tweet}) => {
                     </div>
                 </div>
             </dialog>
+
+
+            <Link  className='threadLink' to={`/thread/${tweetId}`} ref={postThread}></Link>
         </div>
     );
 }

@@ -1,0 +1,10 @@
+.thread{
+    color: var(--font-color);
+    font-size: 1em;
+    padding: 1rem 0rem;
+}
+.thread h3{
+    font-weight: bolder;
+    padding-left: 2em;
+    border-bottom: 1px solid var(--border-color);
+}
