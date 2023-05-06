@@ -23,7 +23,7 @@ const Thread = () => {
                     
             })}
             <TweetBox profile={User}/>
-            <Comments/>
+            <Comments id={id.post}/>
         </div>
      );
 }

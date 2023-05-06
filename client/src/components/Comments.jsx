@@ -2,10 +2,30 @@ import React from 'react';
 import '../styles/Comments.css'
 import Comment from './Comment';
 import { comment_data } from '../Test Data/CommentData';
-const Comments = () => {
+const Comments = ({id}) => {
     return ( 
         <div className='comments'>
-            <Comment comment={comment_data[0]}/>
+
+            {
+                comment_data && comment_data.map((comment)=>{
+
+                    if(comment.p_id==id){
+
+                        return <div key={comment.id} className='cmts-group'>
+                                <Comment comment={comment}/>
+                                {
+                                    console.log(comment.id)
+                                }
+                                <div className='cmts-linebreak'></div>
+                            </div>
+
+                    }
+
+                    
+                })
+
+            }
+            
         </div>
     );
 }

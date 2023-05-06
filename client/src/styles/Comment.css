@@ -1,18 +1,25 @@
 .comment{
+    box-sizing: border-box;
     padding: 1rem;
     display: flex;
     gap: 0.5rem;
+    
 
 }
+.cmt-left{
+    
+    position: relative;
+}
 .below-avatar{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 78%;
 }
 .below-avatar .straightLine{
-    margin-top: 4px;
-    height: 90%;
+    
+    height: 100%;
     width:2px;
     background-color: var(--border-color);
 }
