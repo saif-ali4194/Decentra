@@ -53,6 +53,16 @@
     color: var(--Brand-color);
     background-color: var(--glassEffect);
 }
+.cmt-right-middle{
+    display: flex;
+    flex-direction: column;
+    
+}
+.cmt-responding-to{
+    color: gray;
+    font-weight:lighter;
+
+}
 .cmt-Options{
     display: flex;
     justify-content: space-around;

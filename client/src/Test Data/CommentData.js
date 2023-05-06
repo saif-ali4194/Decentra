@@ -87,5 +87,27 @@ export const comment_data=[
             date:"07 May, 2023"
         }
     ]
+    },
+    {   
+        id:40,
+        p_id:4,
+        text:"Tum Single Hi Maro Ge.",
+        user:user_list[2],
+        date:"06 May, 2023",
+        c_cmts:[{
+            id:110,
+            p_id:40,
+            text:"Kiya Baat Hai. Aapne toh beizaati krdi bechare ki.",
+            user:user_list[0],
+            date:"07 May, 2023"
+        },
+        {
+            id:109,
+            p_id:40,
+            text:"B******D.",
+            user:user_list[2],
+            date:"07 May, 2023"
+        }
+    ]
     }
 ]

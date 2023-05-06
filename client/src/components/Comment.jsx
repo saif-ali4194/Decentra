@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Comment.css'
 import { Avatar, IconButton } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -7,7 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ReplyIcon from '@mui/icons-material/Reply';
 
 const Comment = ({comment}) => {
-    console.log(comment.id+"sub")
+    
     return ( 
        
 
@@ -37,6 +37,7 @@ const Comment = ({comment}) => {
                             </div>
 
                             <div className="cmt-right-middle">
+                                
                                 <span className='cmt-text'>{comment.text}</span>
                             </div>
 

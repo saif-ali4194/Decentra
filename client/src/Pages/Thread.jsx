@@ -7,8 +7,10 @@ import TweetBox from '../components/TweetBox';
 import {User} from '../Test Data/CurrentUser';
 // import Comment from '../components/Comment';
 import Comments from '../components/Comments';
+import { user_list } from '../Test Data/UserList';
 
 const Thread = () => {
+    
     let id = useParams();
       
     return ( 
@@ -17,13 +19,14 @@ const Thread = () => {
             <h3>Thread</h3>
             {tweets && tweets.map((tweet)=>{
                 if(tweet.id==id.post)
-                {
+                {   
                     return <ThreadMainPost key={tweet.id} id={id.post} tweet={tweet}/>
                 }
                     
             })}
+
             <TweetBox profile={User}/>
-            <Comments id={id.post}/>
+            <Comments id={id.post} />
         </div>
      );
 }

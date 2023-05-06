@@ -8,7 +8,7 @@ const Posts = ({user_posts}) => {
             {/* <h2>posts</h2> */}
             {tweets && tweets.map((tweet)=>{
                 if(user_posts){
-                    if(tweet.id===1)
+                    if(tweet.user_id===1)
                         return <Post key={tweet.id} tweet={tweet} tweetId={tweet.id}/>
                 }else 
                  return <Post key={tweet.id} tweet={tweet} tweetId={tweet.id}/>
