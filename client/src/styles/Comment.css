@@ -51,7 +51,7 @@
 }
 .comment .cmt-more:hover{
     color: var(--Brand-color);
-    background-color: var(--glassEffect);
+    background-color: var(--Brand-hover-color);
 }
 .cmt-right-middle{
     display: flex;

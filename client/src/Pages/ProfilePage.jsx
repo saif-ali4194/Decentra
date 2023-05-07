@@ -11,6 +11,7 @@ import Posts from '../components/Posts';
 function ProfilePage({current_user}) {
   const location = useLocation();
   let {userId} =  useParams(); // get id form url
+  
   let user_profile = undefined;
   if (userId) {// if url has id then
     user_profile = user_list.find(user => user.id == userId); //Mylist
@@ -53,7 +54,7 @@ function ProfilePage({current_user}) {
         </div>
         {/* User Feed */}
         <div className="bottom">
-          <Posts user_posts={true}/>
+          <Posts user_posts={userId} pathname={location.pathname}/>
         </div>
     </div>  
   )
