@@ -37,7 +37,7 @@
 }
 .threadMainPost .optionsButton:hover{
     color: var(--Brand-color);
-    background-color: var(--glassEffect);
+    background-color: var(--Brand-hover-color);
     
 }
 .threadMainBody{
