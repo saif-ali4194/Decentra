@@ -60,7 +60,7 @@ const TweetBox = ({profile}) => {
                                 borderRadius:"25px",
                                 padding:"5px 10px",
                                 fontWeight:"bold"
-                            }}>Tweet</Button>
+                            }}>Post</Button>
                             <div style={{
                                 display:"none"
                             }}>
