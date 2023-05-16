@@ -1,0 +1,6 @@
+const config = {
+    // Remove the key before pushing
+    REACT_APP_WEB3STORAGE_API_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDUwRDg5MzNmNDFBMEFBYUExNjNkM2RCN0M5Mjc2Mjg2MENkMGI0OTgiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODQyMzEzNTM0NzUsIm5hbWUiOiJkZWNlbnRyYSJ9.3sQwstetMfasLf9nRZCRrfgutOI1j4HInyDuvTVHlXg"
+};
+
+export default config;

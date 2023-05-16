@@ -36,7 +36,7 @@ const Search = () => {
                 <div>
                     
                     <SearchIcon className='search_field_icon'/>
-                    <input ref={searchInputRef} value={query} type="search" name="search" id="search" placeholder='Search' className='search_field_input' 
+                    <input ref={searchInputRef} autoComplete='off' value={query} type="search" name="search" id="search" placeholder='Search' className='search_field_input' 
                     onFocus={focusHandle}
                     onBlur={outFocusHandle}
                     onChange={(e)=>{
