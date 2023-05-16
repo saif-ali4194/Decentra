@@ -24,7 +24,6 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(apiKey)}
       {/* Sidebar */}
       <Sidebar />
       {/* Feed */}
