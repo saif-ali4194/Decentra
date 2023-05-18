@@ -38,11 +38,12 @@ function App() {
 		const connection = await web3Modal.connect();
 		let provider = new ethers.BrowserProvider(connection);
 		const getnetwork = await provider.getNetwork();
-		const signer = provider.getSigner();
-		const signerAddress = (await signer).getAddress();
+		const signer = await provider.getSigner();
+		const signerAddress = signer.getAddress();
 		const contract = new ethers.Contract(DecentraContractAddress,DecentraAbi.abi,signer);
-      	//const getUserDetail = await contract.getUser(signerAddress);
-		console.log();
+		console.log(contract);
+      	const getUserDetail = await contract.getUser(signerAddress);
+		console.log(getUserDetail);
 
     }
 	useEffect(() => {
