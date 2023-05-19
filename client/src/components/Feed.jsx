@@ -10,15 +10,16 @@ import TrendingPage from "../Pages/TrendingPage"
 import SettingsPage from '../Pages/SettingsPage';
 import Account from '../components/SubSettingsComponents/Account';
 import Tac from '../components/SubSettingsComponents/Tac';
-import {User} from "../Test Data/CurrentUser"
+// import {User} from "../Test Data/CurrentUser"
 import Thread from '../Pages/Thread';
 
 function Feed() {
+  const loc_user = JSON.parse(window.localStorage.getItem("loc_user"));
   return (
     <div className="feed">
       <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/profile" element={<ProfilePage current_user={User}/>} />
+      <Route path="/profile" element={<ProfilePage current_user={loc_user}/>} />
       <Route path="/profile/:userId" element={<ProfilePage />} /> 
       <Route path="/explore" element={<ExplorePage />} />
       <Route path="/community" element={<CommunityPage />} />

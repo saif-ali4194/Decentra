@@ -83,6 +83,12 @@
     display: flex;
     justify-content: center;
 }
+
+#loc_user_balance {
+    font-weight: lighter;
+    font-size: 1.15em;
+    margin-left: auto;
+}
 /* 
 #p-follow {
     margin-left: auto;

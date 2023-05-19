@@ -1,27 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/Pages/ProfilePage.css"
-import {user_list} from "../Test Data/UserList"
+import { user_list } from "../Test Data/UserList"
 import { useParams } from 'react-router-dom';
 import DefaultAvatar from "../Data/Images/avatar.jpg"
 import { useLocation } from 'react-router-dom';
 import FollowBtn from '../components/FollowBtn';
 import Posts from '../components/Posts';
 // import {User} from "../Test Data/CurrentUser"
+import { ethers, formatEther } from 'ethers';
+import Web3Modal from 'web3modal';
+
 
 function ProfilePage({current_user}) {
   const location = useLocation();
   let {userId} =  useParams(); // get id form url
+  const [accountBalance,setAccountBalance] = useState(0);
   
   let user_profile = undefined;
   if (userId) {// if url has id then
     user_profile = user_list.find(user => user.id == userId); //Mylist
     if(!user_profile) { user_profile = location.state.user;}
 
-  }else // use current user
-    user_profile = current_user;
+  } else // use current user
+      user_profile = current_user;
+  
+  //   User wallet Balance Logic
+  async function getAccountBalance(){
+    const web3Modal = new Web3Modal();
+		const connection = await web3Modal.connect();
+		let provider = new ethers.BrowserProvider(connection);
+    let balance = await provider.getBalance(current_user.active_account);
+    const balanceInEther = ethers.formatEther(balance);
+    const formattedBalance = parseFloat(balanceInEther).toFixed(2);
+    console.log(formattedBalance)
+    setAccountBalance(formattedBalance);
+  }
 
-  if (!user_profile) // if no users are found
-    return <div id="error">Can't find the user you're looking for!</div>; 
+  useEffect(() => {
+      getAccountBalance();
+  }, []);
+
+  if(!user_profile) // if no users are found
+    return <div id="error">Can't find the user you're looking for!</div>;
+
 
   return (
     <div className='profile-page'>
@@ -37,7 +58,11 @@ function ProfilePage({current_user}) {
             ></div>
             <h1>{user_profile.name}</h1>
            {/* {!current_user && <button id='p-follow'>Follow</button>} */}
-           {!current_user && <FollowBtn />} 
+           {!current_user ? (<FollowBtn />)
+            : (
+              <h6 id="loc_user_balance"><span>Balance: </span>{accountBalance}ETH</h6>
+            )
+          } 
           </div>
 
           <div className="info">
