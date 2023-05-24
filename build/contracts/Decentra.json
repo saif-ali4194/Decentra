@@ -17,8 +17,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -201,8 +200,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"getUser\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"avatar\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"banner\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"age\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"gender\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"country\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"city\",\"type\":\"string\"}],\"internalType\":\"struct Decentra.Profile\",\"name\":\"profile\",\"type\":\"tuple\"},{\"internalType\":\"string\",\"name\":\"occupation\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date_joined\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"followers\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"following\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"user_following\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"user_followed\",\"type\":\"uint256[]\"}],\"internalType\":\"struct Decentra.user\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"avatar\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"banner\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"age\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"gender\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"status\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"country\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"city\",\"type\":\"string\"}],\"internalType\":\"struct Decentra.Profile\",\"name\":\"_profile\",\"type\":\"tuple\"},{\"internalType\":\"string\",\"name\":\"_occupation\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_date_joined\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_followers\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_following\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"_user_following\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_user_followed\",\"type\":\"uint256[]\"}],\"name\":\"updateUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Decentra.sol\":\"Decentra\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Decentra.sol\":{\"keccak256\":\"0x19e1befe9ad77cef52b3ac02c8e4ae8a9693304fa9cdddf27ce5af40b4f663d8\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://9e77c0d6a0fce385a6a94cc57d541055fc81aee81a1743a6ead65e01d92b81b5\",\"dweb:/ipfs/QmR28KqW65yPpszKrnvD94shY9m3NdZWSJNCst2kNdP1vJ\"]}},\"version\":1}",
@@ -13747,6 +13745,12 @@
     "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x498f614DEe91234670FB26cD9f04A82DC1CC7910",
+      "transactionHash": "0x825b6948b1de38887932f2f14f2f2a2de30c4e28dcb3ee610821553fc18f3cef"
+    },
     "1684389920073": {
       "events": {},
       "links": {},
@@ -13770,11 +13774,16 @@
       "links": {},
       "address": "0xa70898Ec188B0e81Fe5Ba439d4eFAb30247b1f51",
       "transactionHash": "0x65de2c69f69c1d1ede9483c2bd3a693e881f4553e81f3fb18a97b2eb393887aa"
+    },
+    "1684565850343": {
+      "events": {},
+      "links": {},
+      "address": "0xA18735A0B194ed1689a3B2958991358fFec91251",
+      "transactionHash": "0x38e16024f0852059745dd9a6a5c91eb078af5166bd3cb4ac7b1e77e65d064187"
     }
   },
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-05-19T09:54:24.361Z",
-  "networkType": "ethereum",
+  "updatedAt": "2023-05-22T05:37:19.207Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
