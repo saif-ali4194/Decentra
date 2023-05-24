@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import "../../styles/SubSettingsComponents/Account.css"
-import {User} from "../../Test Data/CurrentUser"
+// import {User} from "../../Test Data/CurrentUser"
 import DefaultAvatar from "../../Data/Images/avatar.jpg"
 import EditIcon from '@mui/icons-material/Edit';
+import { _User } from '../../Scripts/UserStorage';
 
 function Account() {
-  const [name, setName] = useState(User.name);
-  const [age, setAge] = useState(User.age);
-  const [gender, setGender] = useState(User.gender);
-  const [status, setStatus] = useState(User.status);
-  const [country, setCountry] = useState(User.country);
-  const [city, setCity] = useState(User.city);
-  const [occupation, setOccupation] = useState(User.occupation);
-  const [avatar, setAvatar] = useState(User.avatar);
-  const [banner, setBanner] = useState(User.banner);
+  const loc_user = _User.getUserData();
+
+  const [name, setName] = useState(loc_user.name);
+  const [age, setAge] = useState(loc_user.age);
+  const [gender, setGender] = useState(loc_user.gender);
+  const [status, setStatus] = useState(loc_user.status);
+  const [country, setCountry] = useState(loc_user.country);
+  const [city, setCity] = useState(loc_user.city);
+  const [occupation, setOccupation] = useState(loc_user.occupation);
+  const [avatar, setAvatar] = useState(loc_user.avatar);
+  const [banner, setBanner] = useState(loc_user.banner);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -57,7 +60,7 @@ function Account() {
        <div className="form-images" style={{backgroundImage: `url(${banner})`}}>
         <div id="form-avatar" style={{backgroundImage: `url(${avatar || DefaultAvatar})`}}></div>
        </div>
-      <h6><span>AccountID:</span> {User.account_id}</h6>
+      <h6><span>AccountID:</span> {loc_user.account_id}</h6>
       
        <div className="form">
         <h6><EditIcon />Edit Profile:</h6>

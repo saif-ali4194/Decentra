@@ -4,13 +4,14 @@ import ThreadMainPost from '../components/ThreadMainPost';
 import { tweets } from '../Test Data/PostDemoData';
 import {useParams} from 'react-router-dom';
 import TweetBox from '../components/TweetBox';
-import {User} from '../Test Data/CurrentUser';
+// import {User} from '../Test Data/CurrentUser';
 // import Comment from '../components/Comment';
 import Comments from '../components/Comments';
-import { user_list } from '../Test Data/UserList';
+// import { user_list } from '../Test Data/UserList';
+import { _User } from '../Scripts/UserStorage';
 
 const Thread = () => {
-    
+    const loc_user = _User.getUserData();
     let id = useParams();
       
     return ( 
@@ -25,7 +26,7 @@ const Thread = () => {
                     
             })}
 
-            <TweetBox profile={User}/>
+            <TweetBox profile={loc_user}/>
             <Comments id={id.post} />
         </div>
      );

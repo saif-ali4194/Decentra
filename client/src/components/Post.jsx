@@ -7,10 +7,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { useRef } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { User } from '../Test Data/CurrentUser';
+// import { User } from '../Test Data/CurrentUser';
 import TweetBox from './TweetBox';
 import {Link} from 'react-router-dom';
+import { _User } from '../Scripts/UserStorage';
+
 const Post = ({tweet,tweetId}) => {
+    const loc_user = _User.getUserData();
     const [modalOpen,setModalOpen]=useState(false);
     const postThread = useRef();
     const cModal=useRef();
@@ -98,7 +101,7 @@ const Post = ({tweet,tweetId}) => {
                         <div className="replying">Replying to {tweet.user.at}</div>
                     </div> */}
                     <div className="userReply">
-                        <TweetBox profile={User}/>
+                        <TweetBox profile={loc_user}/>
                     </div>
                 </div>
             </dialog>

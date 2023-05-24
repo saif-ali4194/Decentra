@@ -14,9 +14,12 @@ import UserProfile from "./UserProfile"
 import SettingsIcon from '@mui/icons-material/Settings';
 import Logo from "../Data/Images/logo.png"
 
-function Sidebar() {
+
+function Sidebar({setIsAuthenticated}) {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
+
+ 
 
   const handleLinkClick = (to) => {
     setActiveLink(to);
@@ -74,8 +77,10 @@ function Sidebar() {
       <SidebarOptions 
       text = "Logout" 
       Icon={LogoutIcon}
+      to={null}
       active={activeLink === '/logout'}
-        handleLinkClick={handleLinkClick}
+      handleLinkClick={handleLinkClick}
+      setIsAuthenticated={setIsAuthenticated}
       />
     </div>
   )
