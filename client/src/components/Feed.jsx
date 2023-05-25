@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/Feed.css"
 import { Route, Routes } from 'react-router-dom';
 import HomePage from "../Pages/HomePage"
@@ -12,9 +12,21 @@ import Account from '../components/SubSettingsComponents/Account';
 import Tac from '../components/SubSettingsComponents/Tac';
 // import {User} from "../Test Data/CurrentUser"
 import Thread from '../Pages/Thread';
+import { _User } from '../Scripts/UserStorage';
 
 function Feed() {
-  const loc_user = JSON.parse(window.localStorage.getItem("loc_user"));
+  const [loc_user, setLocUser] = useState(_User.getUserData());
+  useEffect(() => {
+    const handleLocalStorageUpdated = () => {
+      setLocUser(_User.getUserData());
+    };
+
+    window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+    return () => {
+      window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+    };
+  }, [])
   return (
     <div className="feed">
       <Routes>

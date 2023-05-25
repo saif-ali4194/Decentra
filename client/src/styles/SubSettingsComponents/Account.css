@@ -137,3 +137,27 @@ input[type="file"]::-webkit-file-upload-button {
 .form-save>button:hover {
     background-color: var(--Brand-hover-color);
 }
+
+.prev-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 13rem;
+    background-color: #111111;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-self: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.prev_avatar {
+    width: 6rem;
+    height: 6rem;
+    box-shadow: #090909 0px 0px 20px;
+    border-radius: 100px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

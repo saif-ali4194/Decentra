@@ -1,6 +1,7 @@
 import DefaultAvatar from "../Data/Images/avatar.jpg"
 import DefaultBanner from "../Data/Images/banner.png"
 
+const localStorageUpdated = new Event('localStorageUpdated');
 export const _User =  {
 	setUserLocalStorage(getUserDetail, signerAddress) {
 		if (getUserDetail.profile.name) {
@@ -9,19 +10,20 @@ export const _User =  {
 			name: getUserDetail.profile.name,
 			avatar: getUserDetail.profile.avatar,
 			banner: getUserDetail.profile.banner,
-			age: getUserDetail.profile.age,
-			gender: getUserDetail.profile.age,
-			status: getUserDetail.profile.staus,
+			age: Number(getUserDetail.profile.age),
+			gender: getUserDetail.profile.gender,
+			status: getUserDetail.profile.status,
 			country: getUserDetail.profile.country,
 			city: getUserDetail.profile.city,
 			occupation: getUserDetail.occupation,
 			date_joined: getUserDetail.date_joined,
-			followers: getUserDetail.followers,
-			following: getUserDetail.following,
-			user_following: getUserDetail.user_following,
-			user_followed: getUserDetail.user_followed,
+			followers: Number(getUserDetail.followers),
+			following: Number(getUserDetail.following),
+			user_following: getUserDetail.user_following.map(Number),
+			user_followed: getUserDetail.user_followed.map(Number),
 		  };
 		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
+		  window.dispatchEvent(localStorageUpdated);
 		} else {
 		  const tmp = signerAddress.toString();
 		  const truncatedAddress = tmp.slice(0, 5);
@@ -46,6 +48,7 @@ export const _User =  {
 			user_followed: [],
 		  };
 		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
+		  window.dispatchEvent(localStorageUpdated);
 		}
 	},
 	  

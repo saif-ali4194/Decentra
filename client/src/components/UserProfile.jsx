@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/UserProfile.css"
 // import { Avatar } from '@mui/material'
 import DefaultAvatar from "../Data/Images/avatar.jpg"
@@ -6,7 +6,19 @@ import DefaultAvatar from "../Data/Images/avatar.jpg"
 import { _User } from '../Scripts/UserStorage';
 
 function UserProfile() {
-  const loc_user = _User.getUserData();
+  const [loc_user, setLocUser] = useState(_User.getUserData());
+  useEffect(() => {
+    const handleLocalStorageUpdated = () => {
+      setLocUser(_User.getUserData());
+    };
+
+    window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+    return () => {
+      window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+    };
+  }, []);
+
   return (
     <div className='user-profile'>
     {/* <Avatar /> */}
