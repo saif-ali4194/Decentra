@@ -52,25 +52,18 @@ contract Decentra {
     // Users[msg.sender] = newUser;
     // }
 
-    function updateUser (
-        Profile memory _profile,
-        string memory _occupation,
-        string memory _date_joined,
-        uint256 _followers,
-        uint256 _following,
-        uint256[] memory _user_following,
-        uint256[] memory _user_followed
-    ) public {
-        user storage userData = Users[msg.sender];
-        userData.profile = _profile;
-        userData.occupation = _occupation;
-        userData.date_joined = _date_joined;
-        userData.followers = _followers;
-        userData.following = _following;
-        userData.user_following = _user_following;
-        userData.user_followed = _user_followed;
-    }
+    // function updateUser (
+    //     Profile memory _profile,
+    //     string memory _occupation
+    // ) public {
+    //     user storage userData = Users[msg.sender];
+    //     userData.profile = _profile;
+    //     userData.occupation = _occupation;
+    // }
 
+    function updateUser(user memory _user) public {
+    Users[msg.sender] = _user;
+}
     function getUser(address userAddress) public view returns (user memory) {
         return Users[userAddress];
     }

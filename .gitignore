@@ -1,2 +1,4 @@
 node_modules/
 client/src/abi/Decentra.json
+
+build/contracts/Decentra.json
