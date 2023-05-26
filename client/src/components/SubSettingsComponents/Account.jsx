@@ -45,7 +45,10 @@ function Account() {
 	const [prev_banner, setPrevBanner] = useState(null); // preview banner
 	const [chk_avatar, setChkAvatar] = useState(false); // check if avatar is changed
 	const [chk_banner, setChkBanner] = useState(false); // check if banner is changed
+	const [disable, setDisable] = useState(false);
 
+	const minAge = 15;
+	const maxAge = 100;
 	/* --Ensuring states have the latest value-- */
 	useEffect(() => {
 		setAvatar(loc_user.avatar);
@@ -54,11 +57,20 @@ function Account() {
 	
 	/* --Change Events for all fields-- */
 	const handleNameChange = (event) => {
+		if(event.target.value == "") setDisable(true);
+		else setDisable(false);
 		setName(event.target.value);
 	};
 
 	const handleAgeChange = (event) => {
-		setAge(event.target.value);
+		const enteredAge = parseInt(event.target.value, 10); // Parse the entered value as an integer
+
+		// Check if the enteredAge is within the valid range
+		const isInvalidAge = enteredAge < minAge || enteredAge > maxAge;
+			setAge(event.target.value);
+			console.log(isInvalidAge)
+		setDisable(isInvalidAge);
+		if(event.target.value == "") setDisable(true);
 	};
 
 	const handleGenderChange = (event) => {
@@ -70,32 +82,64 @@ function Account() {
 	};
 
 	const handleCountryChange = (event) => {
+		if(event.target.value == "") setDisable(true);
+		else setDisable(false);
 		setCountry(event.target.value);
 	};
 
 	const handleCityChange = (event) => {
+		if(event.target.value == "") setDisable(true);
+		else setDisable(false);
 		setCity(event.target.value);
 	};
 
 	const handleOccupationChange = (event) => {
+		if(event.target.value == "") setDisable(true);
+		else setDisable(false);
 		setOccupation(event.target.value);
 	};
 
 	const handleAvatarChange = (event) => {
-		if(event !=null){
-			setAvatar(event.target.files); //file array
-			setPrevAvatar(URL.createObjectURL(event.target.files[0]));
-			setChkAvatar(true);
-        }
+		try {
+			if(event !=null){
+				setAvatar(event.target.files); //file array
+				setPrevAvatar(URL.createObjectURL(event.target.files[0]));
+				setChkAvatar(true);
+			}
+		} catch(e) {
+			notification({
+				type: 'info',
+				message: 'Please Select a File',
+				title: 'Notification',
+				position: 'topR',
+				style: {
+					backgroundColor: 'var(--background-color)', // Set the desired background color
+				  },
+			});
+		}
+		
 		
 	};
 
 	const handleBannerChange = (event) => {
-		if(event != null) {
-		setBanner(event.target.files); //file array
-		setPrevBanner(URL.createObjectURL(event.target.files[0]));
-		setChkBanner(true);
+		try {
+			if(event != null) {
+				setBanner(event.target.files); //file array
+				setPrevBanner(URL.createObjectURL(event.target.files[0]));
+				setChkBanner(true);
+			}
+		} catch(e) {
+			notification({
+				type: 'info',
+				message: 'Please Select a File',
+				title: 'Notification',
+				position: 'topR',
+				style: {
+					backgroundColor: 'var(--background-color)', // Set the desired background color
+				  },
+			});
 		}
+		
 	};
 
 	/* --Storing data in ipfs-- */
@@ -115,6 +159,7 @@ function Account() {
 	async function updateUser() {
 		let bannerURL = null;
 		let avatarURL = null;
+		setDisable(true);
 
 		if (avatar !== null && avatar !== undefined && chk_avatar) {
 			 avatarURL = await storeFile(avatar);
@@ -165,11 +210,10 @@ function Account() {
 				backgroundColor: 'var(--background-color)', // Set the desired background color
 			  },
 		});
-
+		setDisable(false);
 		setPrevAvatar(null);
 		setPrevBanner(null);
 	}
-
 
 
 	return (
@@ -196,15 +240,31 @@ function Account() {
 			<div className="form-fields">
 			<div className='form-triplet'>
 			<label>Age</label>
-			<input type="number" value={age} onChange={handleAgeChange} />
+			<input type="number" value={age} onChange={handleAgeChange}  />
 			</div>
 			<div className='form-triplet'>
 			<label>Gender</label>
-			<input type="text" value={gender} onChange={handleGenderChange} />
+			<select value={gender} onChange={handleGenderChange} className='dropdown-options'>
+				<option value="" hidden>
+    				{gender ? gender : "Select"}
+  				</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+				<option value="other">Other</option>
+			</select>
+			{/* <input type="text" value={gender} onChange={handleGenderChange} /> */}
 			</div>
 			<div className='form-triplet'>
 			<label>Status</label>
-			<input type="text" value={status} onChange={handleStatusChange} />
+			<select value={status} onChange={handleStatusChange} className='dropdown-options'>
+				<option value="" hidden>
+    				{status ? status : "Select"}
+  				</option>
+				<option value="Single">Single</option>
+				<option value="Married">Married</option>
+				<option value="In relationship">In relationship</option>
+			</select>
+			{/* <input type="text" value={status} onChange={handleStatusChange} /> */}
 			</div>    
 			</div>
 
@@ -229,12 +289,13 @@ function Account() {
 			</div>
 			{(prev_banner || prev_avatar)&&
 				<div className="prev-banner" style={{ backgroundImage: `url(${prev_banner})`}}>
+					<div id="close-profile-preview" onClick={() => {setPrevAvatar(null); setPrevBanner(null)}}>X</div>
 					<div className="prev_avatar" style={{ backgroundImage: `url(${prev_avatar})`}}></div>
 				</div>
 			}
 		</div>
 
-		<div className="form-save"><button onClick={updateUser}>Save</button></div>
+		<div className="form-save"><button onClick={updateUser} disabled={disable}>Save</button></div>
 		</div>
 	)
 }
