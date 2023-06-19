@@ -172,7 +172,7 @@ function Account() {
 		const profile = {
 			name:name,
 			avatar:avatarURL !== null ? avatarURL : loc_user.avatar,
-			banner:avatarURL !== null ? avatarURL : loc_user.banner,
+			banner:bannerURL !== null ? bannerURL : loc_user.banner,
 			age:age,
 			gender:gender,
 			status:status,
