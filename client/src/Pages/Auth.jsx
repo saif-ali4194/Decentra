@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "../styles/Pages/Auth.css"
 import Logo from "../Data/Images/logo.png"
 import { ethers } from 'ethers';
@@ -12,7 +12,22 @@ import anime from 'animejs'
 import { _User } from '../Scripts/UserStorage.js';
 import { _Auth } from '../Scripts/UserStorage.js';
 
+
 function Auth({setIsAuthenticated}) {
+	/* --getting local user data-- */
+	const [loc_user, setLocUser] = useState(_User.getUserData());
+  	useEffect(() => {
+		const handleLocalStorageUpdated = () => {
+		setLocUser(_User.getUserData());
+		};
+
+   	 	window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+    	return () => {
+      		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+    	};
+  	}, []);
+
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 	const connectWallet = async () =>{
 		const web3Modal = new Web3Modal();
@@ -24,7 +39,31 @@ function Auth({setIsAuthenticated}) {
 		const contract = new ethers.Contract(DecentraContractAddress,DecentraAbi.abi,signer);
       	const getUserDetail = await contract.getUser(signerAddress);
 
-		_User.setUserLocalStorage(getUserDetail, signerAddress)
+		let is_default = _User.setUserLocalStorage(getUserDetail, signerAddress);
+		if(is_default) {
+			const profile = {
+				name: loc_user.name,
+				avatar:loc_user.avatar,
+				banner:loc_user.banner,
+				age:loc_user.age,
+				gender:loc_user.gender,
+				status:loc_user.status,
+				country:loc_user.country,
+				city:loc_user.city,
+			}
+			const userDetails = {
+				userAddress: signerAddress,
+				profile: profile,
+				occupation: loc_user.occupation,
+				date_joined: loc_user.date_joined,
+				followers: loc_user.followers,
+				following: loc_user.following,
+				user_following: loc_user.user_following,
+				user_followed: loc_user.user_followed
+			}
+			await contract.createUser(userDetails);
+		}
+		
 		_Auth.set_auth(true);
 		setIsAuthenticated(true);
     }

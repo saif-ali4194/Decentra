@@ -45,7 +45,7 @@ function Account() {
 	const [prev_banner, setPrevBanner] = useState(null); // preview banner
 	const [chk_avatar, setChkAvatar] = useState(false); // check if avatar is changed
 	const [chk_banner, setChkBanner] = useState(false); // check if banner is changed
-	const [disable, setDisable] = useState(false);
+	const [disable, setDisable] = useState(true);
 
 	const minAge = 15;
 	const maxAge = 100;
@@ -68,7 +68,6 @@ function Account() {
 		// Check if the enteredAge is within the valid range
 		const isInvalidAge = enteredAge < minAge || enteredAge > maxAge;
 			setAge(event.target.value);
-			console.log(isInvalidAge)
 		setDisable(isInvalidAge);
 		if(event.target.value == "") setDisable(true);
 	};
@@ -157,6 +156,14 @@ function Account() {
 
 	/* --Updating user when save btn is clicked-- */
 	async function updateUser() {
+		const web3Modal = new Web3Modal();
+		const connection = await web3Modal.connect();
+		let provider = new ethers.BrowserProvider(connection);
+		const getnetwork = await provider.getNetwork();
+		const signer = await provider.getSigner();
+		const signerAddress = await signer.getAddress();
+		const contract = new ethers.Contract(DecentraContractAddress,DecentraAbi.abi,signer);
+
 		let bannerURL = null;
 		let avatarURL = null;
 		setDisable(true);
@@ -180,6 +187,7 @@ function Account() {
 			city:city,
 		}
 		const userDetails = {
+			userAddress: loc_user.active_account,
 			profile: profile,
 			occupation: occupation,
 			date_joined: loc_user.date_joined,
@@ -188,14 +196,6 @@ function Account() {
 			user_following: loc_user.user_following,
 			user_followed: loc_user.user_followed
 		}
-
-		const web3Modal = new Web3Modal();
-		const connection = await web3Modal.connect();
-		let provider = new ethers.BrowserProvider(connection);
-		const getnetwork = await provider.getNetwork();
-		const signer = await provider.getSigner();
-		const signerAddress = await signer.getAddress();
-		const contract = new ethers.Contract(DecentraContractAddress,DecentraAbi.abi,signer);
 		
 		const transaction = await contract.updateUser(userDetails);
 		_User.setUserLocalStorage(userDetails, loc_user.active_account);

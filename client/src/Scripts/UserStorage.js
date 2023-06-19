@@ -24,6 +24,7 @@ export const _User =  {
 		  };
 		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
 		  window.dispatchEvent(localStorageUpdated);
+		  return false; // is_default: no, blockchain data is set
 		} else {
 		  const tmp = signerAddress.toString();
 		  const truncatedAddress = tmp.slice(0, 5);
@@ -49,6 +50,7 @@ export const _User =  {
 		  };
 		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
 		  window.dispatchEvent(localStorageUpdated);
+		  return true; // is_default: yes, default data is set
 		}
 	},
 	  

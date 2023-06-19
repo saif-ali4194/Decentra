@@ -58,7 +58,6 @@ function App() {
 
 	return (
 		<div className="App">
-			{console.log("in func(): "+isAuthenticated)}
 		{isAuthenticated ? (
 			<>
 			<Sidebar setIsAuthenticated={setIsAuthenticated}/>

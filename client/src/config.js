@@ -1,7 +1,7 @@
 const config = {
     // Remove the key before pushing
     REACT_APP_WEB3STORAGE_API_KEY: null,
-    REACT_APP_DECENTRA_CONTRACT_ADDRESS: "0xc0054837B08E87C4c5a310c3fe737DE4FA907392",
+    REACT_APP_DECENTRA_CONTRACT_ADDRESS: "0xE99184aC30f693738Deb2BC0F6B58dD3ab17c06C",
 
     // Default images
     // DEFAULT_AVATAR: "https://bafybeihmkhn7vo5f4gdj6lvo6ismlvc3bzbalm6rzevime73yrnn2io3zi.ipfs.dweb.link/avatar.jpg",

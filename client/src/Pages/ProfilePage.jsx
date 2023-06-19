@@ -15,30 +15,35 @@ function ProfilePage({current_user}) {
   const location = useLocation();
   let {userId} =  useParams(); // get id form url
   const [accountBalance,setAccountBalance] = useState(0);
-  
   let user_profile = undefined;
-  if (userId) {// if url has id then
-    user_profile = user_list.find(user => user.id == userId); //Mylist
-    if(!user_profile) { user_profile = location.state.user;}
+//   if (userId) {// if url has id then
+//     user_profile = user_list.find(user => user.id == userId); //Mylist
+//     if(!user_profile) { user_profile = location.state.user;}
 
-  } else // use current user
-      user_profile = current_user;
+//   } else // use current user
+//       user_profile = current_user;
+if(userId == undefined)
+	user_profile = current_user;
+else 
+	user_profile = location.state.user;
   
   //   User wallet Balance Logic
-  async function getAccountBalance(){
-    const web3Modal = new Web3Modal();
+	async function getAccountBalance(){
+		const web3Modal = new Web3Modal();
 		const connection = await web3Modal.connect();
 		let provider = new ethers.BrowserProvider(connection);
-    let balance = await provider.getBalance(current_user.active_account);
-    const balanceInEther = ethers.formatEther(balance);
-    const formattedBalance = parseFloat(balanceInEther).toFixed(2);
-    console.log(formattedBalance)
-    setAccountBalance(formattedBalance);
-  }
+		let balance = await provider.getBalance(current_user.active_account);
+		const balanceInEther = ethers.formatEther(balance);
+		const formattedBalance = parseFloat(balanceInEther).toFixed(2);
+		console.log(formattedBalance)
+		setAccountBalance(formattedBalance);
+  	}
 
   useEffect(() => {
+	console.log(user_profile == current_user);
+    if(user_profile == current_user)
       getAccountBalance();
-  }, []);
+  }, [userId]);
 
   if(!user_profile) // if no users are found
     return <div id="error">Can't find the user you're looking for!</div>;
