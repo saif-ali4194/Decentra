@@ -51,19 +51,20 @@ function CommunityPage() {
 				name: fetchedUser.profile.name,
 				avatar: fetchedUser.profile.avatar,
 				banner: fetchedUser.profile.banner,
-				age: fetchedUser.profile.age,
+				age: parseInt(fetchedUser.profile.age),
 				gender: fetchedUser.profile.gender,
 				status: fetchedUser.profile.status,
 				country: fetchedUser.profile.country,
 				city: fetchedUser.profile.city,
 				occupation: fetchedUser.occupation,
 				date_joined: fetchedUser.date_joined,
-				followers: fetchedUser.followers,
-				following: fetchedUser.following,
+				followers: parseInt(fetchedUser.followers),
+				following: parseInt(fetchedUser.following),
 			}
 			tmp_users.push(user);
 		}
-		setUsers(tmp_users);	
+		setUsers(tmp_users);
+		console.log(users[0])	
 	};
   
 	fetchUsers();
