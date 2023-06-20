@@ -19,6 +19,7 @@ contract Decentra {
         string city;
     }
     struct user {
+        address userAddress;
         Profile profile;
         string occupation;
         string date_joined;
@@ -29,6 +30,7 @@ contract Decentra {
     }
 
     mapping (address => user) Users;
+    address[] private userAddresses;
 
     // function addUser (
     //     Profile memory _profile,
@@ -61,10 +63,24 @@ contract Decentra {
     //     userData.occupation = _occupation;
     // }
 
+    function createUser(user memory _user) public {
+        Users[msg.sender] = _user;
+        userAddresses.push(msg.sender);
+    }
+
     function updateUser(user memory _user) public {
     Users[msg.sender] = _user;
-}
+    }
+
     function getUser(address userAddress) public view returns (user memory) {
         return Users[userAddress];
+    }
+
+    function getAllUsers() public view returns (user[] memory) {
+        user[] memory allUsers = new user[](userAddresses.length);
+        for (uint256 i = 0; i < userAddresses.length; i++) {
+            allUsers[i] = Users[userAddresses[i]];
+        }
+        return allUsers;
     }
 }
