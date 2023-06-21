@@ -11,7 +11,7 @@ function UserUnit({u_id, u_avatar, u_name, user, onFollow, onUnFollow}) {
       <h4 className='u-name'>{u_name}</h4>
       </Link>
     {/* <button className='u-follow'>Follow</button> */}
-    <FollowBtn user={user} onFollow={onFollow} onUnFollow={onUnFollow}/>
+    <FollowBtn key={user.id} userAddress={user.userAddress} user={user} onFollow={onFollow} onUnFollow={onUnFollow}/>
     </div>
   )
 }

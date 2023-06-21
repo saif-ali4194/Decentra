@@ -3,7 +3,7 @@ import "../styles/FollowBtn.css"
 import { _User } from '../Scripts/UserStorage.js';
 
 // { userId, followingIds, onFollow } parameters
-function FollowBtn({user, onFollow, onUnFollow}) {
+function FollowBtn({userAddress, user, onFollow, onUnFollow}) {
     const [isFollowing, setIsFollowing] = useState(false);
     const [loc_user, setLocUser] = useState(_User.getUserData());
   	useEffect(() => {
@@ -19,7 +19,7 @@ function FollowBtn({user, onFollow, onUnFollow}) {
   	}, []);
 
     useEffect(() => {
-      setIsFollowing(user && user.userAddress && user.userAddress !== '' && loc_user.user_following.includes(user.userAddress));
+      setIsFollowing(loc_user.user_following.includes(userAddress));
     }, [user]);
 
     function handleFollow() {
@@ -39,6 +39,7 @@ function FollowBtn({user, onFollow, onUnFollow}) {
     //       handleFollow();
     //     }
     //   }
+    
     return (
         <button id='follow-btn' onClick={isFollowing ? handleUnfollow : handleFollow} className={isFollowing ? 'following' : ''}>
             {isFollowing ? 'Unfollow' : 'Follow'}

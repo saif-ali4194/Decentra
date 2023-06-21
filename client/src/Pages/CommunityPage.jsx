@@ -37,7 +37,7 @@ function CommunityPage() {
 		let provider = new ethers.BrowserProvider(connection);
 		const signer = await provider.getSigner();
 		const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-		console.log("there")
+
 		const fetchedUsers = await contract.getAllUsers();
 		let tmp_users = [];
 		//Update the state with the fetched users
@@ -62,7 +62,6 @@ function CommunityPage() {
 			}
 			tmp_users.push(user);
 		}
-		console.log(users);
 		setUsers(tmp_users);
 	};
 		if(activeSection == 'com-follow') {
@@ -86,10 +85,9 @@ function CommunityPage() {
 			let provider = new ethers.BrowserProvider(connection);
 			const signer = await provider.getSigner();
 			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-
 			await contract.follow(user.userAddress);
 			const userDetail = loc_user;
-			userDetail.following.push(user.userAddress);
+			userDetail.user_following.push(user.userAddress);
 			_User.setData(userDetail);
 		} catch (e) {
 			alert("OOPS!\n "+ e)
@@ -97,6 +95,7 @@ function CommunityPage() {
 	}
 
 	const handleUnFollow =  async (user) =>	 {
+		console.log(user.userAddress);
 		try {
 			const web3Modal = new Web3Modal();
 			const connection = await web3Modal.connect();
@@ -104,8 +103,13 @@ function CommunityPage() {
 			const signer = await provider.getSigner();
 			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
 
-			await contract.unfollow(user.user_address);
-			loc_user.following.push(user.user_address);
+			await contract.unfollow(user.userAddress);
+
+			const updatedFollowing = loc_user.user_following.filter(address => address !== user.userAddress);
+			const userDetail = loc_user;
+			userDetail.user_following = updatedFollowing;
+			console.log(userDetail);
+			_User.setData(userDetail);
 		} catch(e) {
 			alert("OOPS!\n" + e);
 		}

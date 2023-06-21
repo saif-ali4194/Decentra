@@ -25,8 +25,8 @@ contract Decentra {
         string date_joined;
         uint256 followers;
         uint256 following;
-        uint256[] user_following;
-        uint256[] user_followed;
+        address[] user_following;
+        address[] user_followed;
     }
 
     mapping (address => user) Users;
@@ -85,32 +85,37 @@ contract Decentra {
     }
 
     // Follow Logic
-    // function follow(address userAddress) public {
-    //     Users[msg.sender].user_following.push(userAddress);
-    //     Users[userAddress].user_followed.push(msg.sender);
-    // }
+    function follow(address userAddress) public {
+        Users[msg.sender].user_following.push(userAddress);
+        Users[userAddress].user_followed.push(msg.sender);
+    }
 
-    // function unfollow(address userAddress) public {
-    //     address[] storage following = Users[msg.sender].user_following;
-    //     address[] storage followed = Users[userAddress].user_followed;
+    function unfollow(address userAddress) public {
+    address[] storage following = Users[msg.sender].user_following;
+    address[] storage followed = Users[userAddress].user_followed;
 
-    //     for (uint256 i = 0; i < following.length; i++) {
-    //     if (following[i] == userAddress) {
-    //             // Move the last element to the position of the element to be removed
-    //             following[i] = following[following.length - 1];
-    //             // Remove the last element
-    //             following.pop();
-    //             break; // Exit the loop once the user is found and removed
-    //         }
-    //     }
-    //     for (uint256 i = 0; i < followed.length; i++) {
-    //         if (followed[i] == msg.sender) {
-    //             // Move the last element to the position of the element to be removed
-    //             followed[i] = followed[followed.length - 1];
-    //             // Remove the last element
-    //             followed.pop();
-    //             break; // Exit the loop once the follower is found and removed
-    //         }
-    //     }
-    // }
+    for (uint256 i = 0; i < following.length; i++) {
+        if (following[i] == userAddress) {
+            if (i != following.length - 1) {
+                // Replace the element to be removed with the last element
+                following[i] = following[following.length - 1];
+            }
+            // Remove the last element
+            following.pop();
+            break; // Exit the loop once the user is found and removed
+        }
+    }
+
+    for (uint256 i = 0; i < followed.length; i++) {
+        if (followed[i] == msg.sender) {
+            if (i != followed.length - 1) {
+                // Replace the element to be removed with the last element
+                followed[i] = followed[followed.length - 1];
+            }
+            // Remove the last element
+            followed.pop();
+            break; // Exit the loop once the follower is found and removed
+        }
+    }
+}
 }   

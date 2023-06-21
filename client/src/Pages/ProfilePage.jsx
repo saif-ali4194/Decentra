@@ -35,12 +35,10 @@ else
 		let balance = await provider.getBalance(current_user.active_account);
 		const balanceInEther = ethers.formatEther(balance);
 		const formattedBalance = parseFloat(balanceInEther).toFixed(2);
-		console.log(formattedBalance)
 		setAccountBalance(formattedBalance);
   	}
 
   useEffect(() => {
-	console.log(user_profile == current_user);
     if(user_profile == current_user)
       getAccountBalance();
   }, [userId]);

@@ -3,7 +3,7 @@ import DefaultBanner from "../Data/Images/banner.png"
 
 const localStorageUpdated = new Event('localStorageUpdated');
 export const _User =  {
-	setUserLocalStorage(getUserDetail, signerAddress) {
+	setUserLocalStorage(getUserDetail, signerAddress, userfollowing, userfollowed) {
 		window.localStorage.removeItem("loc_user");
 		if (getUserDetail.profile.name) {
 		  const loc_user = {
@@ -20,8 +20,8 @@ export const _User =  {
 			date_joined: getUserDetail.date_joined,
 			followers: Number(getUserDetail.followers),
 			following: Number(getUserDetail.following),
-			user_following: getUserDetail.user_following.map(Number),
-			user_followed: getUserDetail.user_followed.map(Number),
+			user_following: userfollowing.map(String),
+			user_followed: userfollowed.map(String),
 		  };
 		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
 		  window.dispatchEvent(localStorageUpdated);
@@ -80,8 +80,8 @@ export const _User =  {
 				date_joined: userDetail.date_joined,
 				followers: Number(userDetail.followers),
 				following: Number(userDetail.following),
-				user_following: userDetail.user_following.map(Number),
-				user_followed: userDetail.user_followed.map(Number),
+				user_following: userDetail.user_following.map(String),
+				user_followed: userDetail.user_followed.map(String),
 			}
 			window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
 		  	window.dispatchEvent(localStorageUpdated);
