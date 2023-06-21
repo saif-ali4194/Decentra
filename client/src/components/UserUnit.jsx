@@ -3,7 +3,7 @@ import "../styles/UserUnit.css"
 import { Link } from 'react-router-dom';
 import FollowBtn from './FollowBtn';
 
-function UserUnit({u_id, u_avatar, u_name, user}) {
+function UserUnit({u_id, u_avatar, u_name, user, onFollow, onUnFollow}) {
   return (
     <div className='user-unit'>
     <Link to={`/profile/${u_id}`} state={{user}} id='unit-link'>
@@ -11,7 +11,7 @@ function UserUnit({u_id, u_avatar, u_name, user}) {
       <h4 className='u-name'>{u_name}</h4>
       </Link>
     {/* <button className='u-follow'>Follow</button> */}
-    <FollowBtn />
+    <FollowBtn user={user} onFollow={onFollow} onUnFollow={onUnFollow}/>
     </div>
   )
 }

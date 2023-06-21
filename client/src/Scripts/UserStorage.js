@@ -4,6 +4,7 @@ import DefaultBanner from "../Data/Images/banner.png"
 const localStorageUpdated = new Event('localStorageUpdated');
 export const _User =  {
 	setUserLocalStorage(getUserDetail, signerAddress) {
+		window.localStorage.removeItem("loc_user");
 		if (getUserDetail.profile.name) {
 		  const loc_user = {
 			active_account: signerAddress,
@@ -60,6 +61,30 @@ export const _User =  {
 		  return JSON.parse(storedUserData);
 		} else {
 		  return null;
+		}
+	},
+
+	setData(userDetail) {
+		if (userDetail) {
+				let loc_user = {
+				active_account: userDetail.active_account,
+				name: userDetail.name,
+				avatar: userDetail.avatar,
+				banner: userDetail.banner,
+				age: Number(userDetail.age),
+				gender: userDetail.gender,
+				status: userDetail.status,
+				country: userDetail.country,
+				city: userDetail.city,
+				occupation: userDetail.occupation,
+				date_joined: userDetail.date_joined,
+				followers: Number(userDetail.followers),
+				following: Number(userDetail.following),
+				user_following: userDetail.user_following.map(Number),
+				user_followed: userDetail.user_followed.map(Number),
+			}
+			window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
+		  	window.dispatchEvent(localStorageUpdated);
 		}
 	}
 };

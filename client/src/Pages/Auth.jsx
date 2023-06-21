@@ -14,20 +14,6 @@ import { _Auth } from '../Scripts/UserStorage.js';
 
 
 function Auth({setIsAuthenticated}) {
-	/* --getting local user data-- */
-	const [loc_user, setLocUser] = useState(_User.getUserData());
-  	useEffect(() => {
-		const handleLocalStorageUpdated = () => {
-		setLocUser(_User.getUserData());
-		};
-
-   	 	window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
-
-    	return () => {
-      		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
-    	};
-  	}, []);
-
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 	const connectWallet = async () =>{
 		const web3Modal = new Web3Modal();
@@ -42,24 +28,24 @@ function Auth({setIsAuthenticated}) {
 		let is_default = _User.setUserLocalStorage(getUserDetail, signerAddress);
 		if(is_default) {
 			const profile = {
-				name: loc_user.name,
-				avatar:loc_user.avatar,
-				banner:loc_user.banner,
-				age:loc_user.age,
-				gender:loc_user.gender,
-				status:loc_user.status,
-				country:loc_user.country,
-				city:loc_user.city,
+				name: _User.getUserData().name,
+				avatar:_User.getUserData().avatar,
+				banner:_User.getUserData().banner,
+				age:_User.getUserData().age,
+				gender:_User.getUserData().gender,
+				status:_User.getUserData().status,
+				country:_User.getUserData().country,
+				city:_User.getUserData().city,
 			}
 			const userDetails = {
 				userAddress: signerAddress,
 				profile: profile,
-				occupation: loc_user.occupation,
-				date_joined: loc_user.date_joined,
-				followers: loc_user.followers,
-				following: loc_user.following,
-				user_following: loc_user.user_following,
-				user_followed: loc_user.user_followed
+				occupation: _User.getUserData().occupation,
+				date_joined: _User.getUserData().date_joined,
+				followers: _User.getUserData().followers,
+				following: _User.getUserData().following,
+				user_following: _User.getUserData().user_following,
+				user_followed: _User.getUserData().user_followed
 			}
 			await contract.createUser(userDetails);
 		}
