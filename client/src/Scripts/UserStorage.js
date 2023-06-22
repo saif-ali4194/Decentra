@@ -3,8 +3,10 @@ import DefaultBanner from "../Data/Images/banner.png"
 
 const localStorageUpdated = new Event('localStorageUpdated');
 export const _User =  {
-	setUserLocalStorage(getUserDetail, signerAddress, userfollowing, userfollowed) {
+	setUserLocalStorage(getUserDetail, signerAddress) {
 		window.localStorage.removeItem("loc_user");
+		let userfollowing = (getUserDetail.user_following != 0 )? getUserDetail.user_following : [];
+		let userfollowed = (getUserDetail.user_followed != 0 ) ? getUserDetail.user_followed : [];
 		if (getUserDetail.profile.name) {
 		  const loc_user = {
 			active_account: signerAddress,

@@ -24,9 +24,9 @@ function Auth({setIsAuthenticated}) {
 		const signerAddress = await signer.getAddress();
 		const contract = new ethers.Contract(DecentraContractAddress,DecentraAbi.abi,signer);
       	const getUserDetail = await contract.getUser(signerAddress);
-		let userFollowing = (getUserDetail.user_following != 0 )? getUserDetail.user_following : [];
-		let userFollowed = (getUserDetail.user_followed != 0 ) ? getUserDetail.user_followed : [];
-		let is_default = _User.setUserLocalStorage(getUserDetail, signerAddress, userFollowing, userFollowed);
+		// let userFollowing = (getUserDetail.user_following != 0 )? getUserDetail.user_following : [];
+		// let userFollowed = (getUserDetail.user_followed != 0 ) ? getUserDetail.user_followed : [];
+		let is_default = _User.setUserLocalStorage(getUserDetail, signerAddress);
 		if(is_default) {
 			const profile = {
 				name: _User.getUserData().name,

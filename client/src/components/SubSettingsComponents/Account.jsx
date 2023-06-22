@@ -115,9 +115,7 @@ function Account() {
 					backgroundColor: 'var(--background-color)', // Set the desired background color
 				  },
 			});
-		}
-		
-		
+		}	
 	};
 
 	const handleBannerChange = (event) => {
@@ -198,7 +196,7 @@ function Account() {
 		}
 		
 		const transaction = await contract.updateUser(userDetails);
-		_User.setUserLocalStorage(userDetails, loc_user.active_account);
+		_User.setUserLocalStorage(userDetails, signerAddress);
 
 		// Show sccuess notification
 		notification({

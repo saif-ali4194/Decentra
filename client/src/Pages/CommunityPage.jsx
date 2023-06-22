@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import "../styles/Pages/CommunityPage.css"
 import { useState } from 'react';
 import UserUnit from '../components/UserUnit';
-import fakeUsers from "../Test Data/fake_users"
-import {User} from '../Test Data/CurrentUser'
-import { user_list } from '../Test Data/UserList';
+// import fakeUsers from "../Test Data/fake_users"
+// import {User} from '../Test Data/CurrentUser'
+// import { user_list } from '../Test Data/UserList';
 import { ethers } from 'ethers';
 import DecentraAbi from '../abi/Decentra.json';
 import config from '../config.js';
@@ -64,14 +64,11 @@ function CommunityPage() {
 		}
 		setUsers(tmp_users);
 	};
-		if(activeSection == 'com-follow') {
+
+		
 			fetchUsers();
-		}
+		 
   }, [activeSection]);
-//   const handleShowMore = () => {
-// 	  setNumUsers(numUsers + 10);
-//   }
-  //const users = fakeUsers(numUsers);
 
   const handleClick = (section) => {
 	setActiveSection(section);
@@ -95,7 +92,6 @@ function CommunityPage() {
 	}
 
 	const handleUnFollow =  async (user) =>	 {
-		console.log(user.userAddress);
 		try {
 			const web3Modal = new Web3Modal();
 			const connection = await web3Modal.connect();
@@ -108,7 +104,6 @@ function CommunityPage() {
 			const updatedFollowing = loc_user.user_following.filter(address => address !== user.userAddress);
 			const userDetail = loc_user;
 			userDetail.user_following = updatedFollowing;
-			console.log(userDetail);
 			_User.setData(userDetail);
 		} catch(e) {
 			alert("OOPS!\n" + e);
@@ -125,14 +120,14 @@ function CommunityPage() {
 	  </div>
 
 	  {activeSection === "com-followers" ? (
-		user_list
-		.filter(user => User.user_followed.includes(user.id))
+		users
+		.filter(user => loc_user.user_followed.includes(user.userAddress))
 		.map(user => (
 			<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
 		))
 	  ) : activeSection === "com-following" ? (
-		user_list
-		  .filter(user => User.user_following.includes(user.id))
+		users
+		  .filter(user => loc_user.user_following.includes(user.userAddress))
 		  .map(user => (
 			  <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
 		  ))
