@@ -123,13 +123,13 @@ function CommunityPage() {
 		users
 		.filter(user => loc_user.user_followed.includes(user.userAddress))
 		.map(user => (
-			<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
+			<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} onFollow={handleFollow} onUnFollow={handleUnFollow}/>
 		))
 	  ) : activeSection === "com-following" ? (
 		users
 		  .filter(user => loc_user.user_following.includes(user.userAddress))
 		  .map(user => (
-			  <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user}/>
+			  <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} onFollow={handleFollow} onUnFollow={handleUnFollow}/>
 		  ))
 	  ) : <div>
 			{
