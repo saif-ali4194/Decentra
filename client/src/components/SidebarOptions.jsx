@@ -7,12 +7,14 @@ import Web3Modal from 'web3modal';
 import { ethers } from 'ethers';
 import { _Auth } from '../Scripts/UserStorage';
 
+
 function SidebarOptions({active, text, Icon, to, handleLinkClick, setIsAuthenticated}) {
   const [hasNewNotifications, setHasNewNotifications] = useState(true);
 
   const disconnectWallet = async () => {
     if(text === "Logout") {
       try {
+        // window.location.reload();
         const web3Modal = new Web3Modal();
         const connection = await web3Modal.connect();
         let provider = new ethers.BrowserProvider(connection);

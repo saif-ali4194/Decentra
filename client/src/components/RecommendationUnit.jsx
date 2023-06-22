@@ -7,7 +7,7 @@ import  { useState } from 'react';
 import FollowBtn from './FollowBtn';
 
 
-function RecommendationUnit({id, img, name}) {
+function RecommendationUnit({id, img, name, user, onFollow, onUnFollow}) {
   // const [following, setFollowing] = useState([]);
   // const [user, setUser] = useState(User);
   // function handleFollow(id) {
@@ -28,7 +28,7 @@ function RecommendationUnit({id, img, name}) {
       <img src={img || DefaultAvatar} id='r-user-avatar' />
     <span id="r-user-name">{name}</span>
       </Link>
-      <FollowBtn />
+      <FollowBtn key={user.id} userAddress={user.userAddress} user={user} onFollow={onFollow} onUnFollow={onUnFollow} />
     </div>
   )
 }
