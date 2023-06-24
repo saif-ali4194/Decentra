@@ -45,54 +45,8 @@ else
       getAccountBalance();
   }, [userId]);
 
-  // Following logic
-  const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
-  const [loc_user, setLocUser] = useState(_User.getUserData());
-  	useEffect(() => {
-		const handleLocalStorageUpdated = () => {
-		setLocUser(_User.getUserData());
-		};
 
-   	 	window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
-
-    	return () => {
-      		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
-    	};
-  	}, []);
-	const handleFollow =  async (user) =>	 {
-		try {
-			const web3Modal = new Web3Modal();
-			const connection = await web3Modal.connect();
-			let provider = new ethers.BrowserProvider(connection);
-			const signer = await provider.getSigner();
-			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-			await contract.follow(user.userAddress);
-			const userDetail = loc_user;
-			userDetail.user_following.push(user.userAddress);
-			_User.setData(userDetail);
-		} catch (e) {
-			alert("OOPS!\n "+ e)
-		}
-	}
-
-	const handleUnFollow =  async (user) =>	 {
-		try {
-			const web3Modal = new Web3Modal();
-			const connection = await web3Modal.connect();
-			let provider = new ethers.BrowserProvider(connection);
-			const signer = await provider.getSigner();
-			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-
-			await contract.unfollow(user.userAddress);
-
-			const updatedFollowing = loc_user.user_following.filter(address => address !== user.userAddress);
-			const userDetail = loc_user;
-			userDetail.user_following = updatedFollowing;
-			_User.setData(userDetail);
-		} catch(e) {
-			alert("OOPS!\n" + e);
-		}
-  }
+	
   if(!user_profile) // if no users are found
     return <div id="error">Can't find the user you're looking for!</div>;
 
@@ -111,7 +65,7 @@ else
             ></div>
             <h1>{user_profile.name}</h1>
            {/* {!current_user && <button id='p-follow'>Follow</button>} */}
-           {!current_user ? (<FollowBtn key={user_profile.id} userAddress={user_profile.userAddress} user={user_profile} onFollow={handleFollow} onUnFollow={handleUnFollow}/>)
+           {!current_user ? (<FollowBtn key={user_profile.id} userAddress={user_profile.userAddress} user={user_profile} />)
             : (
               <h6 id="loc_user_balance"><span>Balance: </span>{accountBalance}ETH</h6>
             )

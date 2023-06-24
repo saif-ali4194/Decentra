@@ -29,8 +29,17 @@ contract Decentra {
         address[] user_followed;
     }
 
+    
+    struct Notification {
+        uint256 id;
+        string text;
+        string image;
+    }
+
+     
     mapping (address => user) Users;
     address[] private userAddresses;
+    mapping(address => Notification[]) public userNotifications;
 
     // function addUser (
     //     Profile memory _profile,
@@ -91,31 +100,43 @@ contract Decentra {
     }
 
     function unfollow(address userAddress) public {
-    address[] storage following = Users[msg.sender].user_following;
-    address[] storage followed = Users[userAddress].user_followed;
-
-    for (uint256 i = 0; i < following.length; i++) {
-        if (following[i] == userAddress) {
-            if (i != following.length - 1) {
-                // Replace the element to be removed with the last element
-                following[i] = following[following.length - 1];
+        address[] storage following = Users[msg.sender].user_following;
+        address[] storage followed = Users[userAddress].user_followed;
+        for (uint256 i = 0; i < following.length; i++) {
+            if (following[i] == userAddress) {
+                if (i != following.length - 1) {
+                    // Replace the element to be removed with the last element
+                    following[i] = following[following.length - 1];
+                }
+                // Remove the last element
+                following.pop();
+                break; // Exit the loop once the user is found and removed
             }
-            // Remove the last element
-            following.pop();
-            break; // Exit the loop once the user is found and removed
+        }
+
+        for (uint256 i = 0; i < followed.length; i++) {
+            if (followed[i] == msg.sender) {
+                if (i != followed.length - 1) {
+                    // Replace the element to be removed with the last element
+                    followed[i] = followed[followed.length - 1];
+                }
+                // Remove the last element
+                followed.pop();
+                break; // Exit the loop once the follower is found and removed
+            }
         }
     }
 
-    for (uint256 i = 0; i < followed.length; i++) {
-        if (followed[i] == msg.sender) {
-            if (i != followed.length - 1) {
-                // Replace the element to be removed with the last element
-                followed[i] = followed[followed.length - 1];
-            }
-            // Remove the last element
-            followed.pop();
-            break; // Exit the loop once the follower is found and removed
-        }
+    // Function to add a new notification
+    function addNotification(address _userAddress, string memory _text, string memory _image) public {
+        Notification[] storage notifications = userNotifications[_userAddress];
+        uint256 notificationId = notifications.length;
+        Notification memory newNotification = Notification(notificationId, _text, _image);
+        notifications.push(newNotification);
     }
-}
+
+    // Function to retrieve a user's notifications
+    function getUserNotifications(address _userAddress) public view returns (Notification[] memory) {
+        return userNotifications[_userAddress];
+    }
 }   

@@ -63,52 +63,14 @@ function CommunityPage() {
 			tmp_users.push(user);
 		}
 		setUsers(tmp_users);
-	};
-
-		
-			fetchUsers();
+	};	
+	fetchUsers();
 		 
   }, [activeSection]);
 
   const handleClick = (section) => {
 	setActiveSection(section);
   }
-
-	// Following logic
-	const handleFollow =  async (user) =>	 {
-		try {
-			const web3Modal = new Web3Modal();
-			const connection = await web3Modal.connect();
-			let provider = new ethers.BrowserProvider(connection);
-			const signer = await provider.getSigner();
-			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-			await contract.follow(user.userAddress);
-			const userDetail = loc_user;
-			userDetail.user_following.push(user.userAddress);
-			_User.setData(userDetail);
-		} catch (e) {
-			alert("OOPS!\n "+ e)
-		}
-	}
-
-	const handleUnFollow =  async (user) =>	 {
-		try {
-			const web3Modal = new Web3Modal();
-			const connection = await web3Modal.connect();
-			let provider = new ethers.BrowserProvider(connection);
-			const signer = await provider.getSigner();
-			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-
-			await contract.unfollow(user.userAddress);
-
-			const updatedFollowing = loc_user.user_following.filter(address => address !== user.userAddress);
-			const userDetail = loc_user;
-			userDetail.user_following = updatedFollowing;
-			_User.setData(userDetail);
-		} catch(e) {
-			alert("OOPS!\n" + e);
-		}
-	}
 
   return (
 	<div className='community-page'>
@@ -123,18 +85,18 @@ function CommunityPage() {
 		users
 		.filter(user => loc_user.user_followed.includes(user.userAddress))
 		.map(user => (
-			<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} onFollow={handleFollow} onUnFollow={handleUnFollow}/>
+			<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} />
 		))
 	  ) : activeSection === "com-following" ? (
 		users
 		  .filter(user => loc_user.user_following.includes(user.userAddress))
 		  .map(user => (
-			  <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} onFollow={handleFollow} onUnFollow={handleUnFollow}/>
+			  <UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} />
 		  ))
 	  ) : <div>
 			{
 			  users.map((user) => (
-				<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} onFollow={handleFollow} onUnFollow={handleUnFollow}/>
+				<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} />
 				))
 			}
 		  {/* <p id='com-show-more' onClick={handleShowMore}>Show More</p> */}

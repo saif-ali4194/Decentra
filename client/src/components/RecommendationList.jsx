@@ -43,6 +43,7 @@ function RecommendationList() {
       // };
       useEffect(() => {
         const fetchUsers = async () => {
+          console.log("Working hard")
           const web3Modal = new Web3Modal();
           const connection = await web3Modal.connect();
           let provider = new ethers.BrowserProvider(connection);
@@ -80,43 +81,8 @@ function RecommendationList() {
         };
         fetchUsers();
         // RandomUsers = shuffleArray(users);   
-        }, []);
-
-        // Following logic
-	const handleFollow =  async (user) =>	 {
-		try {
-			const web3Modal = new Web3Modal();
-			const connection = await web3Modal.connect();
-			let provider = new ethers.BrowserProvider(connection);
-			const signer = await provider.getSigner();
-			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-			await contract.follow(user.userAddress);
-			const userDetail = loc_user;
-			userDetail.user_following.push(user.userAddress);
-			_User.setData(userDetail);
-		} catch (e) {
-			alert("OOPS!\n "+ e)
-		}
-	}
-
-	const handleUnFollow =  async (user) =>	 {
-		try {
-			const web3Modal = new Web3Modal();
-			const connection = await web3Modal.connect();
-			let provider = new ethers.BrowserProvider(connection);
-			const signer = await provider.getSigner();
-			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-
-			await contract.unfollow(user.userAddress);
-
-			const updatedFollowing = loc_user.user_following.filter(address => address !== user.userAddress);
-			const userDetail = loc_user;
-			userDetail.user_following = updatedFollowing;
-			_User.setData(userDetail);
-		} catch(e) {
-			alert("OOPS!\n" + e);
-		}
-	}
+        }, [loc_user.user_following]);
+// _User.getUserData().user_following, _User.getUserData().user_followed]
 
   return (
     <div className='reco-wrapper'>
@@ -128,7 +94,7 @@ function RecommendationList() {
         } */}
          {
          users.slice(0, 5).map(user => (
-          <RecommendationUnit key={user.id} id={user.id} img={user.avatar} name={user.name} user ={user} onFollow={handleFollow} onUnFollow={handleUnFollow}/>
+          <RecommendationUnit key={user.id} id={user.id} img={user.avatar} name={user.name} user ={user} />
         ))}
       </div>
       <Link 

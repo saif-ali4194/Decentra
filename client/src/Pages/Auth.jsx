@@ -14,6 +14,13 @@ import { _Auth } from '../Scripts/UserStorage.js';
 
 
 function Auth({setIsAuthenticated}) {
+	const currentDate = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+	const noti = {
+		txt: `Login activity detected at ${currentDate.toLocaleTimeString()} on ${currentDate.toLocaleDateString(undefined, options)}`,
+		img: "../Data/Images/logo.png",
+	};
+	
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 	const connectWallet = async () =>{
 		const web3Modal = new Web3Modal();
@@ -50,7 +57,8 @@ function Auth({setIsAuthenticated}) {
 			}
 			await contract.createUser(userDetails);
 		}
-		
+	
+		await contract.addNotification(signerAddress, noti.txt, noti.img);
 		_Auth.set_auth(true);
 		setIsAuthenticated(true);
     }
