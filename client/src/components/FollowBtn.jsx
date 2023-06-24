@@ -31,8 +31,8 @@ function FollowBtn({userAddress, user}) {
       console.log("follow btn follow");
       setIsFollowing(true);
       const noti = {
-        txt: `${user.name} has started following you 😃!`,
-        img: user.avatar
+        txt: `${loc_user.name} has started following you 😃!`,
+        img: loc_user.avatar
       }
       try {
         const web3Modal = new Web3Modal();
@@ -54,8 +54,8 @@ function FollowBtn({userAddress, user}) {
       console.log("follow btn unfollow");
       setIsFollowing(false);
       const noti = {
-        txt: `${user.name} has UnFollowed you 😢!`,
-        img: user.avatar
+        txt: `${loc_user.name} has UnFollowed you 😢!`,
+        img: loc_user.avatar
       }
       try {
         const web3Modal = new Web3Modal();
