@@ -11,7 +11,7 @@ import net from "../Data/Images/net.jpg"
 import anime from 'animejs'
 import { _User } from '../Scripts/UserStorage.js';
 import { _Auth } from '../Scripts/UserStorage.js';
-
+import TermsModal from '../Modals/TermsModal';
 
 function Auth({setIsAuthenticated}) {
 	const currentDate = new Date();
@@ -83,7 +83,7 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
 		const handleMouseEnter = () => {
 			anime({
 			  targets: buttonElement,
-			  scale: 1.2,
+			  scale: 1.1,
 			  duration: 500,
 			  easing: 'easeOutCubic'
 			});
@@ -107,26 +107,73 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
 		  };
 	  }, []);
 
+
+		const [termsChecked, setTermsChecked] = useState(false);
+	  
+		const handleCheckboxChange = () => {
+		  setTermsChecked(!termsChecked);
+		};
+
+		const [isModalOpen, setIsModalOpen] = useState(false);
+
+		const openModal = () => {
+		  setIsModalOpen(true);
+		};
+	  
+		const closeModal = () => {
+		  setIsModalOpen(false);
+		};
+
   return (
-    <div className='auth' style={{backgroundImage: `url(${net})`, backgroundPosition: 'cover', backgroundRepeat: 'no-repeat' }}>
-    	<div id="auth-left">
-			<div className="auth-heading" >
-				<img src={Logo} alt="Decentra"/>
-				<h1>Decentra</h1>
+    // <div className='auth' style={{backgroundImage: `url(${net})`, backgroundPosition: 'cover', backgroundRepeat: 'no-repeat' }}>
+    // 	<div id="auth-left">
+	// 		<div className="auth-heading" >
+	// 			<img src={Logo} alt="Decentra"/>
+	// 			<h1>Decentra</h1>
+	// 		</div>
+	// 		<p>
+	// 		Introducing Decentra, the decentralized social media platform that puts you
+	// 		in control. Connect with friends, share your thoughts, and discover 
+	// 		 trends securely. With Decentra, privacy is a priority, ensuring your data remains safe. 
+	// 		 Say goodbye to breaches and hello to a new era of social networking. 
+	// 		 <br /><br/> Join us today and experience the power of decentralization firsthand.                          
+	// 		</p>
+	// 	</div>
+    //     <div id="auth-right">
+	// 		<h6>Connect wallet</h6>
+	// 		<div id="auth-connect-div"  ref={btnCircleRef}  onClick={connectWallet}>GO</div>
+	// 	</div>
+    // </div>
+	<div className="auth">
+		<div className="auth-heading" >
+	 			<img src={Logo} alt="Decentra"/>
+	 			<h1>Decentra</h1>
+	 	</div>
+		<div className="Hero">
+			<div className="H-left" style={{backgroundImage: `url(${net})`, backgroundPosition: 'cover', backgroundRepeat: 'no-repeat' }}></div>
+			<div className="H-right">
+				<span className='auth-Header'>Signin</span>
+			
+			<div className="H-wrapper">
+				<div id="Tac">
+					<input
+						type="checkbox"
+						checked={termsChecked}
+						onChange={handleCheckboxChange}
+					/>
+					<span onClick={openModal}>
+						I agree to the terms & conditions
+					</span>
+				</div>
+				
+				<button className={termsChecked ? 'auth-connect-div' : 'disabled-button'}  
+					disabled={!termsChecked} ref={btnCircleRef}  
+					onClick={connectWallet} >connect</button></div>
 			</div>
-			<p>
-			Introducing Decentra, the decentralized social media platform that puts you
-			in control. Connect with friends, share your thoughts, and discover 
-			 trends securely. With Decentra, privacy is a priority, ensuring your data remains safe. 
-			 Say goodbye to breaches and hello to a new era of social networking. 
-			 <br /><br/> Join us today and experience the power of decentralization firsthand.                          
-			</p>
+			
 		</div>
-        <div id="auth-right">
-			<h6>Connect wallet</h6>
-			<div id="auth-connect-div"  ref={btnCircleRef}  onClick={connectWallet}>GO</div>
-		</div>
-    </div>
+		{isModalOpen && <TermsModal closeModal={closeModal} />}
+	</div>
   )
 }
 

@@ -5,9 +5,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-color);
 }
 
-#auth-right, #auth-left {
+/* #auth-right, #auth-left {
     background-color: rgba(0, 0, 0, 0.645);
 } 
 #auth-left {
@@ -42,26 +43,26 @@
     padding: 40px 40px;
     border-radius: 20px;
     color: white;
-}
+} */
 
-#auth-connect-div { 
+.auth-connect-div { 
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12rem;
-    height: 12rem;
+    width: 80%;
+    height: 3rem;
     background-color: var(--Brand-color);
-    border-radius: 100px;
+    border-radius: 5px;
     color: white;
-    font-size: 3em;
+    font-size: 1.5em;
     font-weight: bolder;
     cursor: pointer;
     transition: background-color 0.5s ease;
 }
-#auth-connect-div:hover {
+.auth-connect-div:hover {
     background-color: #235b94;
 }
-#auth-right {
+/* #auth-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,5 +73,109 @@
 #auth-right > h6 {
     color: white;
     font-size: 1.5em;
+} */
+.auth-heading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    left: 2rem;
+    top: 2rem;
+    color: var(--font-color);
+}
+.auth-heading > img {
+    width: 3rem;
+    height: 3rem;
 }
 
+.Hero {
+    width: 50%;
+    height: 25rem;
+    background-color: var(--sidebar-active);
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.H-left {
+    width: 45%;
+    min-width: 15rem;
+    min-height: 80%;
+    border-radius: 10px;
+
+    background-position: center;
+}
+
+.auth-Header {
+    font-size: 2em;
+    font-weight: bolder;
+    color: var(--font-color);
+}
+
+.H-right {
+    width: 45%;
+    min-width: 15rem;
+    height: 80%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+#Tac {
+    display: flex;
+    gap: 10px;
+}
+#Tac > span {
+    color: var(--font-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+#Tac > span:hover {
+    color: gray;
+}
+
+.H-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.disabled-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 3rem;
+    background-color: gray;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+@media (max-width: 1068px) {
+    .Hero {
+        flex-direction: column;
+        /* height: auto; */
+        padding-top: 20px;
+        padding-bottom: 80px;
+        gap: 20px;
+    }
+
+    .H-left,
+    .H-right {
+        width: 100%;
+        min-width: initial;
+        /* height: auto; */
+    }
+
+    .H-right {
+        margin-top: 20px;
+        gap: 20px;
+    }
+}

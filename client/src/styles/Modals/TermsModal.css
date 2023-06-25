@@ -1,0 +1,68 @@
+.terms-modal {
+    position: absolute;
+    width: 50%;
+    height: 40rem;
+    background-color: var(--card-color);
+    overflow: scroll;
+    color: var(--font-color);
+    padding-bottom: 20px;
+}
+
+.Modal-tac_header {
+    padding: 0px 24px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    width: 93%;
+    height: 4rem;
+    position: sticky;
+    top: 0;
+    background-color: var(--glassEffect);
+    backdrop-filter: blur(6px);
+}
+
+.Modal-tac-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+    margin-top: 40px;
+}
+.Modal-tac-info>h5 {
+    font-size:1.6em;
+}
+.Modal-tac_headings {
+    color: var(--Brand-color);
+    font-size: 1.1em;
+    font-weight: bolder;
+    /* margin-top: 40px; */
+}
+.Modal-tac-body {
+    margin-top: 20px;
+    padding: 0px 20px;
+    font-size: 1em;
+    font-weight: lighter;
+}
+
+.Modal-tac-body.tac_headings {
+    margin-top: 40px;
+}
+
+.Modal-tac-body> p {
+    white-space: pre-wrap;
+}
+
+.terms-modal > button {
+    width: 40%;
+    height: 3rem;
+    float: right;
+    align-self: center;
+    margin-right: 20px;
+    color: white;
+    font-size: 1.2em;
+    background-color: var(--Brand-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease ;
+}
+.terms-modal > button:hover {
+    background-color: var(--Brand-hover-color);
+}
