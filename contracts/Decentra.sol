@@ -96,7 +96,9 @@ contract Decentra {
     // Follow Logic
     function follow(address userAddress) public {
         Users[msg.sender].user_following.push(userAddress);
+        Users[msg.sender].following++;
         Users[userAddress].user_followed.push(msg.sender);
+        Users[userAddress].followers++;
     }
 
     function unfollow(address userAddress) public {
@@ -110,6 +112,7 @@ contract Decentra {
                 }
                 // Remove the last element
                 following.pop();
+                Users[msg.sender].following--;
                 break; // Exit the loop once the user is found and removed
             }
         }
@@ -122,6 +125,7 @@ contract Decentra {
                 }
                 // Remove the last element
                 followed.pop();
+                Users[userAddress].followers--;
                 break; // Exit the loop once the follower is found and removed
             }
         }

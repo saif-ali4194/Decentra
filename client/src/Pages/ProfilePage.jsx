@@ -18,17 +18,15 @@ function ProfilePage({current_user}) {
   let {userId} =  useParams(); // get id form url
   const [accountBalance,setAccountBalance] = useState(0);
   let user_profile = undefined;
-//   if (userId) {// if url has id then
-//     user_profile = user_list.find(user => user.id == userId); //Mylist
-//     if(!user_profile) { user_profile = location.state.user;}
 
-//   } else // use current user
-//       user_profile = current_user;
 if(userId == undefined)
 	user_profile = current_user;
 else 
 	user_profile = location.state.user;
-  
+
+  const [prof_followers, set_prof_followers] = useState(user_profile.followers);
+  const [prof_following, set_prof_following] = useState(user_profile.following);
+  const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
   //   User wallet Balance Logic
 	async function getAccountBalance(){
 		const web3Modal = new Web3Modal();
@@ -40,9 +38,26 @@ else
 		setAccountBalance(formattedBalance);
   	}
 
+  // getting followers 
+  async function getFollowers() {
+    const web3Modal = new Web3Modal();
+		const connection = await web3Modal.connect();
+		let provider = new ethers.BrowserProvider(connection);
+		const signer = await provider.getSigner();
+    const signerAddress = await signer.getAddress();
+    const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+
+    const tmp_user = await contract.getUser(user_profile.active_account);
+    set_prof_followers(tmp_user.followers);
+    set_prof_following(tmp_user.following);
+  }
+
   useEffect(() => {
-    if(user_profile == current_user)
+    if(user_profile == current_user) {
+      console.log("here")
       getAccountBalance();
+      getFollowers();
+    }
   }, [userId]);
 
 

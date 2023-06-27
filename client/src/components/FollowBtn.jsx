@@ -43,6 +43,7 @@ function FollowBtn({userAddress, user}) {
         await contract.follow(user.userAddress);
         const userDetail = loc_user;
         userDetail.user_following.push(user.userAddress);
+        userDetail.following++;
         _User.setData(userDetail);
         await contract.addNotification(user.userAddress, noti.txt, noti.img);
       } catch (e) {
@@ -69,6 +70,7 @@ function FollowBtn({userAddress, user}) {
         const updatedFollowing = loc_user.user_following.filter(address => address !== user.userAddress);
         const userDetail = loc_user;
         userDetail.user_following = updatedFollowing;
+        userDetail.following--;
         _User.setData(userDetail);
   
         await contract.addNotification(user.userAddress, noti.txt, noti.img);
