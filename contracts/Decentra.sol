@@ -3,6 +3,7 @@ pragma solidity ^0.8.17;
 
 contract Decentra {
     address public owner;
+   
 
     constructor() {
         owner = msg.sender;
@@ -29,13 +30,37 @@ contract Decentra {
         address[] user_followed;
     }
 
+    struct Tweet{
+        address tweetOwner;
+        uint256 t_id;     
+        string username;
+        string userAt;
+        string date;
+        string text;
+        string cId;
+        bool liked;
+
+    }
+
+    struct Comment{
+        address commentOwner;
+        uint256 c_id;
+        string username;
+        string userAt;
+        string date;
+        string text;
+        bool liked;
+        Comment[] cmts;
+    }
     
     struct Notification {
         uint256 id;
         string text;
         string image;
     }
-
+    uint256 tweetId=1000;
+    Tweet[] public tweets;
+    mapping (address => Tweet[]) public userTweets;
      
     mapping (address => user) Users;
     address[] private userAddresses;
@@ -123,6 +148,61 @@ contract Decentra {
                 // Remove the last element
                 followed.pop();
                 break; // Exit the loop once the follower is found and removed
+            }
+        }
+    }
+
+    function addTweet(string memory _username, string memory _userAt, string memory _date, string memory _text, string memory _cId) public {
+        uint id =tweetId;
+        tweetId++;
+        tweets.push(Tweet(msg.sender ,id, _username, _userAt, _date, _text, _cId, false));
+        
+        Tweet[] storage userSpecificTweets= userTweets[msg.sender];
+        userSpecificTweets.push(Tweet(msg.sender ,id, _username, _userAt, _date, _text, _cId, false));
+        
+        userTweets[msg.sender]=userSpecificTweets;
+    }
+
+    function getAllTweets() public view returns(Tweet[] memory){
+        return tweets;
+    }
+
+    function getUserTweets(address _user) public view returns(Tweet[] memory){
+        return userTweets[_user];
+    }
+
+    function deleteTweet(uint id) public {
+        Tweet[] storage userSpecificTweets = userTweets[msg.sender];
+        for(uint i=0; i<tweets.length; i++)
+        {
+            if(tweets[i].t_id == id){
+                require(tweets[i].tweetOwner == msg.sender, "not tweet owner");
+                if(tweets.length==1){
+                    tweets.pop();
+                }
+                else{
+                    for(uint j=i; j<tweets.length-1;j++){
+                        tweets[j]=tweets[j+1];
+                    }
+                    tweets.pop();
+                }
+            }
+        }
+        for (uint i=0;i<userSpecificTweets.length;i++){
+            if(userSpecificTweets[i].t_id==id){
+                require(userSpecificTweets[i].tweetOwner == msg.sender, "not tweet owner");
+                if(userSpecificTweets.length==1){
+                    userSpecificTweets.pop();
+                    userTweets[msg.sender]=userSpecificTweets;
+                }
+                else{
+                    for(uint j=i; j<userSpecificTweets.length-1;j++){
+                    userSpecificTweets[j]=userSpecificTweets[j+1];
+                    }
+                    userSpecificTweets.pop();
+                    userTweets[msg.sender]=userSpecificTweets;
+                }
+                
             }
         }
     }

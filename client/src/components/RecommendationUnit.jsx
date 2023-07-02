@@ -24,7 +24,7 @@ function RecommendationUnit({id, img, name, user}) {
   // const isFollowing = user.user_following.includes(id);
   return (
     <div className='reco-unit'>
-      <Link to={`/profile/${id}`} id='unit-link'>
+      <Link to={`/profile/${id}`} state={{user}} id='unit-link'>
       <img src={img || DefaultAvatar} id='r-user-avatar' />
     <span id="r-user-name">{name}</span>
       </Link>
@@ -33,4 +33,4 @@ function RecommendationUnit({id, img, name, user}) {
   )
 }
 
-export default RecommendationUnit
+export default RecommendationUnit;

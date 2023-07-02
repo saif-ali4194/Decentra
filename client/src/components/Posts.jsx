@@ -1,12 +1,79 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
 import '../styles/Posts.css';
 import Post from './Post';
-import {tweets} from '../Test Data/PostDemoData';
-const Posts = ({user_posts, pathname}) => {
+//import {tweets} from '../Test Data/PostDemoData';
+import { ethers } from 'ethers';
+import DecentraAbi from '../abi/Decentra.json';
+import config from '../config.js';
+import Web3Modal from 'web3modal';
+import { _User } from '../Scripts/UserStorage.js';
+const Posts = ({tweets,user_posts, pathname,home}) => {
+    //const [avatar,setAvatar]=useState();
     
+        
+    
+    let avatar="";
+    const [loc_user, setLocUser] = useState(_User.getUserData());
+    useEffect(() => {
+      const handleLocalStorageUpdated = () => {
+      setLocUser(_User.getUserData());
+      };
+
+          window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+      return () => {
+            window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+      };
+    }, []);
+    const [activeSection, setActiveSection] = useState('com-followers');
+    const [numUsers, setNumUsers] = useState(10);
+    const [users, setUsers] = useState([]);
+    const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+
+
+    useEffect(() => {
+    const fetchUsers = async () => {
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        let provider = new ethers.BrowserProvider(connection);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+
+        const fetchedUsers = await contract.getAllUsers();
+        let tmp_users = [];
+        //Update the state with the fetched users
+        for(let i=0; i<fetchedUsers.length; i++) {
+            const fetchedUser = fetchedUsers[i];
+            
+            const user = {
+                id: i,
+                userAddress: fetchedUser.userAddress, 
+                name: fetchedUser.profile.name,
+                avatar: fetchedUser.profile.avatar,
+                banner: fetchedUser.profile.banner,
+                age: parseInt(fetchedUser.profile.age),
+                gender: fetchedUser.profile.gender,
+                status: fetchedUser.profile.status,
+                country: fetchedUser.profile.country,
+                city: fetchedUser.profile.city,
+                occupation: fetchedUser.occupation,
+                date_joined: fetchedUser.date_joined,
+                followers: parseInt(fetchedUser.followers),
+                following: parseInt(fetchedUser.following),
+            }
+            tmp_users.push(user);
+        }
+        setUsers(tmp_users);
+    };	
+    fetchUsers();
+        
+    }, []);
+
+      
     return ( 
         <div className="posts">
-            {/* <h2>posts</h2> */}
+            {/* <h2>posts</h2>
             {tweets && tweets.map((tweet)=>{
 
                 if(pathname == "/profile")
@@ -24,7 +91,71 @@ const Posts = ({user_posts, pathname}) => {
                 
             })}
             
-            
+             */}
+
+             {(home && tweets) && 
+                (tweets.map((tweet)=>{
+                for(let i=0; i<users.length;i++){
+                    if(tweet.tweetOwner==users[i].userAddress){
+                        avatar=users[i].avatar;
+                        
+                        break;
+                    }
+                }
+                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                    }))
+
+             }
+
+             {
+                (user_posts!= undefined && pathname !== "/profile") && 
+                (tweets.map((tweet)=>{
+                        if(tweet.tweetOwner==user_posts.userAddress)
+                        {for(let i=0; i<users.length;i++){
+                            if(tweet.tweetOwner==users[i].userAddress){
+                                avatar=users[i].avatar;
+                                
+                                break;
+                            }
+                        }
+                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                        }
+                    })
+                )
+             }
+
+             {(pathname === "/profile" && tweets) && 
+             (tweets.map((tweet)=>{
+                    if(tweet.tweetOwner==loc_user.active_account)
+                    {for(let i=0; i<users.length;i++){
+                        if(tweet.tweetOwner==users[i].userAddress){
+                            avatar=users[i].avatar;
+                            
+                            break;
+                        }
+                    }
+                    return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                    }
+                })
+            )
+            }
+
+
+             {(pathname === "/explore" && tweets) && 
+                (tweets.map((tweet)=>{
+                for(let i=0; i<users.length;i++){
+                    if(tweet.tweetOwner==users[i].userAddress){
+                        avatar=users[i].avatar;
+                        
+                        break;
+                    }
+                }
+                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                    }))
+
+             }
+
+             {}
         </div>
      );
 }
