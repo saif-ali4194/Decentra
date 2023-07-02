@@ -1,13 +1,79 @@
 import React from 'react';
 import '../styles/TweetBox.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {Avatar,Button} from '@mui/material'
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import GifIcon from '@mui/icons-material/Gif';
 import PollIcon from '@mui/icons-material/Poll';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import CloseIcon from '@mui/icons-material/Close';
-const TweetBox = ({profile}) => {
+import { _User } from '../Scripts/UserStorage';
+import config from '../config';
+import DecentraAbi from '../abi/Decentra.json';
+import { ethers } from 'ethers';
+import Web3Modal from 'web3modal';	
+import { Web3Storage } from 'web3.storage';
+import { useNotification } from "@web3uikit/core";
+
+const TweetBox = ({profile,mode}) => {
+
+    const twImgClose = useRef();
+
+    function getCurrentDateAsString() {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        
+        return `${day}-${month}-${year}`;
+      }
+      
+      async function storeFile (selectedFile) {
+		try {
+			const client = new Web3Storage({token: Web3StorageApi});
+			const rootCid = await client.put(selectedFile);
+			let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
+			return ipfsUploadedUrl;
+		} catch(e) {
+			alert("OOPS :(\n" + e);
+		}
+		
+	}
+
+    const [loc_user, setLocUser] = useState(_User.getUserData());
+    useEffect(() => {
+		const handleLocalStorageUpdated = () => {
+		setLocUser(_User.getUserData());
+		};
+
+   	 	window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+    	return () => {
+      		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+    	};
+  	}, []);
+
+      const Web3StorageApi = config.REACT_APP_WEB3STORAGE_API_KEY;
+      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+
+    const [tweetText,setTweetText]=useState("");
+    const [tweetImg,setTweetImg]=useState(null);
+    const tweet = async () =>{
+        const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            let provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+            let imageURL="";
+            if (tweetImg !== null && tweetImg !== undefined) {
+                imageURL = await storeFile(tweetImg);
+            }
+
+            const transaction = await contract.addTweet(loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
+            setTweetText("");
+            twImgClose.current.click();
+            console.log(transaction);
+    }
 
     const [image, setImage]=useState(null);
     const imageRef =useRef();
@@ -15,6 +81,7 @@ const TweetBox = ({profile}) => {
     const onImageChange = (event)=>{
         if(event.target.files && event.target.files[0]){
             let img = event.target.files[0];
+            setTweetImg(event.target.files);
             setImage({
                 image:URL.createObjectURL(img)
             });
@@ -38,10 +105,17 @@ const TweetBox = ({profile}) => {
             <div className="datafield">
                 <div>
                     <div className="textfield">
-                        <textarea name="tweet" id="tweet_text" col="" rows="" placeholder="What's Happening?" onKeyUp={resize}/>
+                        <textarea value={tweetText} name="tweet" id="tweet_text" col="" rows="" placeholder="What's Happening?" onKeyUp={resize} onChange={
+                            (e)=>{
+                                setTweetText(e.target.value);
+                            }
+                        }/>
                         {image && (
                             <div className="previewImage">
-                                <CloseIcon onClick={()=>{setImage(null)}}/>
+                                <CloseIcon ref={twImgClose} onClick={()=>{
+                                    setImage(null);
+                                    setTweetImg(null);
+                                    }}/>
                                 <img src={image.image} alt="" />
                             </div>
                         )}
@@ -54,7 +128,7 @@ const TweetBox = ({profile}) => {
                             <SentimentSatisfiedIcon className='_options'/>
                         </div>
                         <div className="tweet_btn">
-                            <Button className='tweet-button' style={{
+                            <Button className='tweet-button' onClick={tweet} style={{
                                 backgroundColor: "var(--Brand-color)",
                                 color: "var(--D-font-color)",
                                 borderRadius:"25px",
