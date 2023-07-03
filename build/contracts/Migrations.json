@@ -1513,31 +1513,20 @@
   "sourceMap": "68:331:1:-:0;;;162:45;;;;;;;;;;191:10;183:5;;:18;;;;;;;;;;;;;;;;;;68:331;;;;;;",
   "deployedSourceMap": "68:331:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;93:20;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;118:37;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;213:183;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;93:20;;;;;;;;;;;;:::o;118:37::-;;;;:::o;213:183::-;292:5;;;;;;;;;;278:19;;:10;:19;;;270:79;;;;;;;;;;;;:::i;:::-;;;;;;;;;381:9;356:22;:34;;;;213:183;:::o;7:126:2:-;44:7;84:42;77:5;73:54;62:65;;7:126;;;:::o;139:96::-;176:7;205:24;223:5;205:24;:::i;:::-;194:35;;139:96;;;:::o;241:118::-;328:24;346:5;328:24;:::i;:::-;323:3;316:37;241:118;;:::o;365:222::-;458:4;496:2;485:9;481:18;473:26;;509:71;577:1;566:9;562:17;553:6;509:71;:::i;:::-;365:222;;;;:::o;593:77::-;630:7;659:5;648:16;;593:77;;;:::o;676:118::-;763:24;781:5;763:24;:::i;:::-;758:3;751:37;676:118;;:::o;800:222::-;893:4;931:2;920:9;916:18;908:26;;944:71;1012:1;1001:9;997:17;988:6;944:71;:::i;:::-;800:222;;;;:::o;1109:117::-;1218:1;1215;1208:12;1355:122;1428:24;1446:5;1428:24;:::i;:::-;1421:5;1418:35;1408:63;;1467:1;1464;1457:12;1408:63;1355:122;:::o;1483:139::-;1529:5;1567:6;1554:20;1545:29;;1583:33;1610:5;1583:33;:::i;:::-;1483:139;;;;:::o;1628:329::-;1687:6;1736:2;1724:9;1715:7;1711:23;1707:32;1704:119;;;1742:79;;:::i;:::-;1704:119;1862:1;1887:53;1932:7;1923:6;1912:9;1908:22;1887:53;:::i;:::-;1877:63;;1833:117;1628:329;;;;:::o;1963:169::-;2047:11;2081:6;2076:3;2069:19;2121:4;2116:3;2112:14;2097:29;;1963:169;;;;:::o;2138:234::-;2278:34;2274:1;2266:6;2262:14;2255:58;2347:17;2342:2;2334:6;2330:15;2323:42;2138:234;:::o;2378:366::-;2520:3;2541:67;2605:2;2600:3;2541:67;:::i;:::-;2534:74;;2617:93;2706:3;2617:93;:::i;:::-;2735:2;2730:3;2726:12;2719:19;;2378:366;;;:::o;2750:419::-;2916:4;2954:2;2943:9;2939:18;2931:26;;3003:9;2997:4;2993:20;2989:1;2978:9;2974:17;2967:47;3031:131;3157:4;3031:131;:::i;:::-;3023:139;;2750:419;;;:::o",
   "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.8.17;\r\n\r\ncontract Migrations {\r\n  address public owner;\r\n  uint256 public lastCompletedMigration;\r\n\r\n  constructor() {\r\n    owner = msg.sender;\r\n  }\r\n\r\n  function setCompleted(uint256 completed) external {\r\n    require(msg.sender == owner, \"Only the contract owner can call this function.\");\r\n    lastCompletedMigration = completed;\r\n  }\r\n}",
-  "sourcePath": "C:\\Users\\hamza\\OneDrive\\Desktop\\8th Semester\\FYP\\fyp the return\\decentra\\contracts\\Migrations.sol",
+  "sourcePath": "D:\\Docs\\Engineering\\Src\\Web\\FYP\\Code\\decentra\\contracts\\Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
-<<<<<<< HEAD
-        420
+        741
       ]
     },
-    "id": 421,
-=======
-        715
-      ]
-    },
-    "id": 716,
->>>>>>> TweetBackendFunctionality
+    "id": 742,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-<<<<<<< HEAD
-        "id": 388,
-=======
-        "id": 683,
->>>>>>> TweetBackendFunctionality
+        "id": 709,
         "literals": [
           "solidity",
           "^",
@@ -1554,15 +1543,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-<<<<<<< HEAD
-        "id": 420,
+        "id": 741,
         "linearizedBaseContracts": [
-          420
-=======
-        "id": 715,
-        "linearizedBaseContracts": [
-          715
->>>>>>> TweetBackendFunctionality
+          741
         ],
         "name": "Migrations",
         "nameLocation": "77:10:1",
@@ -1571,20 +1554,12 @@
           {
             "constant": false,
             "functionSelector": "8da5cb5b",
-<<<<<<< HEAD
-            "id": 390,
-=======
-            "id": 685,
->>>>>>> TweetBackendFunctionality
+            "id": 711,
             "mutability": "mutable",
             "name": "owner",
             "nameLocation": "108:5:1",
             "nodeType": "VariableDeclaration",
-<<<<<<< HEAD
-            "scope": 420,
-=======
-            "scope": 715,
->>>>>>> TweetBackendFunctionality
+            "scope": 741,
             "src": "93:20:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1593,11 +1568,7 @@
               "typeString": "address"
             },
             "typeName": {
-<<<<<<< HEAD
-              "id": 389,
-=======
-              "id": 684,
->>>>>>> TweetBackendFunctionality
+              "id": 710,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "93:7:1",
@@ -1612,20 +1583,12 @@
           {
             "constant": false,
             "functionSelector": "fbdbad3c",
-<<<<<<< HEAD
-            "id": 392,
-=======
-            "id": 687,
->>>>>>> TweetBackendFunctionality
+            "id": 713,
             "mutability": "mutable",
             "name": "lastCompletedMigration",
             "nameLocation": "133:22:1",
             "nodeType": "VariableDeclaration",
-<<<<<<< HEAD
-            "scope": 420,
-=======
-            "scope": 715,
->>>>>>> TweetBackendFunctionality
+            "scope": 741,
             "src": "118:37:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1634,11 +1597,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-<<<<<<< HEAD
-              "id": 391,
-=======
-              "id": 686,
->>>>>>> TweetBackendFunctionality
+              "id": 712,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "118:7:1",
@@ -1651,39 +1610,23 @@
           },
           {
             "body": {
-<<<<<<< HEAD
-              "id": 400,
-=======
-              "id": 695,
->>>>>>> TweetBackendFunctionality
+              "id": 721,
               "nodeType": "Block",
               "src": "176:31:1",
               "statements": [
                 {
                   "expression": {
-<<<<<<< HEAD
-                    "id": 398,
-=======
-                    "id": 693,
->>>>>>> TweetBackendFunctionality
+                    "id": 719,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-<<<<<<< HEAD
-                      "id": 395,
+                      "id": 716,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 390,
-=======
-                      "id": 690,
-                      "name": "owner",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 685,
->>>>>>> TweetBackendFunctionality
+                      "referencedDeclaration": 711,
                       "src": "183:5:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1694,11 +1637,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-<<<<<<< HEAD
-                        "id": 396,
-=======
-                        "id": 691,
->>>>>>> TweetBackendFunctionality
+                        "id": 717,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -1709,11 +1648,7 @@
                           "typeString": "msg"
                         }
                       },
-<<<<<<< HEAD
-                      "id": 397,
-=======
-                      "id": 692,
->>>>>>> TweetBackendFunctionality
+                      "id": 718,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1733,21 +1668,13 @@
                       "typeString": "address"
                     }
                   },
-<<<<<<< HEAD
-                  "id": 399,
-=======
-                  "id": 694,
->>>>>>> TweetBackendFunctionality
+                  "id": 720,
                   "nodeType": "ExpressionStatement",
                   "src": "183:18:1"
                 }
               ]
             },
-<<<<<<< HEAD
-            "id": 401,
-=======
-            "id": 696,
->>>>>>> TweetBackendFunctionality
+            "id": 722,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -1755,30 +1682,18 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-<<<<<<< HEAD
-              "id": 393,
-=======
-              "id": 688,
->>>>>>> TweetBackendFunctionality
+              "id": 714,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "173:2:1"
             },
             "returnParameters": {
-<<<<<<< HEAD
-              "id": 394,
-=======
-              "id": 689,
->>>>>>> TweetBackendFunctionality
+              "id": 715,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "176:0:1"
             },
-<<<<<<< HEAD
-            "scope": 420,
-=======
-            "scope": 715,
->>>>>>> TweetBackendFunctionality
+            "scope": 741,
             "src": "162:45:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1786,11 +1701,7 @@
           },
           {
             "body": {
-<<<<<<< HEAD
-              "id": 418,
-=======
-              "id": 713,
->>>>>>> TweetBackendFunctionality
+              "id": 739,
               "nodeType": "Block",
               "src": "263:133:1",
               "statements": [
@@ -1802,22 +1713,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-<<<<<<< HEAD
-                        "id": 410,
-=======
-                        "id": 705,
->>>>>>> TweetBackendFunctionality
+                        "id": 731,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-<<<<<<< HEAD
-                            "id": 407,
-=======
-                            "id": 702,
->>>>>>> TweetBackendFunctionality
+                            "id": 728,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -1828,11 +1731,7 @@
                               "typeString": "msg"
                             }
                           },
-<<<<<<< HEAD
-                          "id": 408,
-=======
-                          "id": 703,
->>>>>>> TweetBackendFunctionality
+                          "id": 729,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1849,19 +1748,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-<<<<<<< HEAD
-                          "id": 409,
+                          "id": 730,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 390,
-=======
-                          "id": 704,
-                          "name": "owner",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 685,
->>>>>>> TweetBackendFunctionality
+                          "referencedDeclaration": 711,
                           "src": "292:5:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1876,11 +1767,7 @@
                       },
                       {
                         "hexValue": "4f6e6c792074686520636f6e7472616374206f776e65722063616e2063616c6c20746869732066756e6374696f6e2e",
-<<<<<<< HEAD
-                        "id": 411,
-=======
-                        "id": 706,
->>>>>>> TweetBackendFunctionality
+                        "id": 732,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1906,11 +1793,7 @@
                           "typeString": "literal_string \"Only the contract owner can call this function.\""
                         }
                       ],
-<<<<<<< HEAD
-                      "id": 406,
-=======
-                      "id": 701,
->>>>>>> TweetBackendFunctionality
+                      "id": 727,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1924,11 +1807,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-<<<<<<< HEAD
-                    "id": 412,
-=======
-                    "id": 707,
->>>>>>> TweetBackendFunctionality
+                    "id": 733,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1944,39 +1823,23 @@
                       "typeString": "tuple()"
                     }
                   },
-<<<<<<< HEAD
-                  "id": 413,
-=======
-                  "id": 708,
->>>>>>> TweetBackendFunctionality
+                  "id": 734,
                   "nodeType": "ExpressionStatement",
                   "src": "270:79:1"
                 },
                 {
                   "expression": {
-<<<<<<< HEAD
-                    "id": 416,
-=======
-                    "id": 711,
->>>>>>> TweetBackendFunctionality
+                    "id": 737,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-<<<<<<< HEAD
-                      "id": 414,
+                      "id": 735,
                       "name": "lastCompletedMigration",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 392,
-=======
-                      "id": 709,
-                      "name": "lastCompletedMigration",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 687,
->>>>>>> TweetBackendFunctionality
+                      "referencedDeclaration": 713,
                       "src": "356:22:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1986,19 +1849,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-<<<<<<< HEAD
-                      "id": 415,
+                      "id": 736,
                       "name": "completed",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 403,
-=======
-                      "id": 710,
-                      "name": "completed",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 698,
->>>>>>> TweetBackendFunctionality
+                      "referencedDeclaration": 724,
                       "src": "381:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2011,22 +1866,14 @@
                       "typeString": "uint256"
                     }
                   },
-<<<<<<< HEAD
-                  "id": 417,
-=======
-                  "id": 712,
->>>>>>> TweetBackendFunctionality
+                  "id": 738,
                   "nodeType": "ExpressionStatement",
                   "src": "356:34:1"
                 }
               ]
             },
             "functionSelector": "fdacd576",
-<<<<<<< HEAD
-            "id": 419,
-=======
-            "id": 714,
->>>>>>> TweetBackendFunctionality
+            "id": 740,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -2034,29 +1881,17 @@
             "nameLocation": "222:12:1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-<<<<<<< HEAD
-              "id": 404,
-=======
-              "id": 699,
->>>>>>> TweetBackendFunctionality
+              "id": 725,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-<<<<<<< HEAD
-                  "id": 403,
-=======
-                  "id": 698,
->>>>>>> TweetBackendFunctionality
+                  "id": 724,
                   "mutability": "mutable",
                   "name": "completed",
                   "nameLocation": "243:9:1",
                   "nodeType": "VariableDeclaration",
-<<<<<<< HEAD
-                  "scope": 419,
-=======
-                  "scope": 714,
->>>>>>> TweetBackendFunctionality
+                  "scope": 740,
                   "src": "235:17:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2065,11 +1900,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-<<<<<<< HEAD
-                    "id": 402,
-=======
-                    "id": 697,
->>>>>>> TweetBackendFunctionality
+                    "id": 723,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "235:7:1",
@@ -2084,31 +1915,19 @@
               "src": "234:19:1"
             },
             "returnParameters": {
-<<<<<<< HEAD
-              "id": 405,
-=======
-              "id": 700,
->>>>>>> TweetBackendFunctionality
+              "id": 726,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "263:0:1"
             },
-<<<<<<< HEAD
-            "scope": 420,
-=======
-            "scope": 715,
->>>>>>> TweetBackendFunctionality
+            "scope": 741,
             "src": "213:183:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-<<<<<<< HEAD
-        "scope": 421,
-=======
-        "scope": 716,
->>>>>>> TweetBackendFunctionality
+        "scope": 742,
         "src": "68:331:1",
         "usedErrors": []
       }
@@ -2123,52 +1942,12 @@
     "5777": {
       "events": {},
       "links": {},
-<<<<<<< HEAD
-      "address": "0x64e407A4203D27C7E52cEB2f3caaF4481fE3d84e",
-      "transactionHash": "0x398df36deebe66d9144de29cb3d721c5dc60cf70ba3dd9b22fe2bb536a7d848f"
-=======
-      "address": "0xC96849780aC7aDc22C52a315104FD933a6a6d965",
-      "transactionHash": "0xdf018dc0daee1114217d13bf63063e5ff8d79d61a87a932cbff9e8bd667163e4"
->>>>>>> TweetBackendFunctionality
-    },
-    "1684389920073": {
-      "events": {},
-      "links": {},
-      "address": "0xA865e0eb85A86b9E82eF725fa74f718de893e49e",
-      "transactionHash": "0xf929f19077e976de70c764113528503260e4ed44db80250be51431b04bab2c4b"
-    },
-    "1684408139080": {
-      "events": {},
-      "links": {},
-      "address": "0xD480489B90E8D0F55f8FD154E54BD59244072d0c",
-      "transactionHash": "0xee95c8b6077cf06e26087cb82cc92816818932c068516248dbbcac1759fbb1bc"
-    },
-    "1684474279632": {
-      "events": {},
-      "links": {},
-      "address": "0xFB5f5B29ff77bfe52cDb074C7044A620Ff0FDA6B",
-      "transactionHash": "0x336c1665e61e3d08cebbb7cbae9394e146e53baa2c8b7711bace3371ab502eed"
-    },
-    "1684489962195": {
-      "events": {},
-      "links": {},
-      "address": "0x0045fffda57a7b0399876cB35741dEF147b67fe7",
-      "transactionHash": "0xabbf095e3d2aa71ec2c692c91d67024b234330caa39258351e53e2e300e4b22a"
-    },
-    "1684565850343": {
-      "events": {},
-      "links": {},
-      "address": "0xc0291d76D579f70a31de301C55Cc22C92AB55863",
-      "transactionHash": "0xfe4c07d303f2243a5f73a0408bbcb279476a3efcd03592ee4cf7938bcd533194"
+      "address": "0x1D6c65416A924A0951527773E2580Ebc0cE49090",
+      "transactionHash": "0x55d6d7dd9f627fb2a6588665c7ac1c2870c9d0830293d0017e2823ac8bb919ae"
     }
   },
-<<<<<<< HEAD
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-06-25T08:26:53.312Z",
-=======
-  "schemaVersion": "3.4.14",
-  "updatedAt": "2023-07-02T18:55:12.392Z",
->>>>>>> TweetBackendFunctionality
+  "updatedAt": "2023-07-03T04:09:56.112Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

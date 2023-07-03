@@ -75,7 +75,6 @@ else
 
   const [prof_followers, set_prof_followers] = useState(user_profile.followers);
   const [prof_following, set_prof_following] = useState(user_profile.following);
-  const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
   //   User wallet Balance Logic
 	async function getAccountBalance(){
 		const web3Modal = new Web3Modal();

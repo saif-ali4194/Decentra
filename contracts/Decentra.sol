@@ -58,13 +58,14 @@ contract Decentra {
         string text;
         string image;
     }
-    uint256 tweetId=1000;
-    Tweet[] public tweets;
-    mapping (address => Tweet[]) public userTweets;
      
     mapping (address => user) Users;
     address[] private userAddresses;
     mapping(address => Notification[]) public userNotifications;
+
+     uint256 tweetId=1000;
+    Tweet[] public tweets;
+    mapping (address => Tweet[]) public userTweets;
 
     // function addUser (
     //     Profile memory _profile,
