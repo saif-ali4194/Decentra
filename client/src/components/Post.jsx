@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Post.css';
 import {Avatar, IconButton} from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { useRef } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -11,13 +12,81 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import TweetBox from './TweetBox';
 import {Link} from 'react-router-dom';
 import { _User } from '../Scripts/UserStorage';
+import config from '../config';
+import DecentraAbi from '../abi/Decentra.json';
+import { ethers } from 'ethers';
+import Web3Modal from 'web3modal';	
+import { Web3Storage } from 'web3.storage';
 
-const Post = ({tweet,tweetId,avatar}) => {
-    const loc_user = _User.getUserData();
+const Post = ({tweet,tweetId,avatar, render}) => {
+    const [loc_user, setLocUser] = useState(_User.getUserData());
     
+    useEffect(() => {
+		const handleLocalStorageUpdated = () => {
+		setLocUser(_User.getUserData());
+		};
+
+   	 	window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+    	return () => {
+      		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+    	};
+  	}, []);
+
+    
+
+
+      const Web3StorageApi = config.REACT_APP_WEB3STORAGE_API_KEY;
+      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+      const [address, setAddress] = useState([]);
+      const [liked,setLiked]=useState(false);
+    //   console.log(address + "   " + tweet.t_id);
+      useEffect(()=>{
+        const getLikes = async () => {
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            let provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+    
+            const fetchedUsers = await contract.getlikes(tweet.t_id);
+            // let tmp_users = [];
+            //Update the state with the fetched users
+            for(let i=0; i<fetchedUsers.length; i++) {
+                const fetchedUser = fetchedUsers[i];
+                if(fetchedUser===loc_user.active_account){
+                    setLiked(true);
+                    break;
+                }
+                // const userAddress = fetchedUser;
+                // tmp_users.push(userAddress);
+                
+            }
+            
+            // setAddress(tmp_users);
+            // if(address.includes(loc_user.active_account)){
+            //     setLiked(true);
+            // }
+            
+        };	
+        getLikes();
+      },[]);
+
     const [modalOpen,setModalOpen]=useState(false);
+    
     const postThread = useRef();
     const cModal=useRef();
+    const optionsDialogue=useRef();
+    const openOptionsDialogue = (event) => {
+        event.stopPropagation();
+        setModalOpen(true);
+        optionsDialogue.current.setAttribute('open', true);
+    }
+    const closeOptionsDialogue = (event) => {
+        event.stopPropagation();
+        optionsDialogue.current.close();
+        setModalOpen(false);
+    }
     const postComment=(event)=>{
         event.stopPropagation();
         setModalOpen(true);
@@ -27,6 +96,48 @@ const Post = ({tweet,tweetId,avatar}) => {
     const closePostComment=()=>{
         cModal.current.close();
         setModalOpen(false);
+    }
+
+    const deletePost = async () => {
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            let provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+
+            const transaction = await contract.deleteTweet(tweet.t_id); 
+            render(true);
+    }
+    const likePost = async (event)=> {
+        event.stopPropagation();
+        setModalOpen(true);
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        let provider = new ethers.BrowserProvider(connection);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+        const transaction = await contract.addLike(tweet.t_id);
+        setLiked(true);
+        
+        setTimeout(() => {
+            setModalOpen(false);
+          }, 200);
+    }
+
+    const unlikePost = async (event)=> {
+        event.stopPropagation();
+        setModalOpen(true);
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        let provider = new ethers.BrowserProvider(connection);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+        const transaction = await contract.removeLike(tweet.t_id);
+        setLiked(false);
+        
+        setTimeout(() => {
+            setModalOpen(false);
+          }, 200);
     }
 
     const openThread = () => {
@@ -45,9 +156,16 @@ const Post = ({tweet,tweetId,avatar}) => {
                         <span className='post_username'>{tweet.username}</span>
                         <span className='post_info'>{tweet.userAt}·{tweet.date}</span>
                     </div>
-                    <div>
-                        <IconButton className="post_top_options_iconbutton">
-                            <MoreHorizIcon className="more"/></IconButton>
+                    <div className="postOptionsMainDiv">
+                        {(tweet.tweetOwner===loc_user.active_account) &&
+                            <IconButton className="post_top_options_iconbutton" onClick={modalOpen?closeOptionsDialogue:openOptionsDialogue}>
+                                <MoreHorizIcon className="more"/>
+                            </IconButton>
+                        }
+                        <dialog className="post_options_dialog" ref={optionsDialogue} open={false} onClick={deletePost}>
+                            {/* <div className="opt">Hello</div> */}
+                            <button className="postDelButton">🗑️</button>
+                        </dialog>
                     </div>
                     
                 </div>
@@ -61,7 +179,12 @@ const Post = ({tweet,tweetId,avatar}) => {
                 </div>
                 <div className="post_options">
                     <ChatBubbleOutlineIcon className='_postoptions' onClick={postComment}/>
-                    <FavoriteBorderIcon className='_postoptions'/>
+                    {liked?
+                        <FavoriteIcon className='_postoptions' onClick={unlikePost} />
+                        :
+                        <FavoriteBorderIcon className='_postoptions' onClick={likePost} />
+                    }
+
                     <ReplyIcon className='_postoptions'/>
                 </div>
             </div>
@@ -75,7 +198,7 @@ const Post = ({tweet,tweetId,avatar}) => {
                     </IconButton>
                     <div className="mainPost">
                         <div className="replyAvatarSide">
-                            <Avatar src={loc_user.avatar} style={{
+                            <Avatar src={avatar} style={{
                     width:"2.5em",
                     height:"2.5em"
                 }}/>
@@ -90,9 +213,12 @@ const Post = ({tweet,tweetId,avatar}) => {
                                 <span className='post_info'>{tweet.userAt}·{tweet.date}</span>
                             </div>
                             <div className="replyMaintext">
-                                {tweet.text && (<span className='post_content_text'>
+                                {tweet.text && 
+                                    (<span className='post_content_text'>
                                     {tweet.text}
-                                    </span>)}
+                                    </span>)
+                                }
+                
                             </div>
                         </div>
                     </div>
@@ -100,16 +226,17 @@ const Post = ({tweet,tweetId,avatar}) => {
                         <div className='belowMainPost'>
                                     <div className="straightLine"></div>
                         </div>
-                        <div className="replying">Replying to {tweet.userAt}</div>
+                        <div className="replying">Replying to {tweet.username}</div>
                     </div>
                     <div className="userReply">
-                        <TweetBox profile={loc_user}/>
+                        <TweetBox profile={loc_user} mode={1} p_id={tweet.t_id}/>
                     </div>
                 </div>
             </dialog>
 
+           
 
-            <Link  className='threadLink' to={`/thread/${tweetId}`} ref={postThread}></Link>
+            <Link state={{tweet,avatar}} className='threadLink' to={`/thread/${tweetId}`} ref={postThread}></Link>
         </div>
     );
 }

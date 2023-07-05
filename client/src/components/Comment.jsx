@@ -1,13 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState,  useEffect } from 'react';
 import '../styles/Comment.css'
 import { Avatar, IconButton } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ReplyIcon from '@mui/icons-material/Reply';
+import { ethers } from 'ethers';
+import DecentraAbi from '../abi/Decentra.json';
+import config from '../config.js';
+import Web3Modal from 'web3modal';
+import { _User } from '../Scripts/UserStorage.js';
 
-const Comment = ({comment}) => {
+
+const Comment = ({comment, users}) => {
+    let tmp_cmts = [];
+    const [loc_user, setLocUser] = useState(_User.getUserData());
+  	useEffect(() => {
+		const handleLocalStorageUpdated = () => {
+		setLocUser(_User.getUserData());
+		};
+
+   	 	window.addEventListener('localStorageUpdated', handleLocalStorageUpdated);
+
+    	return () => {
+      		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
+    	};
+  	}, []);
+
+      const [comments, setComments] = useState([]);
+      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
     
+      useEffect(() => {
+            const fetchComments = async () => {
+              try{  const web3Modal = new Web3Modal();
+                const connection = await web3Modal.connect();
+                let provider = new ethers.BrowserProvider(connection);
+                const signer = await provider.getSigner();
+                const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+        
+                const fetchedComments = await contract.getComments(comment.c_id);
+                tmp_cmts = [];  
+                //Update the state with the fetched users
+                    for(let i=0; i<fetchedComments.length; i++) {
+                        const fetchedComment = fetchedComments[i];
+                        // if(fetchedUser.userAddress == loc_user.active_account)	continue;
+                        const comment = {
+                            id: fetchedComment.c_id,
+                            userAddress: fetchedComment.commentOwner, 
+                            name: fetchedComment.username,
+                            // avatar: fetchedUser.profile.avatar,
+                            userAt: fetchedComment.userAt,
+                            p_id: fetchedComment.p_id,
+                            date: fetchedComment.date,
+                            text: fetchedComment.text,
+                            cId: fetchedComment.cId,
+                        
+                        }
+                        
+                        tmp_cmts.push(comment);
+                    }
+                
+                setComments(tmp_cmts);
+                
+            }catch(e){
+                console.log(e)
+            }	}
+        fetchComments();
+        
+      }, []);
+    let avatar ="";
+    for(let i=0; i<users.length;i++){
+        if(comment.commentOwner==users[i].userAddress){
+            avatar=users[i].avatar;
+            
+            break;
+        }
+    }
+
+
     return ( 
        
 
@@ -16,7 +86,7 @@ const Comment = ({comment}) => {
             <div className="comment">
                         
                         <div className="cmt-left">
-                            <Avatar src={comment.user.avatar}/>
+                            <Avatar src={avatar}/>
                             <div className='below-avatar'>
                                 <div className="straightLine">
 
@@ -28,8 +98,8 @@ const Comment = ({comment}) => {
                             
                             <div className="cmt-right-top">
                                 <div className='cmt-userInfo'>
-                                    <span className='cmt-username'>{comment.user.name}</span>
-                                    <span className='cmt-userat'>{comment.user.at}·{comment.date}</span>
+                                    <span className='cmt-username'>{comment.username}</span>
+                                    <span className='cmt-userat'>{comment.userAt}·{comment.date}</span>
                                 </div>
                                 <IconButton className='cmt-more'>
                                     <MoreHorizIcon/>
@@ -59,10 +129,10 @@ const Comment = ({comment}) => {
                     </div>
 
 
-                        {(comment.c_cmts && comment.c_cmts.length) > 0 && (
+                        {comments && (
                                 <div>
-                                    {comment.c_cmts.map((childComment)=>{
-                                        return <Comment key={childComment.id} comment={childComment}/>
+                                    {comments.map((childComment)=>{
+                                        return <Comment key={childComment.c_id} comment={childComment}/>
                                     })}
                                 </div>
                             )}

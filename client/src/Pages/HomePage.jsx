@@ -11,8 +11,10 @@ import config from '../config.js';
 import Web3Modal from 'web3modal';
 
 function HomePage() {
+  const [render,setRender]=useState(false);
   const [loc_user, setLocUser] = useState(_User.getUserData());
   	useEffect(() => {
+    
 		const handleLocalStorageUpdated = () => {
 		setLocUser(_User.getUserData());
 		};
@@ -28,6 +30,7 @@ function HomePage() {
     const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
     
     useEffect(() => {
+      setRender(false);
       const fetchTweets = async () => {
           const web3Modal = new Web3Modal();
           const connection = await web3Modal.connect();
@@ -57,14 +60,14 @@ function HomePage() {
             setTweets(tmp_tweets.reverse());
       }
            fetchTweets();
-    }, []);
+    }, [render]);
     
   return (
     <div className='home-page'>
       {/* <h1>Home Page</h1> */}
 
-      <TweetBox profile={loc_user} mode={0}/>
-      <Posts tweets={tweets} home={true}/>
+      <TweetBox profile={loc_user} mode={0} render={setRender}/>
+      <Posts tweets={tweets} home={true} render={setRender}/>
     </div>
   )
 }

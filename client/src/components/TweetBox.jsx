@@ -15,8 +15,8 @@ import Web3Modal from 'web3modal';
 import { Web3Storage } from 'web3.storage';
 import { useNotification } from "@web3uikit/core";
 
-const TweetBox = ({profile,mode}) => {
-
+const TweetBox = ({profile,mode,render,renderth,p_id}) => {
+    const [disable,setDisable]=useState(false);
     const twImgClose = useRef();
 
     function getCurrentDateAsString() {
@@ -58,21 +58,44 @@ const TweetBox = ({profile,mode}) => {
 
     const [tweetText,setTweetText]=useState("");
     const [tweetImg,setTweetImg]=useState(null);
-    const tweet = async () =>{
-        const web3Modal = new Web3Modal();
-            const connection = await web3Modal.connect();
-            let provider = new ethers.BrowserProvider(connection);
-            const signer = await provider.getSigner();
-            const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
-            let imageURL="";
-            if (tweetImg !== null && tweetImg !== undefined) {
-                imageURL = await storeFile(tweetImg);
-            }
+    const tweet = async (event) =>{
+        // event.stopPropagation();
+        setDisable(true);
+            const web3Modal = new Web3Modal();
+                const connection = await web3Modal.connect();
+                let provider = new ethers.BrowserProvider(connection);
+                const signer = await provider.getSigner();
+                const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+                let imageURL="";
+            
+            if(mode == 0){
 
-            const transaction = await contract.addTweet(loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
-            setTweetText("");
-            twImgClose.current.click();
-            console.log(transaction);
+                    if (tweetImg !== null && tweetImg !== undefined) {
+                        imageURL = await storeFile(tweetImg);
+                    }
+
+                    const transaction = await contract.addTweet(loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
+                    setTweetText("");
+                    setImage(null);
+                    // twImgClose.current.click();
+                    render(true);
+                    console.log(transaction);
+
+                         }
+            else if(mode == 1){
+                    
+                if (tweetImg !== null && tweetImg !== undefined) {
+                    imageURL = await storeFile(tweetImg);
+                }
+
+                const transaction = await contract.addComment(p_id,loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
+                setTweetText("");
+                setImage(null);
+                // twImgClose.current.click();
+                //renderth(true);
+                console.log(transaction);
+            }
+        setDisable(false);
     }
 
     const [image, setImage]=useState(null);
@@ -128,7 +151,7 @@ const TweetBox = ({profile,mode}) => {
                             <SentimentSatisfiedIcon className='_options'/>
                         </div>
                         <div className="tweet_btn">
-                            <Button className='tweet-button' onClick={tweet} style={{
+                            <Button disabled={disable} className={disable && "disable"} onMouseDown={tweet} style={{
                                 backgroundColor: "var(--Brand-color)",
                                 color: "var(--D-font-color)",
                                 borderRadius:"25px",

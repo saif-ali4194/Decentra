@@ -83,3 +83,11 @@ textarea::-webkit-scrollbar{
     object-fit: cover;
     border-radius: 0.5rem;
 }
+.disable>button[disabled] {
+    color: #999999;
+    background-color: #dddddd;
+  }
+.disable>button[disabled]:hover {
+    color: #999999;
+    background-color: #dddddd;
+}
