@@ -38,19 +38,28 @@ contract Decentra {
         string date;
         string text;
         string cId;
-        bool liked;
+        
 
     }
 
     struct Comment{
         address commentOwner;
         uint256 c_id;
+        uint256 p_id;
         string username;
         string userAt;
         string date;
         string text;
-        bool liked;
-        Comment[] cmts;
+        string cId;
+        
+        
+    }
+
+    struct Trend{
+        uint256 t_id;
+        string t_name;
+        string t_location;
+        uint t_mentions;
     }
     
     struct Notification {
@@ -58,7 +67,15 @@ contract Decentra {
         string text;
         string image;
     }
-     
+
+    uint256 tweetId=1000;
+    Tweet[] public tweets;
+    Trend[] public trends;
+    mapping (address => Tweet[]) public userTweets;
+    mapping (uint => Comment[]) public comments; 
+    mapping (uint => address[]) public liked;
+    
+
     mapping (address => user) Users;
     address[] private userAddresses;
     mapping(address => Notification[]) public userNotifications;
@@ -98,13 +115,54 @@ contract Decentra {
     //     userData.occupation = _occupation;
     // }
 
+    function stringsEquals(string memory s1, string memory s2) private pure returns (bool) {
+        bytes memory b1 = bytes(s1);
+        bytes memory b2 = bytes(s2);
+        uint256 l1 = b1.length;
+        if (l1 != b2.length) return false;
+        for (uint256 i=0; i<l1; i++) {
+            if (b1[i] != b2[i]) return false;
+        }
+        return true;
+}
+
+    function addLike(uint _id) public {
+        address[] storage temp = liked[_id];
+        temp.push(msg.sender);
+        liked[_id]=temp;
+    }
+    function removeLike(uint _id) public{
+        address[] storage temp =liked[_id];
+            for(uint i=0; i<temp.length; i++)
+            {
+                if(temp[i] == msg.sender){
+                    
+                    if(temp.length==1){
+                        temp.pop();
+                    }
+                    else{
+                        for(uint j=i; j<temp.length-1;j++){
+                            temp[j]=temp[j+1];
+                        }
+                        temp.pop();
+                    }
+                }
+            }
+        liked[_id]=temp;
+
+    }
+    function getlikes(uint _id) public view returns(address[] memory){
+        return liked[_id];
+    }
+    
+
     function createUser(user memory _user) public {
         Users[msg.sender] = _user;
         userAddresses.push(msg.sender);
     }
 
     function updateUser(user memory _user) public {
-    Users[msg.sender] = _user;
+     Users[msg.sender] = _user;
     }
 
     function getUser(address userAddress) public view returns (user memory) {
@@ -157,13 +215,14 @@ contract Decentra {
         }
     }
 
+    //Functions for Tweets
     function addTweet(string memory _username, string memory _userAt, string memory _date, string memory _text, string memory _cId) public {
         uint id =tweetId;
         tweetId++;
-        tweets.push(Tweet(msg.sender ,id, _username, _userAt, _date, _text, _cId, false));
+        tweets.push(Tweet(msg.sender ,id, _username, _userAt, _date, _text, _cId));
         
         Tweet[] storage userSpecificTweets= userTweets[msg.sender];
-        userSpecificTweets.push(Tweet(msg.sender ,id, _username, _userAt, _date, _text, _cId, false));
+        userSpecificTweets.push(Tweet(msg.sender ,id, _username, _userAt, _date, _text, _cId));
         
         userTweets[msg.sender]=userSpecificTweets;
     }
@@ -211,6 +270,48 @@ contract Decentra {
             }
         }
     }
+    //Functions for Comments
+    function addComment(uint p_id, string memory _username, string memory _userAt, string memory _date, string memory _text, string memory _cId) public {
+        uint id=tweetId;
+        tweetId++;
+        Comment memory cmt= Comment(msg.sender, id, p_id, _username, _userAt, _date, _text, _cId);
+        Comment[] storage new_cmts =comments[p_id];
+        new_cmts.push(cmt); 
+        comments[p_id] = new_cmts;
+    }
+    function getComments(uint p_id) public view returns(Comment[] memory){
+        return comments[p_id];
+    }
+    function deleteComment(uint p_id, uint id) public {
+        Comment[] storage temp = comments[p_id];
+
+            for(uint i=0; i<temp.length; i++)
+            {
+                if(temp[i].c_id == id){
+                    require(temp[i].commentOwner == msg.sender, "not comment owner");
+                    if(temp.length==1){
+                        temp.pop();
+                    }
+                    else{
+                        for(uint j=i; j<temp.length-1;j++){
+                            temp[j]=temp[j+1];
+                        }
+                        temp.pop();
+                    }
+                }
+            }
+        comments[p_id]=temp;
+    }
+    //Functions for Trends
+    function addTrend(string memory _name, string memory _location) public  {
+        uint id = tweetId;
+        tweetId++;
+        trends.push(Trend(id,_name,_location, 1));
+    }
+   
+    function getTrends() public view returns(Trend[] memory){
+        return trends;
+    }
 
     // Function to add a new notification
     function addNotification(address _userAddress, string memory _text, string memory _image) public {
@@ -224,4 +325,6 @@ contract Decentra {
     function getUserNotifications(address _userAddress) public view returns (Notification[] memory) {
         return userNotifications[_userAddress];
     }
+
+    
 }   

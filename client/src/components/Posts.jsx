@@ -8,7 +8,7 @@ import DecentraAbi from '../abi/Decentra.json';
 import config from '../config.js';
 import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
-const Posts = ({tweets,user_posts, pathname,home}) => {
+const Posts = ({tweets,user_posts, pathname,home,render}) => {
     //const [avatar,setAvatar]=useState();
     
         
@@ -95,14 +95,17 @@ const Posts = ({tweets,user_posts, pathname,home}) => {
 
              {(home && tweets) && 
                 (tweets.map((tweet)=>{
-                for(let i=0; i<users.length;i++){
-                    if(tweet.tweetOwner==users[i].userAddress){
-                        avatar=users[i].avatar;
-                        
-                        break;
+                    if(loc_user.user_following.includes(tweet.tweetOwner) || tweet.tweetOwner === loc_user.active_account){
+                        for(let i=0; i<users.length;i++){
+                            if(tweet.tweetOwner==users[i].userAddress){
+                                avatar=users[i].avatar;
+                                
+                                break;
+                            }
+                        }
+                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
                     }
-                }
-                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                
                     }))
 
              }
@@ -118,7 +121,7 @@ const Posts = ({tweets,user_posts, pathname,home}) => {
                                 break;
                             }
                         }
-                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
                         }
                     })
                 )
@@ -134,7 +137,7 @@ const Posts = ({tweets,user_posts, pathname,home}) => {
                             break;
                         }
                     }
-                    return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                    return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
                     }
                 })
             )
@@ -150,7 +153,7 @@ const Posts = ({tweets,user_posts, pathname,home}) => {
                         break;
                     }
                 }
-                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar}/>
+                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
                     }))
 
              }
