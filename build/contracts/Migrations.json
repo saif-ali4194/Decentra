@@ -1942,12 +1942,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x6520a446e210dD4065091e6F7A675f69055C6062",
-      "transactionHash": "0xf98d074f2d79597c1bba7b8d0f7b0848dbc9f332c5ea8c2bb78058866630a614"
+      "address": "0x6d8073BaE3CE9FC668D572cBCc8905344dc49c42",
+      "transactionHash": "0x4087b4d52804b716f01b1f72109512216c5e54897e3bdca870976cd90cb60969"
     }
   },
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-07-03T04:28:40.007Z",
+  "updatedAt": "2023-07-04T15:02:36.198Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
