@@ -12,6 +12,8 @@ import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
 import DecentraAbi from '../abi/Decentra.json';
 import config from '../config.js';
+import { calculateAge } from '../Scripts/ageCalculator';
+
 
 function ProfilePage({current_user}) {
 
@@ -136,9 +138,10 @@ else
           </div>
 
           <div className="info">
-            <h6>Im a {user_profile.occupation}</h6>
-            <h6>{user_profile.age}yrs, {user_profile.gender}, {user_profile.status}</h6>
-            <h6>Live in {user_profile.city}, {user_profile.country}</h6>
+            {console.log(user_profile.age)}
+            <h6>Im a/an {user_profile.occupation}</h6>
+            <h6>{calculateAge(user_profile.age)}yrs, {user_profile.gender}, {user_profile.status}</h6>
+            <h6>Lives in {user_profile.city}, {user_profile.country}</h6>
             <span id='join'>Decentrian since {user_profile.date_joined}</span>
           </div>
 

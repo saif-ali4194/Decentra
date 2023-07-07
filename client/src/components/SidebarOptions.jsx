@@ -21,6 +21,7 @@ function SidebarOptions({active, text, Icon, to, handleLinkClick, setIsAuthentic
         web3Modal.clearCachedProvider();
         provider = null;
         setIsAuthenticated(false);
+        sessionStorage.setItem("isAuth", false);
         console.log('Wallet disconnected');
       } catch (error) {
         console.log('Error disconnecting wallet:', error);

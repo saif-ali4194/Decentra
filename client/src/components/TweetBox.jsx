@@ -151,7 +151,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                             <SentimentSatisfiedIcon className='_options'/>
                         </div>
                         <div className="tweet_btn">
-                            <Button disabled={disable} className={disable && "disable"} onMouseDown={tweet} style={{
+                            <Button disabled={disable} className={disable ? "disable": ""} onMouseDown={tweet} style={{
                                 backgroundColor: "var(--Brand-color)",
                                 color: "var(--D-font-color)",
                                 borderRadius:"25px",

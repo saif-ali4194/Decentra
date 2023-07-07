@@ -219,3 +219,15 @@ select.dropdown-options option {
     /* Styles for the options */
     padding: 20px 0px;
   }
+
+  input[type="date"] {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border-style: none;
+    background-color: var(--background-color);
+    font-size: 1.2em;
+    border: 1px solid var(--border-color);
+    color: var(--font-color);
+    padding: 0px 10px;
+}

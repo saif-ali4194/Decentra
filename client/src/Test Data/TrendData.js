@@ -1,7 +1,7 @@
 export const trends=[
     {
         id:1,
-        name:"JusticeForSaif",
+        name:"پاکستان بمقابلہ آسٹریلیا",
         location:"Pakistan",
         catagoryName:null,
         type:1,
@@ -10,8 +10,8 @@ export const trends=[
     },
     {
         id:2,
-        name:"WhyDidThisHappen",
-        location:"Pakistan",
+        name:"ElonMuskResign",
+        location:"USA",
         catagoryName:null,
         type:1,
         retweets:"15k"
@@ -19,8 +19,8 @@ export const trends=[
     },
     {
         id:3,
-        name:"Assault",
-        location:"Pakistan",
+        name:"Privacy Matters",
+        location:"UK",
         catagoryName:"Social Issues",
         type:0,
         retweets:"10k"
@@ -28,8 +28,8 @@ export const trends=[
     },
     {
         id:4,
-        name:"IIUI",
-        location:"Pakistan",
+        name:"sayYestoPrivacy",
+        location:"UK",
         catagoryName:null,
         type:1,
         retweets:"5k"
@@ -37,7 +37,7 @@ export const trends=[
     },
     {
         id:5,
-        name:"Secret",
+        name:"Decentra",
         location:"Pakistan",
         catagoryName:"News",
         type:1,
@@ -46,7 +46,7 @@ export const trends=[
     },
     {
         id:6,
-        name:"Coder",
+        name:"مون سون کی بارش",
         location:"Pakistan",
         catagoryName:null,
         type:1,

@@ -5,8 +5,7 @@ import Widgets from './components/Widgets';
 import { useEffect, useState } from 'react';
 import { darktheme } from './styles/Darktheme';
 import config from './config.js';
-import DefaultAvatar from "./Data/Images/avatar.jpg"
-import DefaultBanner from "./Data/Images/banner.png"
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Auth from './Pages/Auth';
 // For Backend
 import { Contract, ethers } from 'ethers';
@@ -20,9 +19,10 @@ import { _Auth, _User } from './Scripts/UserStorage.js';
 function App() {
 	const [darkModeEnabled, setDarkModeEnabled] = useState(true);
 	// ----------- AUTH ------------ //
-	const [isAuthenticated,setIsAuthenticated] = useState(false);
+	const [isAuthenticated,setIsAuthenticated] = useState(sessionStorage.getItem("isAuth"));
 	const [provider,setProvider] = useState(window.ethereum);
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+	const navigate = useNavigate();
 	// ----------- / AUTH ------------ //
 	useEffect(() => {
 		const darkModeEnabledFromStorage = localStorage.getItem('darkModeEnabled');
@@ -56,19 +56,27 @@ function App() {
 		darktheme(darkModeEnabled);
 	}, [darkModeEnabled]);
 
-	return (
-		<div className="App">
-		{isAuthenticated ? (
-			<>
-			<Sidebar setIsAuthenticated={setIsAuthenticated}/>
-			<Feed />
-			<Widgets />
-			</>
-		):(<Auth setIsAuthenticated={setIsAuthenticated}/>)
-		}
-		
-		</div>
-	);
+
+	if(isAuthenticated) {
+		return (
+			<div className="App">
+					
+				<>
+				<Sidebar setIsAuthenticated={setIsAuthenticated} />
+				<Feed />
+				<Widgets />
+				</>	
+			</div>
+		);
+	} else {
+		return (
+			<div className="App">				
+				<Auth setIsAuthenticated={setIsAuthenticated} />
+			</div>
+		);
+	}
+	
+	
 }
 
 export default App;

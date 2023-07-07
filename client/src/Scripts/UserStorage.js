@@ -13,7 +13,7 @@ export const _User =  {
 			name: getUserDetail.profile.name,
 			avatar: getUserDetail.profile.avatar,
 			banner: getUserDetail.profile.banner,
-			age: Number(getUserDetail.profile.age),
+			age: getUserDetail.profile.age,
 			gender: getUserDetail.profile.gender,
 			status: getUserDetail.profile.status,
 			country: getUserDetail.profile.country,
@@ -22,41 +22,13 @@ export const _User =  {
 			date_joined: getUserDetail.date_joined,
 			followers: Number(getUserDetail.followers),
 			following: Number(getUserDetail.following),
-			// followers: userfollowed.length,
-			// following: userfollowing.length,
 			user_following: userfollowing.map(String),
 			user_followed: userfollowed.map(String),
 		  };
 		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
 		  window.dispatchEvent(localStorageUpdated);
-		  return false; // is_default: no, blockchain data is set
-		} else {
-		  const tmp = signerAddress.toString();
-		  const truncatedAddress = tmp.slice(0, 5);
-		  const currentDate = new Date();
-		  const options = { day: 'numeric', month: 'short', year: 'numeric' };
-		  const formattedDate = currentDate.toLocaleString('en-US', options);
-		  const loc_user = {
-			active_account: signerAddress,
-			name: `User${truncatedAddress}`,
-			avatar: DefaultAvatar,
-			banner: DefaultBanner,
-			age: 16,
-			gender: "Male",
-			status: "Single",
-			country: "unKnown Country",
-			city: "unknown City",
-			occupation: "unknown Occupation",
-			date_joined: formattedDate,
-			followers: 0,
-			following: 0,
-			user_following: [],
-			user_followed: [],
-		  };
-		  window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
-		  window.dispatchEvent(localStorageUpdated);
-		  return true; // is_default: yes, default data is set
-		}
+		//   return false; // is_default: no, blockchain data is set
+		} 
 	},
 	  
 	getUserData() {
@@ -75,11 +47,35 @@ export const _User =  {
 				name: userDetail.name,
 				avatar: userDetail.avatar,
 				banner: userDetail.banner,
-				age: Number(userDetail.age),
+				age: userDetail.age,
 				gender: userDetail.gender,
 				status: userDetail.status,
 				country: userDetail.country,
 				city: userDetail.city,
+				occupation: userDetail.occupation,
+				date_joined: userDetail.date_joined,
+				followers: Number(userDetail.followers),
+				following: Number(userDetail.following),
+				user_following: userDetail.user_following.map(String),
+				user_followed: userDetail.user_followed.map(String),
+			}
+			window.localStorage.setItem("loc_user", JSON.stringify(loc_user));
+		  	window.dispatchEvent(localStorageUpdated);
+		}
+	},
+
+	setUser(userDetail) {
+		if (userDetail) {
+				let loc_user = {
+				active_account: userDetail.userAddress,
+				name: userDetail.profile.name,
+				avatar: userDetail.profile.avatar,
+				banner: userDetail.profile.banner,
+				age: userDetail.profile.age,
+				gender: userDetail.profile.gender,
+				status: userDetail.profile.status,
+				country: userDetail.profile.country,
+				city: userDetail.profile.city,
 				occupation: userDetail.occupation,
 				date_joined: userDetail.date_joined,
 				followers: Number(userDetail.followers),

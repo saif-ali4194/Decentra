@@ -8,6 +8,7 @@ import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';	
 import { Web3Storage } from 'web3.storage';
 import { useNotification } from "@web3uikit/core";
+import { calculateAge } from '../../Scripts/ageCalculator';
 
 function Account() {
 	/* --to show notification-- */
@@ -63,11 +64,11 @@ function Account() {
 	};
 
 	const handleAgeChange = (event) => {
-		const enteredAge = parseInt(event.target.value, 10); // Parse the entered value as an integer
+		const enteredAge = calculateAge(event.target.value); // Parse the entered value as an integer
 
 		// Check if the enteredAge is within the valid range
 		const isInvalidAge = enteredAge < minAge || enteredAge > maxAge;
-			setAge(event.target.value);
+		setAge(event.target.value);
 		setDisable(isInvalidAge);
 		if(event.target.value == "") setDisable(true);
 	};
@@ -237,8 +238,10 @@ function Account() {
 
 			<div className="form-fields">
 			<div className='form-triplet'>
-			<label>Age</label>
-			<input type="number" value={age} onChange={handleAgeChange}  />
+			{/* <label>Age</label>
+			<input type="number" value={age} onChange={handleAgeChange}  /> */}
+			<label>DOB</label>
+			<input type="date" value={age} onChange={handleAgeChange} className="date-input"  min="1900-01-01" max="2007-12-31"/>
 			</div>
 			<div className='form-triplet'>
 			<label>Gender</label>

@@ -10,10 +10,10 @@ contract Decentra {
     }
 
     struct Profile {
-        string name;
+        string name;    
         string avatar;
         string banner;
-        uint256 age;
+        string age;
         string gender;
         string status;
         string country;
@@ -68,10 +68,7 @@ contract Decentra {
         string image;
     }
 
-    uint256 tweetId=1000;
-    Tweet[] public tweets;
     Trend[] public trends;
-    mapping (address => Tweet[]) public userTweets;
     mapping (uint => Comment[]) public comments; 
     mapping (uint => address[]) public liked;
     
@@ -175,6 +172,10 @@ contract Decentra {
             allUsers[i] = Users[userAddresses[i]];
         }
         return allUsers;
+    }
+
+    function getUserAddresses() public view returns (address[] memory) {
+        return userAddresses;
     }
 
     // Follow Logic

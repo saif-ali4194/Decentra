@@ -65,7 +65,7 @@ function RecommendationList() {
               name: fetchedUser.profile.name,
               avatar: fetchedUser.profile.avatar,
               banner: fetchedUser.profile.banner,
-              age: parseInt(fetchedUser.profile.age),
+              age: fetchedUser.profile.age,
               gender: fetchedUser.profile.gender,
               status: fetchedUser.profile.status,
               country: fetchedUser.profile.country,
