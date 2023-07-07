@@ -19,7 +19,7 @@ import { _Auth, _User } from './Scripts/UserStorage.js';
 function App() {
 	const [darkModeEnabled, setDarkModeEnabled] = useState(true);
 	// ----------- AUTH ------------ //
-	const [isAuthenticated,setIsAuthenticated] = useState(sessionStorage.getItem("isAuth"));
+	const [isAuthenticated,setIsAuthenticated] = useState(false);
 	const [provider,setProvider] = useState(window.ethereum);
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 	const navigate = useNavigate();
