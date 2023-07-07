@@ -15,7 +15,7 @@ import DecentraAbi from './abi/Decentra.json';
 import { _Auth, _User } from './Scripts/UserStorage.js';
 
 // const apiKey = config.REACT_APP_WEB3STORAGE_API_KEY;
-
+//main
 function App() {
 	const [darkModeEnabled, setDarkModeEnabled] = useState(true);
 	// ----------- AUTH ------------ //
