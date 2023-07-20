@@ -9,6 +9,7 @@ import Web3Modal from 'web3modal';
 import { Web3Storage } from 'web3.storage';
 import { useNotification } from "@web3uikit/core";
 import { calculateAge } from '../../Scripts/ageCalculator';
+import axios from 'axios';
 
 function Account() {
 	/* --to show notification-- */
@@ -102,9 +103,10 @@ function Account() {
 	const handleAvatarChange = (event) => {
 		try {
 			if(event !=null){
-				setAvatar(event.target.files); //file array
+				setAvatar(event.target.files[0]); //file array
 				setPrevAvatar(URL.createObjectURL(event.target.files[0]));
 				setChkAvatar(true);
+				setDisable(false);
 			}
 		} catch(e) {
 			notification({
@@ -122,9 +124,10 @@ function Account() {
 	const handleBannerChange = (event) => {
 		try {
 			if(event != null) {
-				setBanner(event.target.files); //file array
+				setBanner(event.target.files[0]); //file array
 				setPrevBanner(URL.createObjectURL(event.target.files[0]));
 				setChkBanner(true);
+				setDisable(false);
 			}
 		} catch(e) {
 			notification({
@@ -141,18 +144,37 @@ function Account() {
 	};
 
 	/* --Storing data in ipfs-- */
-	async function storeFile (selectedFile) {
-		try {
-			const client = new Web3Storage({token: Web3StorageApi});
-			const rootCid = await client.put(selectedFile);
-			let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
-			return ipfsUploadedUrl;
-		} catch(e) {
-			alert("OOPS :(\n" + e);
-		}
+	// async function storeFile (selectedFile) {
+	// 	try {
+	// 		console.log("Selected File Try: " +  selectedFile); 
+	// 		const client = new Web3Storage({token: Web3StorageApi});
+	// 		console.log(selectedFile);
+	// 		const rootCid = await client.put(selectedFile);
+	// 		let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
+	// 		return ipfsUploadedUrl;
+	// 	} catch(e) {
+	// 		console.log("Selected File Catch: " +  selectedFile);
+	// 		alert("OOPS :(\n" + e);
+	// 	}
 		
-	}
-
+	// }
+	  
+	async function storeFile(selectedFile) {
+		try {
+		  const formData = new FormData();
+		  formData.append("images", selectedFile);
+	  
+		  const response = await axios.post('http://192.168.18.16:3001/upload', formData);
+		  // Handle the response from the server after the files are uploaded
+		  console.log(response.data.ipfsUrl);
+		  return response.data.ipfsUrl;
+		} catch (error) {
+		  // Handle any error that occurred during the file upload
+		  console.error('Error uploading files:', error);
+		  return null;
+		}
+	  }
+	  
 	/* --Updating user when save btn is clicked-- */
 	async function updateUser() {
 		const web3Modal = new Web3Modal();
@@ -281,7 +303,7 @@ function Account() {
 			<div className="form-fields">
 				<div className='form-duo'>
 					<label>Avatar</label>
-					<input type="file" accept="image/*" onChange={handleAvatarChange} />
+					<input type="file" accept="image/*" onChange={handleAvatarChange}  />
 				</div>
 				<div className='form-duo'>
 					<label>Banner</label>
