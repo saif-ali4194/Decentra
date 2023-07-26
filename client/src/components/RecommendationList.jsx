@@ -33,14 +33,12 @@ function RecommendationList() {
   	}, []);
 
       const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
-      // let RandomUsers = [];
-      // const shuffleArray = (array) => {
-      //   for (let i = array.length - 1; i > 0; i--) {
-      //     const j = Math.floor(Math.random() * (i + 1));
-      //     [array[i], array[j]] = [array[j], array[i]];
-      //   }
-      //   return array;
-      // };
+      
+      const getRandomUsers = (usersArray, count) => {
+        const shuffledUsers = usersArray.sort(() => 0.5 - Math.random());
+        return shuffledUsers.slice(0, count);
+      };
+
       useEffect(() => {
         const fetchUsers = async () => {
           console.log("Working hard")
@@ -77,7 +75,9 @@ function RecommendationList() {
             }
             tmp_users.push(user);
           }
-          setUsers(tmp_users);
+          const randomUsers = getRandomUsers(tmp_users, 5);
+          // setUsers(tmp_users);
+          setUsers(randomUsers);
         };
         fetchUsers();
         // RandomUsers = shuffleArray(users);   

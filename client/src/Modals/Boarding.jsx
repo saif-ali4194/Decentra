@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 import DefaultAvatar from "../Data/Images/avatar.jpg"
 import DefaultBanner from "../Data/Images/banner.png"
+import { calculateAge } from '../Scripts/ageCalculator';
 
 function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 	const navigate = useNavigate();
@@ -33,7 +34,8 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 		  status === "" ||
 		  country === "" ||
 		  city === "" ||
-		  occupation === ""
+		  occupation === "" ||
+		  (calculateAge(age) > 100 || calculateAge(age) < 15)
 		) {
 		  return true;
 		}
@@ -52,6 +54,7 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 
 	const createUser = async () =>{
+		setDisable(true);
 		const web3Modal = new Web3Modal();
 		const connection = await web3Modal.connect();
 		let provider = new ethers.BrowserProvider(connection);
@@ -75,9 +78,11 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 					backgroundColor: 'var(--background-color)', // Set the desired background color
 				  },
 			});
+			setDisable(false);
 			closeOnboardingModal();
 			navigate("/login");
 		} else {
+			
 			const currentDate = new Date();
 			const options = { day: 'numeric', month: 'short', year: 'numeric' };
 			const formattedDate = currentDate.toLocaleString('en-US', options);
@@ -105,65 +110,63 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 			await contract.createUser(userDetails);
 			await contract.addNotification(signerAddress, noti.txt, noti.img);
 			setIsAuthenticated(true);
+			setDisable(false);
 			navigate("/");
 		}
 	}
 
 	/* --Change Events for all fields-- */
+	
+	useEffect(() => {
+		console.log("here usereffect");
+		setDisable(isAnyFieldEmpty());
+	}, [name, age, gender, status, country, city, occupation]);
+
 	const handleNameChange = (event) => {
 		setName(event.target.value);
-		setDisable(isAnyFieldEmpty());
 	};
 
 	const handleAgeChange = (event) => {
 		setAge(event.target.value);
-		console.log(age)
-		setDisable(isAnyFieldEmpty());
 	};
 
 	const handleGenderChange = (event) => {
 		setGender(event.target.value);
-		setDisable(isAnyFieldEmpty());
 	};
 
 	const handleStatusChange = (event) => {
 		setStatus(event.target.value);
-		setDisable(isAnyFieldEmpty());
 	};
 
 	const handleCountryChange = (event) => {
 		setCountry(event.target.value);
-		setDisable(isAnyFieldEmpty());
 	};
 
 	const handleCityChange = (event) => {
 		setCity(event.target.value);
-		setDisable(isAnyFieldEmpty());
 	};
 
 	const handleOccupationChange = (event) => {
 		setOccupation(event.target.value);
-		setDisable(isAnyFieldEmpty());
 	};
   return (
     <div className='onBoarding'>   
         <span id="OB-title">Tell us about yourself!</span>
-    
         <div className="OB-form">
 			<div className="OB-col">
 				<label>Name</label>
-				<input type="text" value={name} onChange={handleNameChange} />
+				<input type="text" value={name} onChange={handleNameChange} required/>
 			</div>
 			
 			<div className="OB-row">
 				<div className="OB-col">
 					<label>DOB</label>
-					<input type="date" value={age} onChange={handleAgeChange} className="date-input"  min="1900-01-01" max="2007-12-31"/>
+					<input type="date" value={age} onChange={handleAgeChange} className="date-input"  min="1930-01-01" max="2007-12-31" required/>
 				</div>
 				
 				<div className="OB-col">
 					<label>Gender</label>
-					<select value={gender} onChange={handleGenderChange} className='dropdown-options'>
+					<select value={gender} onChange={handleGenderChange} className='dropdown-options' required>
 						<option value="" hidden>
 							{gender ? gender : "Select"}
 						</option>
@@ -175,7 +178,7 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 				
 				<div className="OB-col">
 				<label>Status</label>
-				<select value={status} onChange={handleStatusChange} className='dropdown-options'>
+				<select value={status} onChange={handleStatusChange} className='dropdown-options' required>
 					<option value="" hidden>
 						{status ? status : "Select"}
 					</option>
@@ -189,21 +192,21 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 			
 			<div className="OB-col">
 				<label>Occupation</label>
-				<input type="text" value={occupation} onChange={handleOccupationChange} />
+				<input type="text" value={occupation} onChange={handleOccupationChange} required/>
 			</div>
 			
 			<div className="OB-row">
 				<div className='OB-col'><label>City</label>
-				<input type="text" value={city} onChange={handleCityChange} /></div>
+				<input type="text" value={city} onChange={handleCityChange} required/></div>
 				<div className='OB-col'>
 				<label>Country</label>
-				<input type="text" value={country} onChange={handleCountryChange} /> 
+				<input type="text" value={country} onChange={handleCountryChange} required /> 
 				</div>
 			</div>
 
 			<div className="OB-row">
 			<button onClick={closeOnboardingModal}>close</button>
-			<button disabled={disable && isAnyFieldEmpty()} onClick={createUser}>Create</button>
+			<button disabled={disable || isAnyFieldEmpty()} onClick={createUser}>Create</button>
 			</div>
 		</div>
     </div>

@@ -58,6 +58,21 @@ function Account() {
 	  }, [loc_user.avatar, loc_user.banner]);
 	
 	/* --Change Events for all fields-- */
+
+	const isAgeEmpty = () => {
+		if (
+		  (calculateAge(age) > 100 || calculateAge(age) < 15)
+		) {
+		  return true;
+		}
+		return false;
+	  };
+
+	  useEffect(() => {
+		console.log("here usereffect");
+		setDisable(isAgeEmpty());
+	}, [age]);
+
 	const handleNameChange = (event) => {
 		if(event.target.value == "") setDisable(true);
 		else setDisable(false);
