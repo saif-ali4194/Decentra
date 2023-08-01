@@ -155,7 +155,7 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
         <div className="OB-form">
 			<div className="OB-col">
 				<label>Name</label>
-				<input type="text" value={name} onChange={handleNameChange} required/>
+				<input type="text" value={name} onChange={handleNameChange} required maxLength="16"/>
 			</div>
 			
 			<div className="OB-row">
@@ -192,15 +192,15 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 			
 			<div className="OB-col">
 				<label>Occupation</label>
-				<input type="text" value={occupation} onChange={handleOccupationChange} required/>
+				<input type="text" value={occupation} onChange={handleOccupationChange} maxLength="25"/>
 			</div>
 			
 			<div className="OB-row">
 				<div className='OB-col'><label>City</label>
-				<input type="text" value={city} onChange={handleCityChange} required/></div>
+				<input type="text" value={city} onChange={handleCityChange} required maxLength="12"/></div>
 				<div className='OB-col'>
 				<label>Country</label>
-				<input type="text" value={country} onChange={handleCountryChange} required /> 
+				<input type="text" value={country} onChange={handleCountryChange} required maxLength="12"/> 
 				</div>
 			</div>
 

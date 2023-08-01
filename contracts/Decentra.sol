@@ -173,6 +173,32 @@ contract Decentra {
         }
         return allUsers;
     }
+    
+    function getRandomUsers() public view returns (user[] memory) {
+    uint totalUsers = userAddresses.length;
+    uint count = totalUsers > 5 ? 5 : totalUsers;
+
+    address[] memory shuffledUserAddresses = new address[](totalUsers);
+    for (uint i = 0; i < totalUsers; i++) {
+        shuffledUserAddresses[i] = userAddresses[i];
+    }
+
+    // Shuffle the user addresses using Fisher-Yates algorithm
+    for (uint i = totalUsers - 1; i > 0; i--) {
+        uint j = uint(keccak256(abi.encodePacked(block.timestamp, msg.sender, i))) % (i + 1);
+        (shuffledUserAddresses[i], shuffledUserAddresses[j]) = (shuffledUserAddresses[j], shuffledUserAddresses[i]);
+    }
+
+    user[] memory randomUsers = new user[](count);
+    for (uint i = 0; i < count; i++) {
+        address userAddress = shuffledUserAddresses[i];
+        randomUsers[i] = Users[userAddress];
+    }
+
+    return randomUsers;
+}
+
+
 
     function getUserAddresses() public view returns (address[] memory) {
         return userAddresses;

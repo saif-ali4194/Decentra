@@ -48,7 +48,8 @@ function RecommendationList() {
           const signer = await provider.getSigner();
           const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
       
-          const fetchedUsers = await contract.getAllUsers();
+          // const fetchedUsers = await contract.getAllUsers();
+          const fetchedUsers = await contract.getRandomUsers();
           let tmp_users = [];
           //Update the state with the fetched users
           for(let i=0; i<fetchedUsers.length; i++) {

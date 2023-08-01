@@ -265,11 +265,11 @@ function Account() {
 			<div className="form-fields">
 			<div className='form-duo'>
 				<label>Name</label>
-				<input type="text" value={name} onChange={handleNameChange} />
+				<input type="text" value={name} onChange={handleNameChange} maxLength="16" />
 			</div>
 			<div className='form-duo'>
 				<label>Occupation</label>
-				<input type="text" value={occupation} onChange={handleOccupationChange} />
+				<input type="text" value={occupation} onChange={handleOccupationChange} maxLength="25"/>
 			</div>
 			</div>
 
@@ -308,10 +308,10 @@ function Account() {
 
 			<div className="form-fields">
 			<div className='form-duo'><label>City</label>
-			<input type="text" value={city} onChange={handleCityChange} /></div>
+			<input type="text" value={city} onChange={handleCityChange} maxLength="12"/></div>
 			<div className='form-duo'>
 			<label>Country</label>
-			<input type="text" value={country} onChange={handleCountryChange} /> 
+			<input type="text" value={country} onChange={handleCountryChange} maxLength="12" /> 
 			</div>
 			</div>
 
