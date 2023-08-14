@@ -18,7 +18,34 @@ import { useNotification } from "@web3uikit/core";
 const TweetBox = ({profile,mode,render,renderth,p_id}) => {
     const [disable,setDisable]=useState(false);
     const twImgClose = useRef();
-
+    const [country,setCountry]=useState("");
+    useEffect(() => {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+    
+            // Here, you can use a reverse geocoding service to get the country based on the coordinates.
+            // This might involve making an API request to a service like OpenStreetMap, Google Maps, etc.
+            // For the sake of example, let's assume you're using OpenStreetMap's Nominatim API.
+    
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+              .then(response => response.json())
+              .then(data => {
+                if (data.address && data.address.country) {
+                  setCountry(data.address.country);
+                }
+              })
+              .catch(error => {
+                console.error("Error fetching location:", error);
+              });
+          }, function(error) {
+            console.error("Error getting location:", error);
+          });
+        } else {
+          console.error("Geolocation is not available in this browser.");
+        }
+      }, []);
     function getCurrentDateAsString() {
         const currentDate = new Date();
         const year = currentDate.getFullYear();
@@ -67,7 +94,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                 const signer = await provider.getSigner();
                 const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
                 let imageURL="";
-            
+                let hashtags = undefined;
             if(mode == 0){
 
                     if (tweetImg !== null && tweetImg !== undefined) {
@@ -75,6 +102,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                     }
 
                     const transaction = await contract.addTweet(loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
+                    hashtags=hashtag(tweetText);
                     setTweetText("");
                     setImage(null);
                     // twImgClose.current.click();
@@ -89,11 +117,18 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                 }
 
                 const transaction = await contract.addComment(p_id,loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
+                hashtags=hashtag(tweetText);
                 setTweetText("");
                 setImage(null);
                 // twImgClose.current.click();
                 //renderth(true);
                 console.log(transaction);
+            }
+            if(hashtags!== undefined){
+                for(let i=0;i<hashtags.length;i++){
+                    const transaction = await contract.addTrend(hashtags[i],country);
+                    //console.log(hashtags[i]+" "+country);
+                }
             }
         setDisable(false);
     }
@@ -116,7 +151,10 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
         textarea.style.height="auto";
         textarea.style.height=`${e.target.scrollHeight}px`;
     }
-    
+    const hashtag=(msg)=>{
+        const hashtags = msg.match(/#[^\s#]+/g);
+        return hashtags;
+    }
     return ( 
         <div className="tweetbox">
             <div className="avatar">

@@ -18,7 +18,7 @@
     height: 78%;
 }
 .below-avatar .straightLine{
-    
+    display: none;
     height: 100%;
     width:2px;
     background-color: var(--border-color);
@@ -79,3 +79,60 @@
     filter: brightness(250%);
     cursor: pointer;
 }
+.replying{
+    display:none;
+}
+.cmt-right-middle img{
+    margin-top:1em;
+    max-height: 50vh;
+    border-radius: 0.5rem;
+    max-width: 100%;
+    object-fit: cover;
+        
+}
+/* .cmt-Options{
+    display: none;
+} */
+
+.postOptionsMainDiv{
+    position:relative;
+}
+
+.post_options_dialog{
+    box-sizing: border-box;
+    position: absolute;
+    top:100%;
+    width: 100%;
+    background-color: var(--card-color);
+    color: var(--font-color);
+    text-align: center;
+    filter: contrast(90%);
+    border: 0;
+    padding: 1em 0;
+    /* box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px; */
+    box-shadow: var(--Inverted-color) 0px 0px 15px, var(--Inverted-color) 0px 0px 3px 1px;
+    border-radius: 0.5em;
+    z-index: 99;
+}
+.postDelButton{
+    border: none;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    color:var(--font-color);
+    font-weight:bolder;
+}
+.postDelButton:hover{
+    cursor: pointer;
+}
+.post_options_dialog:hover{
+    background-color: var(--sidebar-active);
+    cursor: pointer;
+}
+.childComments{
+    margin-left: 1em;
+}
+/* .linebreak{
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+} */

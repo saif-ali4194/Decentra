@@ -65,9 +65,9 @@ const Comments = ({id, users}) => {
         
       }, []);
 
-      useEffect(() => {
-        console.log(comments);
-      }, [comments]);
+    //   useEffect(() => {
+    //     console.log(comments);
+    //   }, [comments]);
     return ( 
         <div className='comments'>
 
@@ -78,7 +78,7 @@ const Comments = ({id, users}) => {
                             
                         
 
-                        return <div key={comment.c_id} className='cmts-group'>
+                        return <div key={comment.id} className='cmts-group'>
                                     <Comment comment={comment} users={users} />
                                     <div className='cmts-linebreak'></div>
                                 </div>

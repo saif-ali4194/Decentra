@@ -59,7 +59,7 @@ contract Decentra {
         uint256 t_id;
         string t_name;
         string t_location;
-        uint t_mentions;
+        
     }
     
     struct Notification {
@@ -68,6 +68,7 @@ contract Decentra {
         string image;
     }
 
+    mapping (uint => uint) public mentions;
     Trend[] public trends;
     mapping (uint => Comment[]) public comments; 
     mapping (uint => address[]) public liked;
@@ -332,14 +333,35 @@ contract Decentra {
     //Functions for Trends
     function addTrend(string memory _name, string memory _location) public  {
         uint id = tweetId;
-        tweetId++;
-        trends.push(Trend(id,_name,_location, 1));
+        bool exists =false;
+        uint tempMentions;
+       
+        for(uint i=0;i<trends.length;i++){
+            if(stringsEquals(trends[i].t_name, _name)){
+                exists = true;
+                id=trends[i].t_id;
+                break;
+            }
+        }
+       
+       if(exists){
+            tempMentions=mentions[id];
+            tempMentions++;
+            mentions[id]=tempMentions;
+        }else{
+            tweetId++;
+            trends.push(Trend(id,_name,_location));
+            mentions[id]=1;
+        }
+        
     }
    
     function getTrends() public view returns(Trend[] memory){
         return trends;
     }
-
+    function getMentions(uint _id) public view returns(uint){
+        return mentions[_id];
+    }
     // Function to add a new notification
     function addNotification(address _userAddress, string memory _text, string memory _image) public {
         Notification[] storage notifications = userNotifications[_userAddress];
