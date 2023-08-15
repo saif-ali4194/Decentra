@@ -41,7 +41,6 @@ function RecommendationList() {
 
       useEffect(() => {
         const fetchUsers = async () => {
-          console.log("Working hard")
           const web3Modal = new Web3Modal();
           const connection = await web3Modal.connect();
           let provider = new ethers.BrowserProvider(connection);

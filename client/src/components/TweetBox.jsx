@@ -14,6 +14,7 @@ import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';	
 import { Web3Storage } from 'web3.storage';
 import { useNotification } from "@web3uikit/core";
+import axios from 'axios';
 
 const TweetBox = ({profile,mode,render,renderth,p_id}) => {
     const [disable,setDisable]=useState(false);
@@ -55,17 +56,33 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
         return `${day}-${month}-${year}`;
       }
       
-      async function storeFile (selectedFile) {
-		try {
-			const client = new Web3Storage({token: Web3StorageApi});
-			const rootCid = await client.put(selectedFile);
-			let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
-			return ipfsUploadedUrl;
-		} catch(e) {
-			alert("OOPS :(\n" + e);
-		}
+    //   async function storeFile (selectedFile) {
+	// 	try {
+	// 		const client = new Web3Storage({token: Web3StorageApi});
+	// 		const rootCid = await client.put(selectedFile);
+	// 		let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
+	// 		return ipfsUploadedUrl;
+	// 	} catch(e) {
+	// 		alert("OOPS :(\n" + e);
+	// 	}
 		
-	}
+	// }
+
+    async function storeFile(selectedFile) {
+		try {
+		  const formData = new FormData();
+		  formData.append("images", selectedFile);
+	  
+		  const response = await axios.post('http://10.140.49.207:3001/upload', formData); // http://192.168.18.16:3001/upload
+		  // Handle the response from the server after the files are uploaded
+		  console.log(response.data.ipfsUrl);
+		  return response.data.ipfsUrl;
+		} catch (error) {
+		  // Handle any error that occurred during the file upload
+		  console.error('Error uploading files:', error);
+		  return null;
+		}
+	  }
 
     const [loc_user, setLocUser] = useState(_User.getUserData());
     useEffect(() => {
@@ -139,7 +156,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
     const onImageChange = (event)=>{
         if(event.target.files && event.target.files[0]){
             let img = event.target.files[0];
-            setTweetImg(event.target.files);
+            setTweetImg(event.target.files[0]);
             setImage({
                 image:URL.createObjectURL(img)
             });

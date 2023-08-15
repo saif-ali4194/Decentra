@@ -82,36 +82,6 @@ contract Decentra {
     Tweet[] public tweets;
     mapping (address => Tweet[]) public userTweets;
 
-    // function addUser (
-    //     Profile memory _profile,
-    //     string memory _occupation,
-    //     string memory _date_joined,
-    //     uint256 _followers,
-    //     uint256 _following,
-    //     uint256[] memory _user_following,
-    //     uint256[] memory _user_followed
-    // ) public {
-    //     user memory newUser = user(
-    //     _profile,
-    //     _occupation,
-    //     _date_joined,
-    //     _followers,
-    //     _following,
-    //     _user_following,
-    //     _user_followed
-    // );
-
-    // Users[msg.sender] = newUser;
-    // }
-
-    // function updateUser (
-    //     Profile memory _profile,
-    //     string memory _occupation
-    // ) public {
-    //     user storage userData = Users[msg.sender];
-    //     userData.profile = _profile;
-    //     userData.occupation = _occupation;
-    // }
 
     function stringsEquals(string memory s1, string memory s2) private pure returns (bool) {
         bytes memory b1 = bytes(s1);
@@ -364,16 +334,14 @@ contract Decentra {
     }
     // Function to add a new notification
     function addNotification(address _userAddress, string memory _text, string memory _image) public {
-        Notification[] storage notifications = userNotifications[_userAddress];
-        uint256 notificationId = notifications.length;
-        Notification memory newNotification = Notification(notificationId, _text, _image);
-        notifications.push(newNotification);
+        Notification[] storage noti = userNotifications[_userAddress];
+        uint256 notiId = noti.length;
+        Notification memory newNoti = Notification(notiId, _text, _image);
+        noti.push(newNoti);
     }
 
     // Function to retrieve a user's notifications
     function getUserNotifications(address _userAddress) public view returns (Notification[] memory) {
         return userNotifications[_userAddress];
     }
-
-    
 }   
