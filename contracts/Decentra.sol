@@ -144,7 +144,16 @@ contract Decentra {
         }
         return allUsers;
     }
-    
+//     function getUsers(uint256 numberOfUsers) public view returns (user[] memory) {
+//         if (numberOfUsers >= userAddresses.length) {
+//             numberOfUsers = userAddresses.length;
+//         }
+//         user[] memory usersToRetrieve = new user[](numberOfUsers);
+//         for (uint256 i = 0; i < numberOfUsers; i++) {
+//             usersToRetrieve[i] = Users[userAddresses[i]];
+//         }
+//         return usersToRetrieve;
+//    }
     function getRandomUsers() public view returns (user[] memory) {
     uint totalUsers = userAddresses.length;
     uint count = totalUsers > 5 ? 5 : totalUsers;

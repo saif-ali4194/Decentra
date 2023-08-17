@@ -13,6 +13,9 @@ import { _User } from '../Scripts/UserStorage.js';
 
 function CommunityPage() {
 	const [loc_user, setLocUser] = useState(_User.getUserData());
+	const [curUserPtr, setCurUserPtr] = useState(3);
+	const [totalUsers, setTotalUsers] = useState(0);
+
   	useEffect(() => {
 		const handleLocalStorageUpdated = () => {
 		setLocUser(_User.getUserData());
@@ -23,13 +26,30 @@ function CommunityPage() {
     	return () => {
       		window.removeEventListener('localStorageUpdated', handleLocalStorageUpdated);
     	};
+
   	}, []);
   const [activeSection, setActiveSection] = useState('com-followers');
   const [numUsers, setNumUsers] = useState(10);
   const [users, setUsers] = useState([]);
   const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 
+	useEffect(() => {
+		const getTotalUsers =  async () => {
+			const web3Modal = new Web3Modal();
+			const connection = await web3Modal.connect();
+			let provider = new ethers.BrowserProvider(connection);
+			const signer = await provider.getSigner();
+			const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+			
+			const totalUser = await contract.getUserAddresses();
+			setTotalUsers(totalUser.length);
+			// console.log(totalUsers);
+			console.log(totalUser.length)
+		}; 
 
+		getTotalUsers();
+		setCurUserPtr(3);
+  	}, []);
   useEffect(() => {
 	const fetchUsers = async () => {
 		const web3Modal = new Web3Modal();
@@ -65,13 +85,50 @@ function CommunityPage() {
 		setUsers(tmp_users);
 	};	
 	fetchUsers();
-		 
   }, [activeSection]);
+// const fetchUsers = async () => {
+// 	const web3Modal = new Web3Modal();
+// 	const connection = await web3Modal.connect();
+// 	let provider = new ethers.BrowserProvider(connection);
+// 	const signer = await provider.getSigner();
+// 	const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+
+// 	const fetchedUsers = await contract.getUsers(curUserPtr);
+// 	let tmp_users = [];
+// 	//Update the state with the fetched users
+// 	for(let i=0; i<fetchedUsers.length; i++) {
+// 		const fetchedUser = fetchedUsers[i];
+// 		if(fetchedUser.userAddress == loc_user.active_account)	continue;
+// 		const user = {
+// 			id: i,
+// 			userAddress: fetchedUser.userAddress, 
+// 			name: fetchedUser.profile.name,
+// 			avatar: fetchedUser.profile.avatar,
+// 			banner: fetchedUser.profile.banner,
+// 			age: fetchedUser.profile.age,
+// 			gender: fetchedUser.profile.gender,
+// 			status: fetchedUser.profile.status,
+// 			country: fetchedUser.profile.country,
+// 			city: fetchedUser.profile.city,
+// 			occupation: fetchedUser.occupation,
+// 			date_joined: fetchedUser.date_joined,
+// 			followers: parseInt(fetchedUser.followers),
+// 			following: parseInt(fetchedUser.following),
+// 		}
+// 		tmp_users.push(user);
+// 	}
+// 	setUsers(tmp_users);
+// };	
+// fetchUsers();
+// }, [activeSection, curUserPtr]);
 
   const handleClick = (section) => {
 	setActiveSection(section);
   }
 
+  const handleShowMore = () => {
+	setCurUserPtr(curUserPtr+3);
+  }
   return (
 	<div className='community-page'>
 	  <div className="com_header">
@@ -99,7 +156,9 @@ function CommunityPage() {
 				<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} />
 				))
 			}
-		  {/* <p id='com-show-more' onClick={handleShowMore}>Show More</p> */}
+		  {/* {totalUsers > curUserPtr && (
+      		<p id='com-show-more' onClick={handleShowMore}>Show More</p>
+    	  )} */}
 		</div> 
 	  }
 	</div>

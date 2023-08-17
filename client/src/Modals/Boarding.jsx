@@ -43,7 +43,7 @@ function Boarding({closeOnboardingModal, setIsAuthenticated}) {
 	  };
 
 	  const noti = {
-		txt: `Hi! congratulations on becoming a Decentrian, we are happy to have you ❤`,
+		txt: `Hi ${name}! congratulations on becoming a Decentrian, we are happy to have you ❤`,
 		img: "../Data/Images/logo.png",
 	};
 	const checkUserExists = (signerAddress, userAddresses) => {

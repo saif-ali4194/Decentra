@@ -73,7 +73,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
 		  const formData = new FormData();
 		  formData.append("images", selectedFile);
 	  
-		  const response = await axios.post('http://10.140.49.207:3001/upload', formData); // http://192.168.18.16:3001/upload
+		  const response = await axios.post(config.REACT_APP_AXIOS, formData); // http://192.168.18.16:3001/upload
 		  // Handle the response from the server after the files are uploaded
 		  console.log(response.data.ipfsUrl);
 		  return response.data.ipfsUrl;
