@@ -152,13 +152,13 @@ function CommunityPage() {
 		  ))
 	  ) : <div>
 			{
-			  users.map((user) => (
+			  users.slice(0, curUserPtr).map((user) => (
 				<UserUnit key={user.id} u_id={user.id} u_avatar={user.avatar} u_name={user.name} user={user} />
 				))
 			}
-		  {/* {totalUsers > curUserPtr && (
+		  {totalUsers-1 > curUserPtr && (
       		<p id='com-show-more' onClick={handleShowMore}>Show More</p>
-    	  )} */}
+    	  )}
 		</div> 
 	  }
 	</div>
