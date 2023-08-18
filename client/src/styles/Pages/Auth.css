@@ -62,6 +62,15 @@
 .auth-connect-div:hover {
     background-color: #235b94;
 }
+.auth-connect-div:disabled {
+    color: #999999;
+    background-color: #dddddd;
+    cursor: not-allowed;
+}
+.auth-connect-div:disabled:hover {
+    color: #999999;
+    background-color: #dddddd;
+}
 /* #auth-right {
     display: flex;
     flex-direction: column;

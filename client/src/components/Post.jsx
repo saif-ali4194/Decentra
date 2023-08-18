@@ -8,6 +8,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { useRef } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
+import HeartBrokenOutlinedIcon from '@mui/icons-material/HeartBrokenOutlined';
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 // import { User } from '../Test Data/CurrentUser';
 import TweetBox from './TweetBox';
 import {Link} from 'react-router-dom';
@@ -17,6 +19,8 @@ import DecentraAbi from '../abi/Decentra.json';
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';	
 import { Web3Storage } from 'web3.storage';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 
 const Post = ({tweet,tweetId,avatar, render}) => {
     const [loc_user, setLocUser] = useState(_User.getUserData());
@@ -154,7 +158,8 @@ const Post = ({tweet,tweetId,avatar, render}) => {
                 <div className="post_top">
                     <div className='post_top_userinfo'>
                         <span className='post_username'>{tweet.username}</span>
-                        <span className='post_info'>{tweet.userAt}·{tweet.date}</span>
+                        {/* <span className='post_info'>{tweet.userAt}·{tweet.date}</span> */}
+                        <span className='post_info'>{tweet.date}</span>
                     </div>
                     <div className="postOptionsMainDiv">
                         {(tweet.tweetOwner===loc_user.active_account) &&
@@ -184,8 +189,8 @@ const Post = ({tweet,tweetId,avatar, render}) => {
                         :
                         <FavoriteBorderIcon className='_postoptions' onClick={likePost} />
                     }
-
-                    <ReplyIcon className='_postoptions'/>
+                    <ThumbDownOffAltIcon className='_postoptions' />
+                    {/* <ReplyIcon className='_postoptions'/> */}
                 </div>
             </div>
             
@@ -210,7 +215,8 @@ const Post = ({tweet,tweetId,avatar, render}) => {
                         <div className="replyBodySide">
                             <div className='post_top_userinfo'>
                                 <span className='post_username'>{tweet.username}</span>
-                                <span className='post_info'>{tweet.userAt}·{tweet.date}</span>
+                                {/* //{tweet.userAt}· */}
+                                <span className='post_info'>{tweet.date}</span> 
                             </div>
                             <div className="replyMaintext">
                                 {tweet.text && 

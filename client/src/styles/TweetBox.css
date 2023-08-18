@@ -83,11 +83,19 @@ textarea::-webkit-scrollbar{
     object-fit: cover;
     border-radius: 0.5rem;
 }
-.disable>button[disabled] {
+
+.tweet_btn>button {
+    background-color: var(--Brand-color);
+    color: var(--D-font-color);
+    border-radius:25px;
+    padding:5px 10px;
+    font-weight:bold;
+}
+.tweet_btn>button[disabled] {
     color: #999999;
     background-color: #dddddd;
   }
-.disable>button[disabled]:hover {
+.tweet_btn>button[disabled]:hover {
     color: #999999;
     background-color: #dddddd;
 }

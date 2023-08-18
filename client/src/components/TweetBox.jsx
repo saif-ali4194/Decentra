@@ -47,14 +47,38 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
           console.error("Geolocation is not available in this browser.");
         }
       }, []);
+    // function getCurrentDateAsString() {
+    //     const currentDate = new Date();
+    //     const year = currentDate.getFullYear();
+    //     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    //     const day = String(currentDate.getDate()).padStart(2, '0');
+        
+    //     return `${day}-${month}-${year}`;
+    //   }
+    function getDaySuffix(day) {
+        if (day >= 11 && day <= 13) {
+            return 'th';
+        }
+        switch (day % 10) {
+            case 1:
+                return 'st';
+            case 2:
+                return 'nd';
+            case 3:
+                return 'rd';
+            default:
+                return 'th';
+        }
+    }
     function getCurrentDateAsString() {
         const currentDate = new Date();
         const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        const day = String(currentDate.getDate()).padStart(2, '0');
+        const month = currentDate.toLocaleString('en-US', { month: 'long' });
+        const day = currentDate.getDate();
+        const daySuffix = getDaySuffix(day);
         
-        return `${day}-${month}-${year}`;
-      }
+        return `${month} ${day}${daySuffix}, ${year}`;
+    }
       
     //   async function storeFile (selectedFile) {
 	// 	try {
@@ -141,7 +165,8 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                 //renderth(true);
                 console.log(transaction);
             }
-            if(hashtags!== undefined){
+          
+            if(hashtags!== null){
                 for(let i=0;i<hashtags.length;i++){
                     const transaction = await contract.addTrend(hashtags[i],country);
                     //console.log(hashtags[i]+" "+country);
@@ -201,18 +226,12 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                     <div className="bottomfield">
                         <div className="media_icons">
                             <CropOriginalIcon className='_options' onClick={()=>{imageRef.current.click()}}/>
-                            <GifIcon className='_options'/>
-                            <PollIcon className='_options'/>
+                            {/* <GifIcon className='_options'/>
+                            <PollIcon className='_options'/> */}
                             <SentimentSatisfiedIcon className='_options'/>
                         </div>
                         <div className="tweet_btn">
-                            <Button disabled={disable} className={disable ? "disable": ""} onMouseDown={tweet} style={{
-                                backgroundColor: "var(--Brand-color)",
-                                color: "var(--D-font-color)",
-                                borderRadius:"25px",
-                                padding:"5px 10px",
-                                fontWeight:"bold"
-                            }}>Post</Button>
+                            <Button disabled={disable} onMouseDown={tweet} >Post</Button>
                             <div style={{
                                 display:"none"
                             }}>

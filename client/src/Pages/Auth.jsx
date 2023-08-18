@@ -20,6 +20,8 @@ import { useNotification } from "@web3uikit/core";
 function Auth({setIsAuthenticated}) {
 	const navigate = useNavigate();
 	const notification = useNotification();
+	const [disable, setDisable] = useState(false);
+
 	const currentDate = new Date();
 	const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 	const noti = {
@@ -34,6 +36,7 @@ function Auth({setIsAuthenticated}) {
 
 	const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
 	const connectWallet = async () =>{
+		setDisable(true);
 		const web3Modal = new Web3Modal();
 		const connection = await web3Modal.connect();
 		let provider = new ethers.BrowserProvider(connection);
@@ -57,14 +60,17 @@ function Auth({setIsAuthenticated}) {
 					backgroundColor: 'var(--background-color)', // Set the desired background color
 				  },
 			});
+			setDisable(false);
 			navigate("/signup");
 		} else {
+			setDisable(true);
 			const getUserDetail = await contract.getUser(signerAddress);
 			_User.setUserLocalStorage(getUserDetail, signerAddress);
 			await contract.addNotification(signerAddress, noti.txt, noti.img);
 			_Auth.set_auth(true);
 			setIsAuthenticated(true);
 			sessionStorage.setItem("isAuth", true);
+			setDisable(false);
 			navigate("/");
 		}
     }
@@ -175,7 +181,7 @@ function Auth({setIsAuthenticated}) {
 			<div className="H-wrapper">
 				<button className={ 'auth-connect-div' }  
 					  
-					onClick={connectWallet} >connect</button>
+					onClick={connectWallet} disabled={disable}>connect</button>
 
 				<span id="auth-change" onClick={changePathSignup}>Need have an account?</span>
 				</div>
