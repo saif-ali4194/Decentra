@@ -32,3 +32,13 @@
 #follow-btn.following:hover {
     background-color: rgb(61, 61, 61);
 }
+
+#follow-btn:disabled {
+    background-color: #466b91;
+    cursor: not-allowed;
+}
+
+#follow-btn:disabled:hover {
+    background-color: #466b91;
+    cursor: not-allowed;
+}

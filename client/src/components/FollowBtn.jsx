@@ -9,6 +9,7 @@ import { _User } from '../Scripts/UserStorage.js';
 // { userId, followingIds, onFollow } parameters
 function FollowBtn({userAddress, user}) {
     const [isFollowing, setIsFollowing] = useState(false);
+    const [disable, setDisable] = useState(false);
     const [loc_user, setLocUser] = useState(_User.getUserData());
   	useEffect(() => {
 		const handleLocalStorageUpdated = () => {
@@ -28,6 +29,7 @@ function FollowBtn({userAddress, user}) {
 
     const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
     const handleFollow =  async (user) =>	 {
+      setDisable(true);
       console.log("follow btn follow");
       setIsFollowing(true);
       const noti = {
@@ -46,12 +48,14 @@ function FollowBtn({userAddress, user}) {
         userDetail.following++;
         _User.setData(userDetail);
         await contract.addNotification(user.userAddress, noti.txt, noti.img);
+        setDisable(false);
       } catch (e) {
         alert("OOPS!\n "+ e)
       }
     }
   
     const handleUnFollow =  async (user) =>	 {
+      setDisable(true);
       console.log("follow btn unfollow");
       setIsFollowing(false);
       const noti = {
@@ -74,12 +78,13 @@ function FollowBtn({userAddress, user}) {
         _User.setData(userDetail);
   
         await contract.addNotification(user.userAddress, noti.txt, noti.img);
+        setDisable(false);
       } catch(e) {
         alert("OOPS!\n" + e);
       }
     }
     return (
-        <button id='follow-btn' onClick={()=> (isFollowing ? handleUnFollow (user) : handleFollow(user))} className={isFollowing ? 'following' : ''}>
+        <button id='follow-btn' disabled={disable} onClick={()=> (isFollowing ? handleUnFollow (user) : handleFollow(user))} className={isFollowing ? 'following' : ''}>
             {isFollowing ? 'Unfollow' : 'Follow'}
         </button>
   )

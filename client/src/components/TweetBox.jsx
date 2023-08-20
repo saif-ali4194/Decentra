@@ -25,7 +25,8 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
           navigator.geolocation.getCurrentPosition(function(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-    
+            
+            console.log(latitude +" "+ longitude);
             // Here, you can use a reverse geocoding service to get the country based on the coordinates.
             // This might involve making an API request to a service like OpenStreetMap, Google Maps, etc.
             // For the sake of example, let's assume you're using OpenStreetMap's Nominatim API.
@@ -34,6 +35,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
               .then(response => response.json())
               .then(data => {
                 if (data.address && data.address.country) {
+                    console.log("ysh"+ data.address.country)
                   setCountry(data.address.country);
                 }
               })
