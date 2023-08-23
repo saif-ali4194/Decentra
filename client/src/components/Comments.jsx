@@ -5,6 +5,7 @@ import Comment from './Comment';
 import { comment_data } from '../Test Data/CommentData';
 import { ethers } from 'ethers';
 import DecentraAbi from '../abi/Decentra.json';
+import DecentraModulesAbi from '../abi/DecentraModules.json';
 import config from '../config.js';
 import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
@@ -26,7 +27,7 @@ const Comments = ({id, users}) => {
   	}, []);
 
       const [comments, setComments] = useState([]);
-      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+      const DecentraContractAddress = config.REACT_APP_DECENTRAMODULES_CONTRACT_ADDRESS;
     
       useEffect(() => {
             const fetchComments = async () => {
@@ -34,7 +35,7 @@ const Comments = ({id, users}) => {
                 const connection = await web3Modal.connect();
                 let provider = new ethers.BrowserProvider(connection);
                 const signer = await provider.getSigner();
-                const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+                const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
         
                 const fetchedComments = await contract.getComments(id);
                 tmp_cmts = [];  
@@ -52,6 +53,9 @@ const Comments = ({id, users}) => {
                             date: fetchedComment.date,
                             text: fetchedComment.text,
                             cId: fetchedComment.cId,
+                            likes:fetchedComment.likes,
+                            dislikes:fetchedComment.dislikes,
+                            avatar:fetchedComment.avatar
                         
                         }
                         

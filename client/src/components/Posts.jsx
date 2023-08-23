@@ -5,6 +5,7 @@ import Post from './Post';
 //import {tweets} from '../Test Data/PostDemoData';
 import { ethers } from 'ethers';
 import DecentraAbi from '../abi/Decentra.json';
+import DecentraModulesAbi from '../abi/DecentraModules.json';
 import config from '../config.js';
 import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';

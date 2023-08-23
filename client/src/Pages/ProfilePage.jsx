@@ -11,6 +11,7 @@ import { ethers, formatEther } from 'ethers';
 import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
 import DecentraAbi from '../abi/Decentra.json';
+import DecentraModulesAbi from '../abi/DecentraModules.json';
 import config from '../config.js';
 import { calculateAge } from '../Scripts/ageCalculator';
 
@@ -32,14 +33,14 @@ function ProfilePage({current_user}) {
     
     const [tweets, setTweets] = useState([]);
     const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
-    
+    const DecentraContractAddress2 = config.REACT_APP_DECENTRAMODULES_CONTRACT_ADDRESS;
     useEffect(() => {
       const fetchTweets = async () => {
           const web3Modal = new Web3Modal();
           const connection = await web3Modal.connect();
           let provider = new ethers.BrowserProvider(connection);
           const signer = await provider.getSigner();
-          const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+          const contract = new ethers.Contract(DecentraContractAddress2, DecentraModulesAbi.abi, signer);
   
           const tmpTweets = await contract.getAllTweets();
           let tmp_tweets = [];
@@ -56,6 +57,8 @@ function ProfilePage({current_user}) {
                    text:tweet.text,
                    cId:tweet.cId,
                    liked:tweet.liked,
+                   likes:tweet.likes,
+                   dislikes:tweet.dislikes
           
                 }
                 tmp_tweets.push(Tweet);

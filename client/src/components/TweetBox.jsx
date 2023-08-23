@@ -10,11 +10,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import { _User } from '../Scripts/UserStorage';
 import config from '../config';
 import DecentraAbi from '../abi/Decentra.json';
+import DecentraModulesAbi from '../abi/DecentraModules.json';
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';	
 import { Web3Storage } from 'web3.storage';
 import { useNotification } from "@web3uikit/core";
-import axios from 'axios';
+//import axios from 'axios';
 
 const TweetBox = ({profile,mode,render,renderth,p_id}) => {
     const [disable,setDisable]=useState(false);
@@ -82,33 +83,33 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
         return `${month} ${day}${daySuffix}, ${year}`;
     }
       
-    //   async function storeFile (selectedFile) {
-	// 	try {
-	// 		const client = new Web3Storage({token: Web3StorageApi});
-	// 		const rootCid = await client.put(selectedFile);
-	// 		let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
-	// 		return ipfsUploadedUrl;
-	// 	} catch(e) {
-	// 		alert("OOPS :(\n" + e);
-	// 	}
-		
-	// }
-
-    async function storeFile(selectedFile) {
+      async function storeFile (selectedFile) {
 		try {
-		  const formData = new FormData();
-		  formData.append("images", selectedFile);
-	  
-		  const response = await axios.post(config.REACT_APP_AXIOS, formData); // http://192.168.18.16:3001/upload
-		  // Handle the response from the server after the files are uploaded
-		  console.log(response.data.ipfsUrl);
-		  return response.data.ipfsUrl;
-		} catch (error) {
-		  // Handle any error that occurred during the file upload
-		  console.error('Error uploading files:', error);
-		  return null;
+			const client = new Web3Storage({token: Web3StorageApi});
+			const rootCid = await client.put(selectedFile);
+			let ipfsUploadedUrl = `https://${rootCid}.ipfs.dweb.link/${selectedFile[0].name}`;
+			return ipfsUploadedUrl;
+		} catch(e) {
+			alert("OOPS :(\n" + e);
 		}
-	  }
+		
+	}
+
+    // async function storeFile(selectedFile) {
+	// 	try {
+	// 	  const formData = new FormData();
+	// 	  formData.append("images", selectedFile);
+	  
+	// 	  const response = await axios.post(config.REACT_APP_AXIOS, formData); // http://192.168.18.16:3001/upload
+	// 	  // Handle the response from the server after the files are uploaded
+	// 	  console.log(response.data.ipfsUrl);
+	// 	  return response.data.ipfsUrl;
+	// 	} catch (error) {
+	// 	  // Handle any error that occurred during the file upload
+	// 	  console.error('Error uploading files:', error);
+	// 	  return null;
+	// 	}
+	//   }
 
     const [loc_user, setLocUser] = useState(_User.getUserData());
     useEffect(() => {
@@ -124,7 +125,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
   	}, []);
 
       const Web3StorageApi = config.REACT_APP_WEB3STORAGE_API_KEY;
-      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+      const DecentraContractAddress = config.REACT_APP_DECENTRAMODULES_CONTRACT_ADDRESS;
 
     const [tweetText,setTweetText]=useState("");
     const [tweetImg,setTweetImg]=useState(null);
@@ -135,7 +136,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                 const connection = await web3Modal.connect();
                 let provider = new ethers.BrowserProvider(connection);
                 const signer = await provider.getSigner();
-                const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+                const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
                 let imageURL="";
                 let hashtags = undefined;
             if(mode == 0){
@@ -159,7 +160,7 @@ const TweetBox = ({profile,mode,render,renderth,p_id}) => {
                     imageURL = await storeFile(tweetImg);
                 }
 
-                const transaction = await contract.addComment(p_id,loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL);
+                const transaction = await contract.addComment(p_id,loc_user.name,"none",getCurrentDateAsString(),tweetText,imageURL,loc_user.avatar);
                 hashtags=hashtag(tweetText);
                 setTweetText("");
                 setImage(null);

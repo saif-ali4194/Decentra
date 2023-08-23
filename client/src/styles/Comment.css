@@ -67,6 +67,7 @@
     display: flex;
     justify-content: space-around;
     margin-top: 1rem;
+    align-items: center;
     /* padding: 1em 0rem; */
 }
 ._cmt-Options{
@@ -136,3 +137,12 @@
     width: 100%;
     border-bottom: 1px solid var(--border-color);
 } */
+.impressionsCount{
+    display: flex;
+    align-items: center;
+    margin-right: 2em;
+    /* flex-direction: row; */
+}
+.likeDislikeCount{
+    color:var(--font-color);
+}

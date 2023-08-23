@@ -95,6 +95,7 @@
 .post_options {
     display: flex;
     margin-top: 10px;
+    align-items: center;
     
 }
 
@@ -203,4 +204,13 @@
 .post_options_dialog:hover{
     background-color: var(--sidebar-active);
     cursor: pointer;
+}
+.impressionsCount{
+    display: flex;
+    align-items: center;
+    margin-right: 2em;
+    /* flex-direction: row; */
+}
+.likeDislikeCount{
+    color:var(--font-color);
 }

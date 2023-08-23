@@ -5,6 +5,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {IconButton } from '@mui/material';
 import { ethers } from 'ethers';
 import DecentraAbi from '../abi/Decentra.json';
+import DecentraModulesAbi from '../abi/DecentraModules.json';
 import config from '../config.js';
 import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
@@ -27,7 +28,7 @@ const Trend = ({id,name, location, type,retweets,catagoryName}) => {
   	}, []);
 
       const [mentions, setMentions] = useState(0);
-      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+      const DecentraContractAddress = config.REACT_APP_DECENTRAMODULES_CONTRACT_ADDRESS;
     
     //   useEffect(() => {
     //         const fetchMentions = async () => {

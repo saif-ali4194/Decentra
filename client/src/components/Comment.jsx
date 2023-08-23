@@ -8,17 +8,24 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { ethers } from 'ethers';
 import DecentraAbi from '../abi/Decentra.json';
+import DecentraModulesAbi from '../abi/DecentraModules.json';
 import config from '../config.js';
 import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
 import TweetBox from './TweetBox';
 import CancelIcon from '@mui/icons-material/Cancel';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
 
 const Comment = ({comment, users}) => {
     // console.log(users);
     // const[Users,setUsers]=useRef([]);
     // setUsers=users;
+    const [likes,setLikes]=useState(parseInt(comment.likes,10));
+    const [dislikes,setDislikes]=useState(parseInt(comment.dislikes,10));
     let tmp_cmts = [];
     const [modalOpen,setModalOpen]=useState(false);
     const optionsDialogue=useRef();
@@ -36,7 +43,7 @@ const Comment = ({comment, users}) => {
   	}, []);
 
       const [comments, setComments] = useState([]);
-      const DecentraContractAddress = config.REACT_APP_DECENTRA_CONTRACT_ADDRESS;
+      const DecentraContractAddress = config.REACT_APP_DECENTRAMODULES_CONTRACT_ADDRESS;
     
       useEffect(() => {
             const fetchComments = async () => {
@@ -44,7 +51,7 @@ const Comment = ({comment, users}) => {
                 const connection = await web3Modal.connect();
                 let provider = new ethers.BrowserProvider(connection);
                 const signer = await provider.getSigner();
-                const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+                const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
         
                 const fetchedComments = await contract.getComments(comment.id);
                 tmp_cmts = [];  
@@ -77,6 +84,7 @@ const Comment = ({comment, users}) => {
         
       }, []);
       const [liked,setLiked]=useState(false);
+      const [disliked,setDisliked]=useState(false);
       //   console.log(address + "   " + tweet.t_id);
         useEffect(()=>{
           const getLikes = async () => {
@@ -84,7 +92,7 @@ const Comment = ({comment, users}) => {
               const connection = await web3Modal.connect();
               let provider = new ethers.BrowserProvider(connection);
               const signer = await provider.getSigner();
-              const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+              const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
       
               const fetchedUsers = await contract.getlikes(comment.id);
               // let tmp_users = [];
@@ -106,19 +114,52 @@ const Comment = ({comment, users}) => {
               // }
               
           };	
+          const getDislikes = async () => {
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            let provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
+    
+            const fetchedUsers = await contract.getdislikes(comment.id);
+            // let tmp_users = [];
+            //Update the state with the fetched users
+            for(let i=0; i<fetchedUsers.length; i++) {
+                const fetchedUser = fetchedUsers[i];
+                if(fetchedUser===loc_user.active_account){
+                    setDisliked(true);
+                    break;
+                }
+                // const userAddress = fetchedUser;
+                // tmp_users.push(userAddress);
+                
+            }
+            
+            // setAddress(tmp_users);
+            // if(address.includes(loc_user.active_account)){
+            //     setLiked(true);
+            // }
+            
+        };
           getLikes();
+          getDislikes();
         },[]);
 
         const likePost = async (event)=> {
             event.stopPropagation();
+            // if(disliked){
+            //     removeDislike(event);
+            //     setDisliked(false);
+            // }
             setModalOpen(true);
             const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             let provider = new ethers.BrowserProvider(connection);
             const signer = await provider.getSigner();
-            const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
             const transaction = await contract.addLike(comment.id);
             setLiked(true);
+            setLikes(likes+1);
             
             setTimeout(() => {
                 setModalOpen(false);
@@ -132,9 +173,47 @@ const Comment = ({comment, users}) => {
             const connection = await web3Modal.connect();
             let provider = new ethers.BrowserProvider(connection);
             const signer = await provider.getSigner();
-            const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
             const transaction = await contract.removeLike(comment.id);
             setLiked(false);
+            setLikes(likes-1);
+            
+            setTimeout(() => {
+                setModalOpen(false);
+              }, 200);
+        }
+        const dislikePost = async (event)=> {
+            event.stopPropagation();
+            // if(liked){
+            //     unlikePost(event);
+            //     setLiked(false);
+            // }
+            setModalOpen(true);
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            let provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
+            const transaction = await contract.addDislike(comment.id);
+            setDisliked(true);
+            setDislikes(dislikes+1);
+            
+            setTimeout(() => {
+                setModalOpen(false);
+              }, 200);
+        }
+
+        const removeDislike = async (event)=> {
+            event.stopPropagation();
+            setModalOpen(true);
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            let provider = new ethers.BrowserProvider(connection);
+            const signer = await provider.getSigner();
+            const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
+            const transaction = await contract.removeDislike(comment.id);
+            setDisliked(false);
+            setDislikes(dislikes-1);
             
             setTimeout(() => {
                 setModalOpen(false);
@@ -191,7 +270,7 @@ const Comment = ({comment, users}) => {
         const connection = await web3Modal.connect();
         let provider = new ethers.BrowserProvider(connection);
         const signer = await provider.getSigner();
-        const contract = new ethers.Contract(DecentraContractAddress, DecentraAbi.abi, signer);
+        const contract = new ethers.Contract(DecentraContractAddress, DecentraModulesAbi.abi, signer);
 
         const transaction = await contract.deleteComment(comment.p_id,comment.id); 
         // render(true);
@@ -205,7 +284,7 @@ const Comment = ({comment, users}) => {
             <div className="comment">
                         
                         <div className="cmt-left">
-                            <Avatar src={avatar}/>
+                            <Avatar src={comment.avatar}/>
                             <div className='below-avatar'>
                                 <div className="straightLine">
 
@@ -218,7 +297,7 @@ const Comment = ({comment, users}) => {
                             <div className="cmt-right-top">
                                 <div className='cmt-userInfo'>
                                     <span className='cmt-username'>{comment.username}</span>
-                                    <span className='cmt-userat'>{comment.userAt}·{comment.date}</span>
+                                    <span className='cmt-userat'>{comment.name}·{comment.date}</span>
                                 </div>
                                 <div className="postOptionsMainDiv">
                                     {(comment.userAddress===loc_user.active_account) &&
@@ -248,14 +327,43 @@ const Comment = ({comment, users}) => {
                                 <ChatBubbleOutlineIcon className='_cmt-Options' 
                                     onClick={postComment}
                                 />
-                                {liked?
+                                {/* {liked?
                                     <FavoriteIcon className='_postoptions' onClick={unlikePost} />
                                     :
                                     <FavoriteBorderIcon className='_postoptions' onClick={likePost} />
                                 }
-                                <ReplyIcon className='_cmt-Options'/>
-                            </div>
+                                <ReplyIcon className='_cmt-Options'/> */}
+                                <div className="impressionsCount">
+                                            {liked?
+                                                <ThumbUpIcon className='_cmt-Options' onClick={(event) => unlikePost(event)} />
+                                                :
+                                                <ThumbUpOffAltIcon className='_cmt-Options' onClick={(event) =>{ 
+                                                        if(disliked){
+                                                            removeDislike(event);
+                                                            setDisliked(false);
+                                                        }
+                                                        likePost(event)}} />
+                                            }
+                                            <span className='likeDislikeCount'>{likes}</span>
+                                 </div>
+                                <div className="impressionsCount">
+                                            {disliked?
+                                                
+                                                <ThumbDownAltIcon className='_cmt-Options' onClick={(event) =>removeDislike(event)} />
+                                                :
+                                                <ThumbDownOffAltIcon className='_cmt-Options' onClick={(event) =>{
+                                                    if(liked){
+                                                        unlikePost(event);
+                                                        setLiked(false);
+                                                    }
+                                                    
+                                                    dislikePost(event)}} />
+                                            }
+                                            <span className='likeDislikeCount'>{dislikes}</span>
 
+                                </div>
+
+                        </div>
                         </div>
 
                         {/* <Comment comment={comment.c_cmts[0]}/>
