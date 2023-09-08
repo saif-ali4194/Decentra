@@ -25,7 +25,7 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
-const Post = ({tweet,tweetId,avatar, render}) => {
+const Post = ({tweet,tweetId,avatar, render,del}) => {
     const [loc_user, setLocUser] = useState(_User.getUserData());
     const [likes,setLikes]=useState(parseInt(tweet.likes,10));
     const [dislikes,setDislikes]=useState(parseInt(tweet.dislikes,10));
@@ -247,7 +247,10 @@ const Post = ({tweet,tweetId,avatar, render}) => {
                                 <MoreHorizIcon className="more"/>
                             </IconButton>
                         }
-                        <dialog className="post_options_dialog" ref={optionsDialogue} open={false} onClick={deletePost}>
+                        <dialog className="post_options_dialog" ref={optionsDialogue} open={false} onClick={()=>{
+                            deletePost();
+                            //del(tweetId);
+                            }}>
                             {/* <div className="opt">Hello</div> */}
                             <button className="postDelButton">🗑️</button>
                         </dialog>
@@ -275,12 +278,12 @@ const Post = ({tweet,tweetId,avatar, render}) => {
                                     }
                                     likePost(event)}} />
                         }
-                        <span className='likeDislikeCount'>{likes}</span>
+                        <span className='likeDislikeCount post-likes'>{likes}</span>
                     </div>
                     <div className="impressionsCount">
                         {disliked?
                             
-                            <ThumbDownAltIcon className='_postoptions' onClick={(event) =>removeDislike(event)} />
+                            <ThumbDownAltIcon className='post-op-icon' onClick={(event) =>removeDislike(event)} />
                             :
                             <ThumbDownOffAltIcon className='_postoptions' onClick={(event) =>{
                                 if(liked){

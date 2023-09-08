@@ -35,7 +35,7 @@ const ThreadMainPost = ({id,tweet,avatar}) => {
                     </div>
                     <div className="name_at">
                         <span className='threadMainPostUsername'>{ tweet.username }</span>
-                        <span className='threadMainPostAt'>{tweet.userAt}</span>
+                        {/* <span className='threadMainPostAt'>{tweet.userAt}</span> */}
                     </div>
                 </div>
                     {   (loc_user.active_account===tweet.tweetOwner) &&
@@ -59,10 +59,10 @@ const ThreadMainPost = ({id,tweet,avatar}) => {
             
             <div className="threadMainPostOptions">
                     {/* <ChatBubbleOutlineIcon className='_threadMainPostOptions' 
-                    /> */}
-                    {/* // onClick={postComment} */}
+                    />
+                    // onClick={postComment}
                     <FavoriteBorderIcon className='_threadMainPostOptions'/>
-                    <ReplyIcon className='_threadMainPostOptions'/>
+                    <ReplyIcon className='_threadMainPostOptions'/> */}
             </div>
 
         </div>

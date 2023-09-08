@@ -333,6 +333,15 @@ contract DecentraModules{
     function getComments(uint p_id) public view returns(Comment[] memory){
         return comments[p_id];
     }
+    function getCommentimpressions(uint _id) public view returns(Comment memory){
+       uint index=0;
+        for(uint i=0;i<cmtarr.length;i++){
+            if(cmtarr[i].c_id==_id){
+                index=i;
+            }
+        }
+        return cmtarr[index];
+    }
     function deleteComment(uint p_id, uint id) public {
         Comment[] storage temp = comments[p_id];
 

@@ -137,12 +137,21 @@
     width: 100%;
     border-bottom: 1px solid var(--border-color);
 } */
-.impressionsCount{
+.comment .impressionsCount{
     display: flex;
     align-items: center;
-    margin-right: 2em;
+    max-width: fit-content;
+    /* margin-right: 2em; */
     /* flex-direction: row; */
+}
+.comment .impressionsCount>span{
+    margin-top: 5px;
+    margin-left: 10px;
 }
 .likeDislikeCount{
     color:var(--font-color);
+}
+
+.comment .likeDislikeCount.cmt-likes {
+    margin-top: 10px;
 }

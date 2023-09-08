@@ -11,9 +11,21 @@ import Web3Modal from 'web3modal';
 import { _User } from '../Scripts/UserStorage.js';
 const Posts = ({tweets,user_posts, pathname,home,render}) => {
     //const [avatar,setAvatar]=useState();
-    
+    const [refresh,setRefresh]=useState(false);
+    function del(id){
+        //for(let i=0;i<tweets.length;i++){
+            //if(tweets[i].t_id==id){
+                tweets = tweets.filter((tweet) => tweet.t_id !== id);
+            // }
+        //}
+        if(refresh)
+            setRefresh(false);
+        else
+            setRefresh(true);
+    }
+    // useEffect(()=>{
         
-    
+    // },refresh)
     let avatar="";
     const [loc_user, setLocUser] = useState(_User.getUserData());
     useEffect(() => {
@@ -104,7 +116,7 @@ const Posts = ({tweets,user_posts, pathname,home,render}) => {
                                 break;
                             }
                         }
-                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
+                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render} del={del}/>
                     }
                 
                     }))
@@ -122,7 +134,7 @@ const Posts = ({tweets,user_posts, pathname,home,render}) => {
                                 break;
                             }
                         }
-                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
+                        return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render} del={del}/>
                         }
                     })
                 )
@@ -138,7 +150,7 @@ const Posts = ({tweets,user_posts, pathname,home,render}) => {
                             break;
                         }
                     }
-                    return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
+                    return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render} del={del}/>
                     }
                 })
             )
@@ -154,7 +166,7 @@ const Posts = ({tweets,user_posts, pathname,home,render}) => {
                         break;
                     }
                 }
-                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render}/>
+                return <Post key={tweet.t_id} tweet={tweet} tweetId={tweet.t_id} avatar={avatar} render={render} del={del}/>
                     }))
 
              }

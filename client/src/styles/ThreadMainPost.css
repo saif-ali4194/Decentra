@@ -13,6 +13,7 @@
 }
 .threadMainTop-left{
     display: flex;
+    align-items: center;
     gap:1rem;
 }
 .name_at{
@@ -63,7 +64,7 @@
 .threadMainPostOptions{
     display: flex;
     justify-content: space-around;
-    border-top: 1px solid var(--border-color);
+    /* border-top: 1px solid var(--border-color); */
     border-bottom: 1px solid var(--border-color);
     padding: 1em 0rem;
 }

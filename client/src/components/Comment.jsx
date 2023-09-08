@@ -21,6 +21,7 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
 
 const Comment = ({comment, users}) => {
+    console.log(comment.likes+" "+comment.dislikes);
     // console.log(users);
     // const[Users,setUsers]=useRef([]);
     // setUsers=users;
@@ -324,9 +325,9 @@ const Comment = ({comment, users}) => {
                             </div>
 
                             <div className="cmt-Options">
-                                <ChatBubbleOutlineIcon className='_cmt-Options' 
+                                {/* <ChatBubbleOutlineIcon className='_cmt-Options' 
                                     onClick={postComment}
-                                />
+                                /> */}
                                 {/* {liked?
                                     <FavoriteIcon className='_postoptions' onClick={unlikePost} />
                                     :
@@ -344,7 +345,7 @@ const Comment = ({comment, users}) => {
                                                         }
                                                         likePost(event)}} />
                                             }
-                                            <span className='likeDislikeCount'>{likes}</span>
+                                            <span className='likeDislikeCount cmt-likes'>{likes}</span>
                                  </div>
                                 <div className="impressionsCount">
                                             {disliked?
